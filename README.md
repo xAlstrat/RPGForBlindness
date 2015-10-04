@@ -3,4 +3,4 @@ Proyecto de videojuego RPG para niños no videntes o con restos visuales.
 
 **Unity Version:** 5.1.2f1
 
-**Main Languaje:** C#
+**Main Language:** C#
