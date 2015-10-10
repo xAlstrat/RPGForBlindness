@@ -26,11 +26,11 @@ public class Hall
 		return _nodes [i, j].hasWall (wall);
 	}
 
-	public int width(){
+	public int getWidth(){
 		return _width;
 	}
 
-	public int height(){
+	public int getHeight(){
 		return _height;
 	}
 }

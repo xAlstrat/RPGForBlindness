@@ -17,7 +17,7 @@ public class HallMeshBuilder : MonoBehaviour
 	}
 
 	private Hall hall;
-
+	private RoomScale scale;
 
 
 	public void setHall(Hall hall){
@@ -25,13 +25,17 @@ public class HallMeshBuilder : MonoBehaviour
 		hallWalls = new Dictionary<string, Dictionary<HallNode.Wall, WallData>> ();
 	}
 
+	public void setScale(RoomScale scale){
+		this.scale = scale;
+	}
+
 	private Dictionary<string, Dictionary<HallNode.Wall, WallData>> hallWalls;
 	private List<WallData> walls = new List<WallData>();
 	
 
 	public void process(){
-		for (int i=0; i<hall.width(); i++) {
-			for (int j=0; j<hall.height(); j++) {
+		for (int i=0; i<hall.getWidth(); i++) {
+			for (int j=0; j<hall.getHeight(); j++) {
 				generateWallData(i, j, new Vector2(1, 0), HallNode.Wall.TOP);
 				generateWallData(i, j, new Vector2(1, 0), HallNode.Wall.BOTTOM);
 				generateWallData(i, j, new Vector2(0, 1), HallNode.Wall.LEFT);
@@ -89,6 +93,7 @@ public class HallMeshBuilder : MonoBehaviour
 		foreach (WallData data in walls) {
 			generateWallMesh(data);
 		}
+		generateFloor ();
 	}
 
 	private void generateWallMesh(WallData data){
@@ -96,23 +101,48 @@ public class HallMeshBuilder : MonoBehaviour
 		cube.name = "Wall (" + data.position.x + "," + data.position.y + ") " + data.wall.ToString ();
 		int offset = data.beforeLenght + data.afterLenght + 1;
 
+		Transform parent = GameObject.Find ("Hall").transform;
+		cube.transform.parent = parent;
 		cube.transform.position = calculatePosition(data);
-		cube.transform.localScale = new Vector3 (offset, 1f, 0.1f);
+		cube.transform.localScale = new Vector3 (offset*scale.getHallWidth(), scale.getHallHeight(), 0.1f);
 		cube.transform.Rotate (calculateRotation(data));
+	}
+
+	private void generateFloor(){
+		Transform parent = GameObject.Find ("Room").transform;
+		GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
+		floor.transform.parent = parent;
+		floor.transform.localScale = getFloorScale();
+		floor.transform.position = getFloorPosition ();
+	}
+
+	private Vector3 getFloorScale(){
+		return new Vector3 (hall.getWidth () / 10f, 1f, hall.getHeight () / 10f) * scale.getHallWidth ();
+	}
+
+	private Vector3 getFloorPosition(){
+		return new Vector3 (hall.getWidth()/2, 0, -hall.getHeight()/2) * scale.getHallWidth ();
 	}
 
 	private Vector3 calculatePosition(WallData data){
 		float offset = ((data.afterLenght + data.beforeLenght + 1f) / 2) - data.beforeLenght - 0.5f;
+		Vector3 pos;
 		switch (data.wall) {
 		case HallNode.Wall.TOP:
-			return new Vector3 (data.position.x + offset, 0f, -data.position.y+0.5f);
+			pos = new Vector3 (data.position.x + offset, 0f, -data.position.y + 0.5f) * scale.getHallWidth ();
+			break;
 		case HallNode.Wall.BOTTOM:
-			return new Vector3 (data.position.x + offset, 0f, -data.position.y-0.5f);
+			pos = new Vector3 (data.position.x + offset, 0f, -data.position.y - 0.5f) * scale.getHallWidth ();
+			break;
 		case HallNode.Wall.LEFT:
-			return new Vector3 (data.position.x-0.5f, 0f, -data.position.y - offset);
+			pos = new Vector3 (data.position.x - 0.5f, 0f, -data.position.y - offset) * scale.getHallWidth ();;
+			break;
 		default:
-			return new Vector3 (data.position.x+0.5f, 0f, -data.position.y - offset);
+			pos = new Vector3 (data.position.x + 0.5f, 0f, -data.position.y - offset) * scale.getHallWidth ();;
+			break;
 		}
+		pos.y = scale.getHallHeight () / 2f;
+		return pos;
 	}
 
 	private Vector3 calculateRotation(WallData data){

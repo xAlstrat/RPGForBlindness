@@ -11,6 +11,7 @@ public class Init : MonoBehaviour
 		Hall hall = hallBuilder.build (LevelData.getLevel (1));
 		HallMeshBuilder meshBuilder = gameObject.GetComponent<HallMeshBuilder> ();
 		meshBuilder.setHall (hall);
+		meshBuilder.setScale (new RoomScale(1f, 1f));
 		meshBuilder.process ();
 	}
 	
