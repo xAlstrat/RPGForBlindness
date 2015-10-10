@@ -6,6 +6,7 @@ public class Game : MonoBehaviour
 	private static Game instance;
 
 	public Player player;
+	public RoomMaterial roomMaterial;
 	private Room room;
 
 	public static Game GetInstance(){
@@ -22,7 +23,7 @@ public class Game : MonoBehaviour
 	}
 
 	private void initRoom(){
-		room = new Room (new RoomScale (3f, 2f));
+		room = new Room (new RoomScale (2f, 2f));
 	}
 
 	private void initPlayer(){

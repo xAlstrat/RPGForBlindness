@@ -8,12 +8,12 @@ using System.Collections;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-	protected Player player;
+	public Player player;
 
 	// Use this for initialization
 	public virtual void Start ()
 	{
-		player = gameObject.GetComponent<Game> ().player;
+
 	}
 	
 	// Update is called once per frame

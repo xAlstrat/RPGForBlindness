@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class HallMeshBuilder
 {
+	private WallMeshBuilder wallBuilder;
+
 	public class WallData{
 		public int beforeLenght = 0;
 		public int afterLenght = 0;
@@ -19,6 +21,9 @@ public class HallMeshBuilder
 	private Hall hall;
 	private RoomScale scale;
 
+	public HallMeshBuilder(){
+		wallBuilder = new WallMeshBuilder ();
+	}
 
 	public void setHall(Hall hall){
 		this.hall = hall;
@@ -97,23 +102,27 @@ public class HallMeshBuilder
 	}
 
 	private void generateWallMesh(WallData data){
-		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		//GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		GameObject cube = wallBuilder.generateWall (data.afterLenght + data.beforeLenght + 1, 1);
 		cube.name = "Wall (" + data.position.x + "," + data.position.y + ") " + data.wall.ToString ();
-		int offset = data.beforeLenght + data.afterLenght + 1;
 
 		Transform parent = GameObject.Find ("Hall").transform;
+		//cube.GetComponent<MeshRenderer> ().material = Game.GetInstance ().roomMaterial.wallMaterial;
 		cube.transform.parent = parent;
 		cube.transform.position = calculatePosition(data);
-		cube.transform.localScale = new Vector3 (offset*scale.getHallWidth(), scale.getHallHeight(), 0.1f);
+		cube.transform.localScale = new Vector3 (scale.getHallWidth(), scale.getHallHeight(), 0.1f);
 		cube.transform.Rotate (calculateRotation(data));
 	}
 
 	private void generateFloor(){
 		Transform parent = GameObject.Find ("Room").transform;
 		GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
+		floor.name = "Floor";
 		floor.transform.parent = parent;
 		floor.transform.localScale = getFloorScale();
 		floor.transform.position = getFloorPosition ();
+
+		floor.GetComponent<MeshRenderer> ().material = Game.GetInstance ().roomMaterial.wallMaterial;
 	}
 
 	private Vector3 getFloorScale(){
@@ -146,8 +155,17 @@ public class HallMeshBuilder
 	}
 
 	private Vector3 calculateRotation(WallData data){
-		return (data.wall == HallNode.Wall.LEFT || data.wall == HallNode.Wall.RIGHT) ?
-			new Vector3 (0f, 90f, 0f) : Vector3.zero;
+		switch (data.wall) {
+		case HallNode.Wall.RIGHT:
+			return new Vector3 (0f, 90f, 0f);
+		case HallNode.Wall.LEFT:
+			return new Vector3 (0f, -90f, 0f);
+		case HallNode.Wall.TOP:
+			return new Vector3 (0f, 0f, 0f);
+		case HallNode.Wall.BOTTOM:
+			return new Vector3 (0f, 180f, 0f);
+		}
+		return new Vector3 (0f, 0f, 0f);
 	}
 }
 

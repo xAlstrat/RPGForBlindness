@@ -54,10 +54,13 @@
      <Compile Include="Assets\Script\Hall\HallBuilder.cs" />
      <Compile Include="Assets\Script\Hall\HallMeshBuilder.cs" />
      <Compile Include="Assets\Script\Hall\HallNode.cs" />
+     <Compile Include="Assets\Script\Hall\WallMeshBuilder.cs" />
+     <Compile Include="Assets\Script\InitTest.cs" />
      <Compile Include="Assets\Script\LevelData.cs" />
      <Compile Include="Assets\Script\Player.cs" />
      <Compile Include="Assets\Script\PlayerState.cs" />
-     <Compile Include="Assets\Script\Room.cs" />
+     <Compile Include="Assets\Script\Room\Material\RoomMaterial.cs" />
+     <Compile Include="Assets\Script\Room\Room.cs" />
      <Compile Include="Assets\Script\Scale\RoomScale.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
