@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class HallMeshBuilder : MonoBehaviour
+public class HallMeshBuilder
 {
 	public class WallData{
 		public int beforeLenght = 0;

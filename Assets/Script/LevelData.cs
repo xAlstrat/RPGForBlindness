@@ -41,6 +41,7 @@ public class LevelData
 				"###.#######",
 				"###.#######"
 			};
+			levelData.startPosition = new Vector2(3, 0);
 			break;
 		case 2:
 			levelData.hallData = new string[]{
