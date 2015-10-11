@@ -54,8 +54,8 @@
      <Compile Include="Assets\Script\Hall\HallBuilder.cs" />
      <Compile Include="Assets\Script\Hall\HallMeshBuilder.cs" />
      <Compile Include="Assets\Script\Hall\HallNode.cs" />
+     <Compile Include="Assets\Script\Hall\NormalRenderer.cs" />
      <Compile Include="Assets\Script\Hall\WallMeshBuilder.cs" />
-     <Compile Include="Assets\Script\InitTest.cs" />
      <Compile Include="Assets\Script\LevelData.cs" />
      <Compile Include="Assets\Script\Player.cs" />
      <Compile Include="Assets\Script\PlayerState.cs" />

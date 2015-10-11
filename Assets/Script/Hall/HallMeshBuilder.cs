@@ -110,7 +110,7 @@ public class HallMeshBuilder
 		//cube.GetComponent<MeshRenderer> ().material = Game.GetInstance ().roomMaterial.wallMaterial;
 		cube.transform.parent = parent;
 		cube.transform.position = calculatePosition(data);
-		cube.transform.localScale = new Vector3 (scale.getHallWidth(), scale.getHallHeight(), 0.1f);
+		cube.transform.localScale = new Vector3 (scale.getHallWidth(), scale.getHallHeight(), 1f);
 		cube.transform.Rotate (calculateRotation(data));
 	}
 
