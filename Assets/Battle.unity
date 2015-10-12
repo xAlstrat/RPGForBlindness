@@ -539,7 +539,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winText: {fileID: 1069804833}
   flechasText: {fileID: 520618372}
-  crashSoft: {fileID: 8300000, guid: c72c1b05ee38f9143b764861a98e9b67, type: 3}
+  explosion: {fileID: 8300000, guid: c72c1b05ee38f9143b764861a98e9b67, type: 3}
+  agua: {fileID: 8300000, guid: fcd23e8897c9e4548b8c03d96f9242d5, type: 3}
+  trueno: {fileID: 8300000, guid: 89a28666366615a44be5620a523c1559, type: 3}
 --- !u!4 &1762620805
 Transform:
   m_ObjectHideFlags: 0
