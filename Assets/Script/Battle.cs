@@ -11,7 +11,9 @@ public class Battle : MonoBehaviour {
 	public Text winText;
 	public Text flechasText;
 
-	public AudioClip crashSoft;
+	public AudioClip explosion;
+	public AudioClip agua;
+	public AudioClip trueno;
 
 	private AudioSource source;
 	private float lowPitchRange = .75F;
@@ -42,6 +44,7 @@ public class Battle : MonoBehaviour {
 			}
 		} else if (leftEvent ()) {
 			if(countR == 2){
+				makeAguaSound();
 				flechasText.text += "Izq";
 				countL++;
 			}
@@ -51,6 +54,7 @@ public class Battle : MonoBehaviour {
 			}
 		} else if (aheadEvent ()) {
 			if(countL == 1 && countR == 2){
+				makeTruenoSound();
 				flechasText.text += "Arriba";
 				winText.text = "WIN";
 				initCounts();
@@ -64,11 +68,17 @@ public class Battle : MonoBehaviour {
 
 	private void makeExplosionSound ()
 	{
+		source.PlayOneShot(explosion, 1);
+	}
 
+	private void makeAguaSound ()
+	{
+		source.PlayOneShot(agua);
+	}
 
-
-		source.PlayOneShot(crashSoft, 1);
-
+	private void makeTruenoSound ()
+	{
+		source.PlayOneShot(trueno, 1);
 	}
 
 	private void initCounts(){
