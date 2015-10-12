@@ -10,8 +10,6 @@ ehthumbs.db
 [Bb]uild
 [Ll]ibrary/
 sysinfo.txt
-*.meta
-*.stackdump
 
 # Folder config file
 Desktop.ini

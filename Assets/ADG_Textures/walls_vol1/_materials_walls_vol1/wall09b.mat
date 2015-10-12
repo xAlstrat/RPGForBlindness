@@ -85,6 +85,13 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -105,7 +112,7 @@ Material:
       data:
         first:
           name: _Parallax
-        second: .011716418
+        second: .00499999989
       data:
         first:
           name: _ZWrite
@@ -113,7 +120,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .150000006
+        second: .300000012
       data:
         first:
           name: _BumpScale
@@ -137,7 +144,7 @@ Material:
       data:
         first:
           name: _Metallic
-        second: 0
+        second: .100000001
       data:
         first:
           name: _EmissionScaleUI
@@ -166,7 +173,7 @@ Material:
       data:
         first:
           name: _SpecColor
-        second: {r: .626865685, g: .626865685, b: .626865685, a: 1}
+        second: {r: .161764681, g: .14630188, b: .14630188, a: 1}
       data:
         first:
           name: _EmissionColorUI
