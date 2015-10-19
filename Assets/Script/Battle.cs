@@ -24,6 +24,10 @@ public class Battle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		source = GetComponent<AudioSource>();
+		flechasText.fontSize = 30;
+		flechasText.color = Color.cyan;
+		winText.fontSize = 40;
+		winText.color = Color.cyan;
 	}
 	
 	// Update is called once per frame

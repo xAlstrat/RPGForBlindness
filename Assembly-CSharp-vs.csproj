@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Battle.cs" />
      <Compile Include="Assets\Script\Controller\KeyboardMovementController.cs" />
      <Compile Include="Assets\Script\Controller\PlayerController.cs" />
      <Compile Include="Assets\Script\Controller\PlayerMovementController.cs" />
@@ -61,7 +62,19 @@
      <Compile Include="Assets\Script\PlayerState.cs" />
      <Compile Include="Assets\Script\Room\Material\RoomMaterial.cs" />
      <Compile Include="Assets\Script\Room\Room.cs" />
+     <Compile Include="Assets\Script\RoomMiniGame\RoomCameraController.cs" />
+     <Compile Include="Assets\Script\RoomMiniGame\RoomExitController.cs" />
+     <Compile Include="Assets\Script\RoomMiniGame\RoomFloorController.cs" />
+     <Compile Include="Assets\Script\RoomMiniGame\RoomPlayerController.cs" />
      <Compile Include="Assets\Script\Scale\RoomScale.cs" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MobileBloom.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ContrastComposite.shader" />
+     <None Include="Assets\Monster\shaders\vertexAnim.shader" />
+     <None Include="Assets\Monster\shaders\bumpSpecmap.shader" />
+     <None Include="Assets\Monster\shaders\metalA.shader" />
+     <None Include="Assets\Monster\shaders\caveShader.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableBlur.shader" />
+     <None Include="Assets\Monster\shaders\monsterShader.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
