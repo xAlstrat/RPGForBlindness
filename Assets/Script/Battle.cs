@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Timers;
 
 public class Battle : MonoBehaviour {
 
 	private int countR = 0;
 	private int countL = 0;
 	private int countU = 0;
+	
+	private int playerHP = 5;
+	private int timeout = 3000;  //milliseconds
+	private System.Timers.Timer myTimer;
 
 	public Text winText;
+	public Text hpText;
 	public Text flechasText;
 
 	public AudioClip explosion;
@@ -21,6 +27,10 @@ public class Battle : MonoBehaviour {
 	private float velToVol = .2F;
 	private float velocityClipSplit = 10F;
 
+	public void myEvent(object source, ElapsedEventArgs e) {
+		playerHP--;
+	}
+	
 	// Use this for initialization
 	void Start () {
 		source = GetComponent<AudioSource>();
@@ -28,12 +38,19 @@ public class Battle : MonoBehaviour {
 		flechasText.color = Color.cyan;
 		winText.fontSize = 40;
 		winText.color = Color.cyan;
+		
+		myTimer = new System.Timers.Timer();
+		myTimer.Elapsed += new ElapsedEventHandler(myEvent);
+		myTimer.Interval = timeout;    
+		myTimer.Enabled = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//winText.text = "WIN";
 		//Secuencia para ganar R, R, L, U
+		
+		hpText.text = "HP: " + playerHP.ToString();
 
 		if (rightEvent ()) {
 			//winText.text = "WIN";
@@ -60,6 +77,7 @@ public class Battle : MonoBehaviour {
 			if(countL == 1 && countR == 2){
 				makeTruenoSound();
 				flechasText.text += "Arriba";
+				myTimer.Stop();
 				winText.text = "WIN";
 				initCounts();
 			}
@@ -67,6 +85,12 @@ public class Battle : MonoBehaviour {
 				//TODO imprimir en pantalla
 				initCounts();
 			}
+		}
+		
+		if (playerHP <= 0) {
+			myTimer.Stop();
+			hpText.text = "";
+			winText.text = "You lose";
 		}
 	}
 
