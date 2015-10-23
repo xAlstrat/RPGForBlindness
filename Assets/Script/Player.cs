@@ -75,6 +75,8 @@ public class Player : MonoBehaviour
 		currentDir = 0;
 		startRotation = Quaternion.identity;
 		destRotation = Quaternion.identity;
+
+		source = GetComponent<AudioSource>();
 	}
 
 	void FixedUpdate ()
@@ -150,15 +152,40 @@ public class Player : MonoBehaviour
 	/// <summary>
 	/// Move this instance one coord ahead smoothly.
 	/// </summary>
+
+	private bool toggle = true;
+	private AudioSource source;
+	public AudioClip choque;
+	public AudioClip paso1, paso2;
+	private float lastPress = 1f;
+	private float delay = 1f;
+
 	public void move(){
+		if (!canMove() && state == PlayerState.STOPPED) {
+			if(Time.time - lastPress > delay){
+				lastPress = Time.time;
+				source.PlayOneShot(choque, 1);
+				return;
+			}
+			return;
+		}
+
 		if (state != PlayerState.STOPPED || !canMove()) {
 			return;
 		}
+
 		position += direction;
 		startPosition = transform.position;
 		destPosition = Room.GetInstance ().getWorldPosition (getPosition());
 		countdown = 1f;
 		state = PlayerState.MOVING;
+
+		if (toggle)
+			source.PlayOneShot (paso1);
+		else
+			source.PlayOneShot (paso2);
+
+		toggle = !toggle;
 	}
 
 	/// <summary>
