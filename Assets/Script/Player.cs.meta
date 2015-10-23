@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: df072b6ea8d7201408cf6d22085b9282
-timeCreated: 1444441098
-licenseType: Free
+timeCreated: 1445622006
+licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - choque: {fileID: 8300000, guid: 033552611ebc037428d6ec01f7d798c0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
