@@ -39,6 +39,7 @@ public class Room
 		meshBuilder.setHall (hall);
 		meshBuilder.setScale (scale);
 		meshBuilder.process ();
+		RoomObjectGenerator generator = new RoomObjectGenerator ();
 	}
 
 	/// <summary>
