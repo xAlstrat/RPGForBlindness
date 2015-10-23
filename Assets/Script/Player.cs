@@ -61,6 +61,10 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private Quaternion destRotation;
 
+	void Awake(){
+		DontDestroyOnLoad (transform.gameObject);
+	}
+
 	void Start(){
 		directions = new Vector2[]{
 			new Vector2(0, 1), //north

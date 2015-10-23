@@ -58,6 +58,7 @@
      <Compile Include="Assets\Script\Hall\WallMeshBuilder.cs" />
      <Compile Include="Assets\Script\LevelData.cs" />
      <Compile Include="Assets\Script\NormalRenderer.cs" />
+     <Compile Include="Assets\Script\PersistenceTestController.cs" />
      <Compile Include="Assets\Script\Player.cs" />
      <Compile Include="Assets\Script\PlayerState.cs" />
      <Compile Include="Assets\Script\Room\Material\RoomMaterial.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Script\RoomMiniGame\RoomFloorController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomPlayerController.cs" />
      <Compile Include="Assets\Script\Scale\RoomScale.cs" />
+     <Compile Include="Assets\Script\Scene\SceneLoader.cs" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MobileBloom.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ContrastComposite.shader" />
      <None Include="Assets\Monster\shaders\vertexAnim.shader" />

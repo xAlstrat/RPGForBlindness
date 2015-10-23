@@ -115,7 +115,7 @@ public class HallMeshBuilder
 	}
 
 	private void generateFloor(){
-		Transform parent = GameObject.Find ("Room").transform;
+		Transform parent = GameObject.Find ("RoomGameState").transform;
 		GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
 		floor.name = "Floor";
 		floor.transform.parent = parent;
