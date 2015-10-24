@@ -67,9 +67,9 @@ public class Player : MonoBehaviour
 
 	void Start(){
 		directions = new Vector2[]{
-			new Vector2(0, 1), //north
+			new Vector2(0, -1), //north
 			new Vector2(1, 0), //east
-			new Vector2(0, -1), //south
+			new Vector2(0, 1), //south
 			new Vector2(-1, 0) //west
 		};
 		currentDir = 0;

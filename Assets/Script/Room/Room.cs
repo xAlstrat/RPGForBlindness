@@ -39,7 +39,8 @@ public class Room
 		meshBuilder.setHall (hall);
 		meshBuilder.setScale (scale);
 		meshBuilder.process ();
-		RoomObjectGenerator generator = new RoomObjectGenerator ();
+		RoomObjectGenerator generator = new RoomObjectGenerator (data);
+		generator.process ();
 	}
 
 	/// <summary>
@@ -67,11 +68,11 @@ public class Room
 		return new Vector3 (
 			pos.x * getRoomScale(),
 			1f,
-			(-hall.getHeight() + pos.y + 1f) * getRoomScale());
+			- pos.y * getRoomScale());
 	}
 
 	/// <summary>
-	/// Gets the world position of a given positoin inside the room.
+	/// Gets the world position of a given position inside the room.
 	/// </summary>
 	/// <returns>The world position.</returns>
 	/// <param name="pos">Position.</param>
@@ -79,7 +80,7 @@ public class Room
 		return new Vector3 (
 			pos.x * getRoomScale(),
 			pos.y,
-			(-hall.getHeight() + pos.y + 1f) * getRoomScale());
+			- pos.z * getRoomScale());
 	}
 
 	/// <summary>
@@ -91,7 +92,7 @@ public class Room
 		if (!isInside (pos)) {
 			return true;
 		}
-		return data.wallAt ((int)pos.x, (int)(hall.getHeight() - pos.y - 1f));
+		return data.wallAt ((int)pos.x, (int) pos.y);
 	}
 
 	/// <summary>

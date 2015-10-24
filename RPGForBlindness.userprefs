@@ -1,10 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Room\Room.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Level\LevelData.cs">
     <Files>
       <File FileName="Assets\Script\Scene\SceneLoader.cs" Line="22" Column="29" />
-      <File FileName="Assets\Script\Room\Room.cs" Line="42" Column="62" />
-      <File FileName="Assets\Script\Room\RoomObjectGenerator.cs" Line="7" Column="1" />
+      <File FileName="Assets\Script\Room\Room.cs" Line="43" Column="26" />
+      <File FileName="Assets\Script\Room\RoomObjectGenerator.cs" Line="24" Column="9" />
+      <File FileName="Assets\Script\Room\Orientation.cs" Line="45" Column="16" />
+      <File FileName="Assets\Script\Level\LevelData.cs" Line="55" Column="23" />
+      <File FileName="Assets\Script\Level\LevelEntity.cs" Line="7" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
