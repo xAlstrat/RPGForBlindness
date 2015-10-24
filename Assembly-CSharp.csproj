@@ -64,6 +64,7 @@
      <Compile Include="Assets\Script\PlayerState.cs" />
      <Compile Include="Assets\Script\Room\Material\RoomMaterial.cs" />
      <Compile Include="Assets\Script\Room\Orientation.cs" />
+     <Compile Include="Assets\Script\Room\PlayerMovementRestriction.cs" />
      <Compile Include="Assets\Script\Room\Room.cs" />
      <Compile Include="Assets\Script\Room\RoomObjectGenerator.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomCameraController.cs" />

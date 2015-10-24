@@ -395,6 +395,7 @@ GameObject:
   - 4: {fileID: 796217107}
   - 114: {fileID: 796217108}
   - 82: {fileID: 796217109}
+  - 114: {fileID: 796217110}
   m_Layer: 0
   m_Name: PlayerGameState
   m_TagString: Untagged
@@ -427,9 +428,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df072b6ea8d7201408cf6d22085b9282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementRestriction: {fileID: 796217110}
   speed: 2.5
   state: 0
-  choque: {fileID: 8300000, guid: e579ba63f869d9b4b96c8dfe8690fac9, type: 3}
   paso1: {fileID: 8300000, guid: e6b160714b31a21439f2f9928be26fff, type: 3}
   paso2: {fileID: 8300000, guid: fcb6ff0e7c7233343a2f3c48fc0ce7e8, type: 3}
 --- !u!82 &796217109
@@ -501,6 +502,21 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &796217110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796217106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb23301bf5080d542acd46acf92519c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choque: {fileID: 8300000, guid: e579ba63f869d9b4b96c8dfe8690fac9, type: 3}
+  treasure: {fileID: 8300000, guid: 89a28666366615a44be5620a523c1559, type: 3}
+  door: {fileID: 8300000, guid: c72c1b05ee38f9143b764861a98e9b67, type: 3}
+  geometric: {fileID: 8300000, guid: fcd23e8897c9e4548b8c03d96f9242d5, type: 3}
 --- !u!1 &1319343227
 GameObject:
   m_ObjectHideFlags: 0

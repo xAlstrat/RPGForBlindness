@@ -29,6 +29,10 @@ public class LevelData
 		return hallData[j][i].Equals('#');
 	}
 
+	public bool walkableCell(int i, int j){
+		return hallData[j][i].Equals('.');
+	}
+
 	public void addOrientation(int i, int j, Orientation o){
 		orientations.Add (i + "," + j, o);
 	}

@@ -19,6 +19,8 @@ public class Room
 	/// </summary>
 	private LevelData data;
 
+	private GameObject[][] entities;
+
 	/// <summary>
 	/// The hall structure.
 	/// </summary>
@@ -30,9 +32,17 @@ public class Room
 	private RoomScale scale;
 
 	public Room(RoomScale scale){
+		data = LevelData.getLevel (1);
+		int width = data.getRoomWidth ();
+		int height = data.getRoomHeight ();
+		entities = new GameObject[height][];
+		for (int i=0; i < height; i++) {
+			entities[i] = new GameObject[width];
+		}
+
 		instance = this;
 		HallBuilder hallBuilder = new HallBuilder ();
-		data = LevelData.getLevel (1);
+
 		this.hall = hallBuilder.build (data);
 		this.scale = scale;
 		HallMeshBuilder meshBuilder = new HallMeshBuilder ();
@@ -40,7 +50,13 @@ public class Room
 		meshBuilder.setScale (scale);
 		meshBuilder.process ();
 		RoomObjectGenerator generator = new RoomObjectGenerator (data);
-		generator.process ();
+
+		
+		for (int i=0; i<width; i++) {
+			for (int j=0; j<height; j++) {
+				entities[j][i] = generator.instantiateRoomObject(i, j);
+			}
+		}
 	}
 
 	/// <summary>
@@ -84,15 +100,15 @@ public class Room
 	}
 
 	/// <summary>
-	/// Returns true if the room has a wall in the given position.
+	/// Returns true if the specified position of the room is walkable.
 	/// </summary>
 	/// <returns>The <see cref="System.Boolean"/>.</returns>
 	/// <param name="pos">Position.</param>
-	public bool wallAt(Vector2 pos){
+	public bool walkableCell(Vector2 pos){
 		if (!isInside (pos)) {
 			return true;
 		}
-		return data.wallAt ((int)pos.x, (int) pos.y);
+		return data.walkableCell ((int)pos.x, (int) pos.y);
 	}
 
 	/// <summary>
@@ -103,6 +119,10 @@ public class Room
 	private bool isInside(Vector2 pos){
 		return 0 <= pos.x && pos.x < hall.getWidth () &&
 			0 <= pos.y && pos.y < hall.getHeight ();
+	}
+
+	public GameObject getEntityAt(Vector2 pos){
+		return entities [(int)pos.y] [(int)pos.x];
 	}
 
 }

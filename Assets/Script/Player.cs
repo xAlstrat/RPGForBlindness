@@ -9,6 +9,11 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
 	/// <summary>
+	/// The movement restriction of the player.
+	/// </summary>
+	public PlayerMovementRestriction movementRestriction;
+
+	/// <summary>
 	/// The movement speed of the character.
 	/// </summary>
 	public float speed = 2f;
@@ -155,22 +160,15 @@ public class Player : MonoBehaviour
 
 	private bool toggle = true;
 	private AudioSource source;
-	public AudioClip choque;
 	public AudioClip paso1, paso2;
-	private float lastPress = 1f;
-	private float delay = 1f;
 
 	public void move(){
-		if (!canMove() && state == PlayerState.STOPPED) {
-			if(Time.time - lastPress > delay){
-				lastPress = Time.time;
-				source.PlayOneShot(choque, 1);
-				return;
-			}
+		if (state != PlayerState.STOPPED)
 			return;
-		}
 
-		if (state != PlayerState.STOPPED || !canMove()) {
+		Vector2 dest = position + direction;
+		if (!canMove(dest)) {
+			movementRestriction.playCrashSound(dest);
 			return;
 		}
 
@@ -227,8 +225,8 @@ public class Player : MonoBehaviour
 	/// True if the player can move one coord ahead.
 	/// </summary>
 	/// <returns><c>true</c>, if the move could be done, <c>false</c> otherwise.</returns>
-	private bool canMove(){
-		return !Room.GetInstance ().wallAt (position + direction);
+	private bool canMove(Vector2 pos){
+		return movementRestriction.canMove (pos);
 	}
 }
 
