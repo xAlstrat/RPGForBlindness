@@ -80,7 +80,9 @@ public class Battle : MonoBehaviour {
 				myTimer.Stop();
 				winText.text = "WIN";
 				initCounts();
-			}
+                SceneLoader loader = SceneLoader.GetInstance();
+                loader.load(loader.persistentScenes[0]);
+            }
 			else{
 				//TODO imprimir en pantalla
 				initCounts();

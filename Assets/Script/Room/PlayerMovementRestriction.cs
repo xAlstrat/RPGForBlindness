@@ -23,6 +23,7 @@ public class PlayerMovementRestriction : MonoBehaviour
 		return Room.GetInstance (). walkableCell(pos);
 	}
 
+
 	public void playCrashSound(Vector2 pos){
 		if (Time.time - lastPress > delay) {
 			lastPress = Time.time;
@@ -31,7 +32,15 @@ public class PlayerMovementRestriction : MonoBehaviour
 				source.PlayOneShot(choque);
 			} else {
 				go.GetComponent<AudioSource> ().Play ();
-			}
+                if (go.name.Contains("monster"))
+                {
+                    Room.GetInstance().defeatMonster(pos);
+                    Destroy(go);
+                    SceneLoader loader = SceneLoader.GetInstance();
+                    loader.load(loader.persistentScenes[1]);
+                }
+            }
+            
 		}
 	}
 

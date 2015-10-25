@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 /// <summary>
 /// Room.
@@ -59,11 +60,13 @@ public class Room
 		}
 	}
 
-	/// <summary>
-	/// Gets the room scale.
-	/// </summary>
-	/// <returns>The room scale.</returns>
-	public float getRoomScale(){
+   
+
+    /// <summary>
+    /// Gets the room scale.
+    /// </summary>
+    /// <returns>The room scale.</returns>
+    public float getRoomScale(){
 		return scale.getHallWidth ();
 	}
 
@@ -124,6 +127,11 @@ public class Room
 	public GameObject getEntityAt(Vector2 pos){
 		return entities [(int)pos.y] [(int)pos.x];
 	}
+
+    internal void defeatMonster(Vector2 pos)
+    {
+        data.defeatMonster((int)System.Math.Ceiling(pos.x), (int)System.Math.Ceiling(pos.y));
+    }
 
 }
 

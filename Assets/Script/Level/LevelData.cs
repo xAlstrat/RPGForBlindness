@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 public class LevelData
 {
@@ -102,5 +103,12 @@ public class LevelData
 		}
 		return levelData;
 	}
+
+    public void defeatMonster(int i, int j)
+    {
+        StringBuilder sb = new StringBuilder(hallData[j]);
+        sb[i] = '.';
+        hallData[j]= sb.ToString();
+    }
 }
 
