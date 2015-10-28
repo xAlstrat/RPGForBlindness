@@ -92,6 +92,29 @@ public class LevelData
 			//East
 			levelData.addOrientation(4, 4, Orientation.EAST);
 			break;
+		case 2:
+			levelData.hallData = new string[]{
+				"   T###X###########",
+				" ###### ###    ####",
+				"M   ###     ##    #",
+				"### ### ###### ## #",
+				"#        ##### ## #",
+				"# ### ## #     ## #",
+				"#   # ##   ###### #",
+				"# ###  T#########D#"
+			};
+			levelData.startPosition = new Vector2(1, 7);
+			/*Orientations*/
+			//South
+			levelData.addOrientation(7, 0, Orientation.SOUTH);
+			//North
+			levelData.addOrientation(17, 7, Orientation.NORTH);
+			//West
+			levelData.addOrientation(3, 0, Orientation.WEST);
+			levelData.addOrientation(7, 7, Orientation.WEST);
+			//East
+			levelData.addOrientation(0, 2, Orientation.EAST);
+			break;
 		default:
 			break;
 		}

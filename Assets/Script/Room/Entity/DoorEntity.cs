@@ -5,7 +5,8 @@ public class DoorEntity : RoomEntity
 {
 
 	public override void handleCollision(){
-		Debug.Log("door collision");;
+		ApplicationData.setLastLevel (2 -(ApplicationData.getLastLevel () + 1) % 2);
+		SceneLoader.GetInstance ().cleanLoad ("HallState");
 	}
 }
 

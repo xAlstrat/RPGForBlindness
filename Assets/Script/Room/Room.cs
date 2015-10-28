@@ -33,7 +33,7 @@ public class Room
 	private RoomScale scale;
 
 	public Room(RoomScale scale){
-		data = LevelData.getLevel (1);
+		data = LevelData.getLevel (ApplicationData.getLastLevel());
 		int width = data.getRoomWidth ();
 		int height = data.getRoomHeight ();
 

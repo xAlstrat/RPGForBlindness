@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\ApplicationData.cs" />
      <Compile Include="Assets\Script\Battle.cs" />
      <Compile Include="Assets\Script\Controller\KeyboardMovementController.cs" />
      <Compile Include="Assets\Script\Controller\PlayerController.cs" />
