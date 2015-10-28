@@ -31,7 +31,7 @@ public class LevelData
 	}
 
 	public bool walkableCell(int i, int j){
-		return hallData[j][i].Equals('.');
+		return hallData[j][i].Equals(' ');
 	}
 
 	public void addOrientation(int i, int j, Orientation o){
@@ -46,7 +46,7 @@ public class LevelData
 		switch (hallData[j][i]){
 		case '#':
 			return Entity.WALL;
-		case '.':
+		case ' ':
 			return Entity.FLOOR;
 		case 'T':
 			return Entity.TREASURE;
@@ -66,19 +66,19 @@ public class LevelData
 		switch (n) {
 		case 1:
 			levelData.hallData = new string[]{
-				".......#D##",
-				".#####.#.##",
-				".#####....D",
-				".##########",
-				".##.M..####",
-				".##.##.##X#",
-				".##T##.##.#",
-				".#####....#",
-				".#####.####",
-				".......####",
-				"###.#######",
-				"###.#######",
-				"###.#######"
+				"       #D##",
+				" ##### # ##",
+				" #####    D",
+				" ##########",
+				" ## M  ####",
+				" ## ## ##X#",
+				" ##T## ## #",
+				" #####    #",
+				" ##### ####",
+				"       ####",
+				"### #######",
+				"### #######",
+				"### #######"
 			};
 			levelData.startPosition = new Vector2(3, 12);
 			/*Orientations*/
@@ -89,14 +89,8 @@ public class LevelData
 			levelData.addOrientation(3, 6, Orientation.NORTH);
 			//West
 			levelData.addOrientation(10, 2, Orientation.WEST);
-			//West
+			//East
 			levelData.addOrientation(4, 4, Orientation.EAST);
-			break;
-		case 2:
-			levelData.hallData = new string[]{
-				"..",
-				".#"
-			};
 			break;
 		default:
 			break;
@@ -107,7 +101,7 @@ public class LevelData
     public void removeEntity(int i, int j)
     {
         StringBuilder sb = new StringBuilder(hallData[j]);
-        sb[i] = '.';
+        sb[i] = ' ';
         hallData[j]= sb.ToString();
     }
 }

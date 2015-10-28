@@ -1,17 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Room\Room.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Scene\SceneFadeInOut.cs">
     <Files>
-      <File FileName="Assets\Script\Room\CollisionManager.cs" Line="9" Column="40" />
-      <File FileName="Assets\Script\Room\Entity\MonsterEntity.cs" Line="7" Column="41" />
-      <File FileName="Assets\Script\Room\Entity\TreasureEntity.cs" Line="4" Column="41" />
-      <File FileName="Assets\Script\Room\Entity\GeometricEntity.cs" Line="4" Column="42" />
-      <File FileName="Assets\Script\Room\Entity\DoorEntity.cs" Line="4" Column="37" />
-      <File FileName="Assets\Script\Room\Entity\TrapEntity.cs" Line="4" Column="37" />
-      <File FileName="Assets\Script\Player.cs" Line="175" Column="3" />
-      <File FileName="Assets\Script\Room\Entity\RoomEntity.cs" Line="9" Column="41" />
-      <File FileName="Assets\Script\Room\Room.cs" Line="133" Column="45" />
-      <File FileName="Assets\Script\Level\LevelData.cs" Line="107" Column="29" />
+      <File FileName="Assets\Script\Scene\SceneLoader.cs" Line="28" Column="3" />
+      <File FileName="Assets\Script\Room\Entity\TrapEntity.cs" Line="7" Column="38" />
+      <File FileName="Assets\Script\Scene\SceneFadeInOut.cs" Line="2" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -79,6 +79,7 @@
      <Compile Include="Assets\Script\RoomMiniGame\RoomFloorController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomPlayerController.cs" />
      <Compile Include="Assets\Script\Scale\RoomScale.cs" />
+     <Compile Include="Assets\Script\Scene\SceneFadeInOut.cs" />
      <Compile Include="Assets\Script\Scene\SceneLoader.cs" />
      <Compile Include="Assets\novint\FalconMain.cs" />
      <Compile Include="Assets\novint\FalconRigidBody.cs" />
