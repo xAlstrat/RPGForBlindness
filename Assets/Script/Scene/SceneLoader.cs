@@ -47,7 +47,7 @@ public class SceneLoader : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Load the specified scene.
+	/// Loads the specified scene keeping persistent gameobjects.
 	/// </summary>
 	/// <param name="scene">Scene.</param>
 	public void load (string scene){
@@ -59,14 +59,21 @@ public class SceneLoader : MonoBehaviour
 		for(int i=0; i < persistentScenes.Length; i++){
 			if(persistentScenes[i].Equals(scene)){
 				loadPersistent = true;
-				/*hideAndShow(scene);
-				Application.LoadLevel(scene);*/
 				return;
 			}
 		}
+	}
 
-		/*destroyGameObjects ();
-		Application.LoadLevel(scene);*/
+	/// <summary>
+	/// Loads the specified scene deleting all persistent gameobjects.
+	/// </summary>
+	/// <param name="scene">Scene.</param>
+	public void cleanLoad(string scene){
+		sceneToLoad = scene;
+		loadingScene = true;
+		loadPersistent = false;
+		fade.setEnding ();
+		fade.enable ();
 	}
 
 	/// <summary>
@@ -74,9 +81,9 @@ public class SceneLoader : MonoBehaviour
 	/// </summary>
 	private void destroyGameObjects(){
 		foreach (GameObject go in persistentGameobjects) {
-			Destroy(go, 1f);
+			Destroy(go);
 		}
-		Destroy (this.gameObject, 1f);
+		Destroy (this.gameObject);
 	}
 
 	private void hideAndShow(string scene){

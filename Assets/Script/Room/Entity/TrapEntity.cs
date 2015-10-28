@@ -5,7 +5,7 @@ public class TrapEntity : RoomEntity
 {
 
 	public override void handleCollision(){
-		Debug.Log("trap collision");
+		SceneLoader.GetInstance ().cleanLoad ("HallState");
 	}
 }
 
