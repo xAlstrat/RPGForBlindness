@@ -12,7 +12,7 @@ public class RoomObjectGenerator
 	}
 
 
-	public GameObject instantiateRoomObject(int i, int j){
+	public RoomEntity instantiateRoomObject(int i, int j){
 		switch (data.getEntityAt (i, j)) {
 		case Entity.TREASURE:
 			return instantiateTreasure(i , j);
@@ -29,17 +29,17 @@ public class RoomObjectGenerator
 		}
 	}
 
-	private GameObject instantiateTreasure(int i, int j){
+	private RoomEntity instantiateTreasure(int i, int j){
 		GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		go.GetComponent<MeshRenderer>().material = Resources.Load("YellowMat") as Material;
 		updateObjectTransform (go, i, j);
 		go.AddComponent<AudioSource> ();
 		go.GetComponent<AudioSource> ().clip = Resources.Load ("crashTreasure") as AudioClip;
-		return go;
+		return go.AddComponent<TreasureEntity> () as TreasureEntity;
 
 	}
 
-	private GameObject instantiateDoor(int i, int j){
+	private RoomEntity instantiateDoor(int i, int j){
 		GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		go.GetComponent<MeshRenderer>().material = Resources.Load("BrownMat") as Material;
 		go.transform.parent = parent;
@@ -50,10 +50,10 @@ public class RoomObjectGenerator
 		go.transform.position = Room.GetInstance ().getWorldPosition (new Vector3(i, 0.15f, j));
 		go.AddComponent<AudioSource> ();
 		go.GetComponent<AudioSource> ().clip = Resources.Load ("crashDoor") as AudioClip;
-		return go;
+		return go.AddComponent<DoorEntity> () as DoorEntity;
 	}
 
-	private GameObject instantiateMonster(int i, int j){
+	private RoomEntity instantiateMonster(int i, int j){
 		GameObject go = Object.Instantiate(Resources.Load("monster1")) as GameObject;
 		go.transform.parent = parent;
 		Orientation o = data.getOrientationAt (i, j);
@@ -61,23 +61,23 @@ public class RoomObjectGenerator
 		go.transform.position = Room.GetInstance ().getWorldPosition (new Vector3(i, 0f, j));
 		go.AddComponent<AudioSource> ();
 		go.GetComponent<AudioSource> ().clip = Resources.Load ("crashMonster") as AudioClip;
-		return go;
+		return go.AddComponent<MonsterEntity> () as MonsterEntity;
 	}
 
-	private GameObject instantiateTrap(int i, int j){
+	private RoomEntity instantiateTrap(int i, int j){
 		GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		go.GetComponent<MeshRenderer>().material = Resources.Load("BlackMat") as Material;
 		updateObjectTransform (go, i, j);
 		go.AddComponent<AudioSource> ();
 		go.GetComponent<AudioSource> ().clip = Resources.Load ("crashTrap") as AudioClip;
-		return go;
+		return go.AddComponent<TrapEntity> () as TrapEntity;
 	}
 
-	private GameObject instantiateGeometricRoom(int i, int j){
+	private RoomEntity instantiateGeometricRoom(int i, int j){
 		GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		go.GetComponent<MeshRenderer>().material = Resources.Load("BlueMat") as Material;
 		updateObjectTransform (go, i, j);
-		return go;
+		return go.AddComponent<GeometricEntity> () as GeometricEntity;
 	}
 
 	private void updateObjectTransform(GameObject go, int i, int j){

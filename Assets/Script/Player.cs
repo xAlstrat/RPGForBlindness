@@ -169,6 +169,7 @@ public class Player : MonoBehaviour
 		Vector2 dest = position + direction;
 		if (!canMove(dest)) {
 			movementRestriction.playCrashSound(dest);
+			CollisionManager.collide(dest);
 			return;
 		}
 
@@ -224,7 +225,7 @@ public class Player : MonoBehaviour
 	/// <summary>
 	/// True if the player can move one coord ahead.
 	/// </summary>
-	/// <returns><c>true</c>, if the move could be done, <c>false</c> otherwise.</returns>
+	/// <returns><c>true</c>, if the movement could be done, <c>false</c> otherwise.</returns>
 	private bool canMove(Vector2 pos){
 		return movementRestriction.canMove (pos);
 	}

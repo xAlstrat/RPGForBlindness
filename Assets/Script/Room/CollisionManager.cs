@@ -1,0 +1,17 @@
+using UnityEngine;
+using System.Collections;
+
+public class CollisionManager
+{
+
+	public static void collide(Vector2 pos){
+		RoomEntity entity = Room.GetInstance ().getEntityAt (pos);
+		if (entity == null)
+			return;
+		Room.GetInstance().removeEntity(pos);
+		GameObject.Destroy(entity.gameObject, 1f);
+		entity.handleCollision ();
+	}
+
+}
+

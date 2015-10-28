@@ -27,18 +27,11 @@ public class PlayerMovementRestriction : MonoBehaviour
 	public void playCrashSound(Vector2 pos){
 		if (Time.time - lastPress > delay) {
 			lastPress = Time.time;
-			GameObject go = Room.GetInstance ().getEntityAt (pos);
+			RoomEntity go = Room.GetInstance().isInside(pos)?Room.GetInstance ().getEntityAt (pos):null;
 			if (go == null) {
 				source.PlayOneShot(choque);
 			} else {
 				go.GetComponent<AudioSource> ().Play ();
-                if (go.name.Contains("monster"))
-                {
-                    Room.GetInstance().defeatMonster(pos);
-                    Destroy(go);
-                    SceneLoader loader = SceneLoader.GetInstance();
-                    loader.load(loader.persistentScenes[1]);
-                }
             }
             
 		}

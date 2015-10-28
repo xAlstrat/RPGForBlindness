@@ -104,7 +104,7 @@ public class LevelData
 		return levelData;
 	}
 
-    public void defeatMonster(int i, int j)
+    public void removeEntity(int i, int j)
     {
         StringBuilder sb = new StringBuilder(hallData[j]);
         sb[i] = '.';

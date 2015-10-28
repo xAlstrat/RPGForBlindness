@@ -20,7 +20,7 @@ public class Room
 	/// </summary>
 	private LevelData data;
 
-	private GameObject[][] entities;
+	private RoomEntity[][] entities;
 
 	/// <summary>
 	/// The hall structure.
@@ -36,9 +36,10 @@ public class Room
 		data = LevelData.getLevel (1);
 		int width = data.getRoomWidth ();
 		int height = data.getRoomHeight ();
-		entities = new GameObject[height][];
+
+		entities = new RoomEntity[height][];
 		for (int i=0; i < height; i++) {
-			entities[i] = new GameObject[width];
+			entities[i] = new RoomEntity[width];
 		}
 
 		instance = this;
@@ -109,7 +110,7 @@ public class Room
 	/// <param name="pos">Position.</param>
 	public bool walkableCell(Vector2 pos){
 		if (!isInside (pos)) {
-			return true;
+			return false;
 		}
 		return data.walkableCell ((int)pos.x, (int) pos.y);
 	}
@@ -119,18 +120,21 @@ public class Room
 	/// </summary>
 	/// <returns><c>true</c>, if inside was ised, <c>false</c> otherwise.</returns>
 	/// <param name="pos">Position.</param>
-	private bool isInside(Vector2 pos){
+	public bool isInside(Vector2 pos){
 		return 0 <= pos.x && pos.x < hall.getWidth () &&
 			0 <= pos.y && pos.y < hall.getHeight ();
 	}
 
-	public GameObject getEntityAt(Vector2 pos){
+	public RoomEntity getEntityAt(Vector2 pos){
+		if (!isInside (pos))
+			return null;
 		return entities [(int)pos.y] [(int)pos.x];
 	}
 
-    internal void defeatMonster(Vector2 pos)
+    internal void removeEntity(Vector2 pos)
     {
-        data.defeatMonster((int)System.Math.Ceiling(pos.x), (int)System.Math.Ceiling(pos.y));
+		entities [(int)pos.y] [(int)pos.x] = null;
+        data.removeEntity((int)pos.x, (int)pos.y);
     }
 
 }
