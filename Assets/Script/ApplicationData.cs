@@ -59,16 +59,8 @@ public class ApplicationData
 		return PlayerPrefs.GetInt (SCORE_KEY);
 	}
 
-	public static void spendMoney(int money){
-		PlayerPrefs.SetInt (MONEY_KEY, getMoney() - money);
-	}
-
 	public static void save(){
 		PlayerPrefs.Save ();
-	}
-
-	public static bool canSpendMoney(int money){
-		return getMoney() >= money;
 	}
 
 	public static void reset(){
