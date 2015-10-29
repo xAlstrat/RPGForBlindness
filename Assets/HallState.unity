@@ -700,8 +700,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef3c627551342a4da98da3c9f90c825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorMaterial: {fileID: 2100000, guid: 96dae2f09f54868408f904428548d00f, type: 2}
-  wallMaterial: {fileID: 2100000, guid: 59cf63250acfc334288c35253c616d40, type: 2}
+  floorMaterial: {fileID: 2100000, guid: 7bd9cd023daf1e54185b6d111b325ed7, type: 2}
+  wallMaterial: {fileID: 2100000, guid: 52cf702266db7284db1c4fd0a0392bd1, type: 2}
 --- !u!4 &1705262881
 Transform:
   m_ObjectHideFlags: 0

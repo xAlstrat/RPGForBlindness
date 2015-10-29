@@ -98,7 +98,7 @@ public class HallMeshBuilder
 		foreach (WallData data in walls) {
 			generateWallMesh(data);
 		}
-		generateFloor ();
+		generateFloorAndCeil ();
 	}
 
 	private void generateWallMesh(WallData data){
@@ -114,7 +114,7 @@ public class HallMeshBuilder
 		cube.transform.Rotate (calculateRotation(data));
 	}
 
-	private void generateFloor(){
+	private void generateFloorAndCeil(){
 		Transform parent = GameObject.Find ("RoomGameState").transform;
 		GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
 		floor.name = "Floor";
@@ -122,7 +122,15 @@ public class HallMeshBuilder
 		floor.transform.localScale = getFloorScale();
 		floor.transform.position = getFloorPosition ();
 
-		floor.GetComponent<MeshRenderer> ().material = Game.GetInstance ().roomMaterial.wallMaterial;
+		floor.GetComponent<MeshRenderer> ().material = Game.GetInstance ().roomMaterial.floorMaterial;
+
+		GameObject ceil = GameObject.Instantiate (floor);
+		ceil.name = "Ceil";
+		ceil.transform.parent = parent;
+		ceil.transform.position = new Vector3(ceil.transform.position.x, 
+		                                      scale.getHallHeight (),
+		                                      ceil.transform.position.z);
+		ceil.transform.Rotate (180f, 0, 0);
 	}
 
 	private Vector3 getFloorScale(){
@@ -130,7 +138,7 @@ public class HallMeshBuilder
 	}
 
 	private Vector3 getFloorPosition(){
-		return new Vector3 (hall.getWidth()/2, 0, -hall.getHeight()/2) * scale.getHallWidth ();
+		return new Vector3 (hall.getWidth()/2f - 0.5f, 0, -hall.getHeight()/2f + 0.5f) * scale.getHallWidth ();
 	}
 
 	private Vector3 calculatePosition(WallData data){
