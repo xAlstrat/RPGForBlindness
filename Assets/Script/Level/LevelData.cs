@@ -91,6 +91,8 @@ public class LevelData
 			levelData.addOrientation(10, 2, Orientation.WEST);
 			//East
 			levelData.addOrientation(4, 4, Orientation.EAST);
+			//levelData.addOrientation(3, 11, Orientation.SOUTH);
+
 			break;
 		case 2:
 			levelData.hallData = new string[]{

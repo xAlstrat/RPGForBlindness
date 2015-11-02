@@ -1,123 +1,94 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
-using System.Timers;
 
 public class Battle : MonoBehaviour {
-
-	private int countR = 0;
-	private int countL = 0;
-	private int countU = 0;
 	
-	private int playerHP = 5;
-	private int timeout = 3000;  //milliseconds
-	private System.Timers.Timer myTimer;
-
-	public Text winText;
-	public Text hpText;
-	public Text flechasText;
-
-	public AudioClip explosion;
-	public AudioClip agua;
-	public AudioClip trueno;
-
-	private AudioSource source;
-	private float lowPitchRange = .75F;
-	private float highPitchRange = 1.5F;
-	private float velToVol = .2F;
-	private float velocityClipSplit = 10F;
-
-	public void myEvent(object source, ElapsedEventArgs e) {
-		playerHP--;
+	private BattleStates currentState;
+	private MonsterEntity enemy;
+	private Player player;
+	private SceneLoader loader;
+	
+	public enum BattleStates{
+		START,
+		PLAYER_TURN,
+		ENEMY_TURN,
+		VICTORY,
+		DEFEAT,
+		END
 	}
 	
 	// Use this for initialization
 	void Start () {
-		source = GetComponent<AudioSource>();
-		flechasText.fontSize = 30;
-		flechasText.color = Color.cyan;
-		winText.fontSize = 40;
-		winText.color = Color.cyan;
-		
-		myTimer = new System.Timers.Timer();
-		myTimer.Elapsed += new ElapsedEventHandler(myEvent);
-		myTimer.Interval = timeout;    
-		myTimer.Enabled = true;
+
+		player = Game.GetInstance ().player;
+		enemy = Game.GetInstance ().enemy;
+		currentState = BattleStates.START;
+
+		loader = SceneLoader.GetInstance();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//winText.text = "WIN";
-		//Secuencia para ganar R, R, L, U
 		
-		hpText.text = "HP: " + playerHP.ToString();
-
-		if (rightEvent ()) {
-			//winText.text = "WIN";
-			if(countR == 0 || countR == 1){
-				flechasText.text += "Der ";
-				makeExplosionSound();
-				countR++;
-			}
-			else{
-				//TODO imprimir en pantalla
-				initCounts();
+		switch (currentState) {
+		case(BattleStates.START):
+			currentState = BattleStates.PLAYER_TURN;
+			break;
+		case(BattleStates.PLAYER_TURN):
+			playerTurn();
+			break;
+		case(BattleStates.ENEMY_TURN):
+			enemyTurn();
+			break;
+		case(BattleStates.VICTORY):
+			//volver a nivel
+			Game.GetInstance ().enemy = null;
+			currentState = BattleStates.END;
+			loader.load(loader.persistentScenes[0]);
+			break;
+		case(BattleStates.DEFEAT):
+			//ir a pantalla gameover
+			currentState = BattleStates.END;
+			loader.load("Welcome");
+			break;
+		}
+		
+	}
+	
+	public void playerTurn(){
+		if (endTurn ()) {
+			currentState = BattleStates.ENEMY_TURN;
+		} else if (playerAttack ()) {
+			//hardcodeado, hay que considerar debilidades o boosts
+			int dmg = 1;
+			enemy.removeHP (dmg);
+			if (enemy.getHP () <= 0) {
+				currentState = BattleStates.VICTORY;
+			} else {
+				currentState = BattleStates.ENEMY_TURN;
 			}
 		} else if (leftEvent ()) {
-			if(countR == 2){
-				makeAguaSound();
-				flechasText.text += "Izq";
-				countL++;
-			}
-			else{
-				//TODO imprimir en pantalla
-				initCounts();
-			}
+			//algo que ver con habilidades
+		} else if (rightEvent ()) {
+			//algo que ver con habilidades
 		} else if (aheadEvent ()) {
-			if(countL == 1 && countR == 2){
-				makeTruenoSound();
-				flechasText.text += "Arriba";
-				myTimer.Stop();
-				winText.text = "WIN";
-				initCounts();
-                SceneLoader loader = SceneLoader.GetInstance();
-                loader.load(loader.persistentScenes[0]);
-            }
-			else{
-				//TODO imprimir en pantalla
-				initCounts();
-			}
-		}
-		
-		if (playerHP <= 0) {
-			myTimer.Stop();
-			hpText.text = "";
-			winText.text = "You lose";
+			//algo que ver con habilidades
 		}
 	}
+	
+	public void enemyTurn(){
+		//hacer mejor comportamiento enemigo
+		int dmg = Random.Range (0, 5);
+		player.removeHP (dmg);
 
-	private void makeExplosionSound ()
-	{
-		source.PlayOneShot(explosion, 1);
+		if (player.getHP () > 0) {
+			currentState = BattleStates.PLAYER_TURN;
+		}
+		else {
+			currentState = BattleStates.DEFEAT;
+		}
 	}
-
-	private void makeAguaSound ()
-	{
-		source.PlayOneShot(agua);
-	}
-
-	private void makeTruenoSound ()
-	{
-		source.PlayOneShot(trueno, 1);
-	}
-
-	private void initCounts(){
-		countR = 0;
-		countL = 0;
-		countU = 0;
-		flechasText.text = "";
-	}
-
+	
 	protected bool leftEvent(){
 		return Input.GetKeyUp (KeyCode.LeftArrow);
 	}
@@ -129,4 +100,13 @@ public class Battle : MonoBehaviour {
 	protected bool aheadEvent(){
 		return Input.GetKeyUp (KeyCode.UpArrow);
 	}
+	
+	protected bool playerAttack(){
+		return Input.GetKeyUp (KeyCode.J);
+	}
+	
+	protected bool endTurn(){
+		return Input.GetKeyUp (KeyCode.K);
+	}
 }
+	

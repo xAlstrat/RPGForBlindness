@@ -8,6 +8,8 @@ using System.Collections;
 /// </summary>
 public class Player : MonoBehaviour
 {
+
+	private int hp;
 	/// <summary>
 	/// The movement restriction of the player.
 	/// </summary>
@@ -82,6 +84,8 @@ public class Player : MonoBehaviour
 		destRotation = Quaternion.identity;
 
 		source = GetComponent<AudioSource>();
+
+		hp = 20;
 	}
 
 	void FixedUpdate ()
@@ -228,6 +232,14 @@ public class Player : MonoBehaviour
 	/// <returns><c>true</c>, if the movement could be done, <c>false</c> otherwise.</returns>
 	private bool canMove(Vector2 pos){
 		return movementRestriction.canMove (pos);
+	}
+
+	public void removeHP(int dmg){
+		this.hp -= dmg;
+	}
+
+	public int getHP(){
+		return this.hp;
 	}
 }
 
