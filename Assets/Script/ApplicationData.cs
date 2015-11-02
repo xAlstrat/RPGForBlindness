@@ -13,6 +13,7 @@ public class ApplicationData
 	private static readonly string LAST_LEVEL_KEY = "0";
 	private static readonly string MONEY_KEY = "1";
 	private static readonly string SCORE_KEY = "2";
+	private static readonly string GAME_SAVED = "3";
 
 	public static void setLastLevel(int level){
 		PlayerPrefs.SetInt (LAST_LEVEL_KEY, level);
@@ -59,6 +60,14 @@ public class ApplicationData
 		return PlayerPrefs.GetInt (SCORE_KEY);
 	}
 
+	public static void setSaved(){
+		PlayerPrefs.SetInt (GAME_SAVED, 1);
+	}
+
+	public static bool existSavedGame(){
+		return PlayerPrefs.HasKey (GAME_SAVED);
+	}
+
 	public static void save(){
 		PlayerPrefs.Save ();
 	}
@@ -67,6 +76,7 @@ public class ApplicationData
 		setLastLevel(1);
 		setMoney(0);
 		setScore(0);
+		setSaved ();
 	}
 
 }

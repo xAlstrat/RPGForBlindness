@@ -59,6 +59,9 @@
      <Compile Include="Assets\Script\Hall\WallMeshBuilder.cs" />
      <Compile Include="Assets\Script\Level\LevelData.cs" />
      <Compile Include="Assets\Script\Level\LevelEntity.cs" />
+     <Compile Include="Assets\Script\LoadInit.cs" />
+     <Compile Include="Assets\Script\MenuEvent.cs" />
+     <Compile Include="Assets\Script\MenuInit.cs" />
      <Compile Include="Assets\Script\NormalRenderer.cs" />
      <Compile Include="Assets\Script\PersistenceTestController.cs" />
      <Compile Include="Assets\Script\Player.cs" />

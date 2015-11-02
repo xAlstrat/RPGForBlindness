@@ -1,0 +1,23 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class MenuEvent : MonoBehaviour {
+
+	public void goMainMenu(){
+		SceneLoader.GetInstance ().load ("Welcome");
+	}
+
+	public void goLoadMenu(){
+		SceneLoader.GetInstance ().load ("Load");
+	}
+
+	public void startNewGame(){
+		ApplicationData.reset ();
+		ApplicationData.save ();
+		SceneLoader.GetInstance ().load ("HallState");
+	}
+
+	public void startLoadedGame(){
+		SceneLoader.GetInstance ().load ("HallState");
+	}
+}
