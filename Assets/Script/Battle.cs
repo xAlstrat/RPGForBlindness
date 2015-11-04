@@ -7,7 +7,9 @@ public class Battle : MonoBehaviour {
 	private MonsterEntity enemy;
 	private Player player;
 	private SceneLoader loader;
-	public AudioClip clip;
+	public AudioClip agua;
+	public AudioClip fuego;
+	public AudioClip trueno;
 
 	public enum BattleStates{
 		START,
@@ -69,11 +71,13 @@ public class Battle : MonoBehaviour {
 				currentState = BattleStates.ENEMY_TURN;
 			}
 		} else if (leftEvent ()) {
-			SoundManager.instance.PlaySingle(clip);
+			SoundManager.instance.PlaySingle(agua);
 			//algo que ver con habilidades
 		} else if (rightEvent ()) {
+			SoundManager.instance.PlaySingle(fuego);
 			//algo que ver con habilidades
 		} else if (aheadEvent ()) {
+			SoundManager.instance.PlaySingle(trueno);
 			//algo que ver con habilidades
 		}
 	}

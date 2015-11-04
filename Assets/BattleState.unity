@@ -4877,7 +4877,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b364326b51683d54ab9eb37c799223f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: fcd23e8897c9e4548b8c03d96f9242d5, type: 3}
+  agua: {fileID: 8300000, guid: fcd23e8897c9e4548b8c03d96f9242d5, type: 3}
+  fuego: {fileID: 8300000, guid: c72c1b05ee38f9143b764861a98e9b67, type: 3}
+  trueno: {fileID: 8300000, guid: 89a28666366615a44be5620a523c1559, type: 3}
 --- !u!4 &1762620805
 Transform:
   m_ObjectHideFlags: 0
