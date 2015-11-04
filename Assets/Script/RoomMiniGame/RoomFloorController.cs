@@ -19,7 +19,7 @@ public class RoomFloorController : MonoBehaviour {
 	void StartGame ()
 	{
 		// Rotar el plano
-		transform.Rotate (0.0f, 60.0f, 0.0f);
+		transform.Rotate (0.0f, 180.0f, 0.0f);
 		started = true;
 	}
 }
