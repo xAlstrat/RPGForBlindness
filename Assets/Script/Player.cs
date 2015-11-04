@@ -236,6 +236,10 @@ public class Player : MonoBehaviour
 
 	public void removeHP(int dmg){
 		this.hp -= dmg;
+        if (this.hp < 0)
+        {
+            this.setHP(0);
+        }
 	}
 
     public void setHP(int hp)

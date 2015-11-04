@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Welcome.unity
+  - enabled: 1
     path: Assets/HallState.unity
   - enabled: 1
     path: Assets/GeometricState.unity
@@ -15,7 +17,5 @@ EditorBuildSettings:
     path: Assets/HallState.unity
   - enabled: 1
     path: Assets/HallStateIncomplete.unity
-  - enabled: 1
-    path: Assets/Welcome.unity
   - enabled: 1
     path: Assets/Load.unity

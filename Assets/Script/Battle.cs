@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Battle : MonoBehaviour {
 	
 	private BattleStates currentState;
+    private AbilityStates currentAbility;
 	private MonsterEntity enemy;
 	private Player player;
 	private SceneLoader loader;
@@ -15,6 +16,7 @@ public class Battle : MonoBehaviour {
     public Text winText;
     public Text hpText;
     public Text enemyHpText;
+    public Text abilityText;
 
     public enum BattleStates{
 		START,
@@ -24,15 +26,26 @@ public class Battle : MonoBehaviour {
 		DEFEAT,
 		END
 	}
-	
-	// Use this for initialization
-	void Start () {
+
+    public enum AbilityStates
+    {
+        AGUA,
+        TIERRA,
+        FUEGO,
+        VIENTO,
+        NATURALEZA, 
+        ARCANO 
+    }
+
+    // Use this for initialization
+    void Start () {
 
         
 
         player = Game.GetInstance ().player;
 		enemy = Game.GetInstance ().enemy;
 		currentState = BattleStates.START;
+        currentAbility = AbilityStates.AGUA;
 
 		loader = SceneLoader.GetInstance();
 
@@ -45,6 +58,7 @@ public class Battle : MonoBehaviour {
         //Debug.Log(enemy.getHP());
         hpText.text = "HP: " + player.getHP().ToString();
         enemyHpText.text = "HP: " + enemy.getHP().ToString();
+        abilityText.text = "ABILITY: " + currentAbility.ToString();
         switch (currentState) {
 		case(BattleStates.START):
 			currentState = BattleStates.PLAYER_TURN;
@@ -58,38 +72,67 @@ public class Battle : MonoBehaviour {
 		case(BattleStates.VICTORY):
 			//volver a nivel
 			Game.GetInstance ().enemy = null;
-			currentState = BattleStates.END;
+            winText.text = "You win!!";
+            currentState = BattleStates.END;
 			loader.load(loader.persistentScenes[0]);
 			break;
 		case(BattleStates.DEFEAT):
-			//ir a pantalla gameover
-			currentState = BattleStates.END;
+                //ir a pantalla gameover
+            winText.text = "You lose";
+            currentState = BattleStates.END;
 			loader.load("Welcome");
 			break;
 		}
 		
 	}
 	
+    public int calculateDamage()
+    {
+        int damage = 0;
+        switch (currentAbility)
+        {
+            case (AbilityStates.AGUA):
+                damage = 3;
+                break;
+            case (AbilityStates.TIERRA):
+                damage = 4;
+                break;
+            case (AbilityStates.FUEGO):
+                damage = 5;
+                break;
+
+
+
+
+        }
+
+        return damage;
+    }
+
 	public void playerTurn(){
 		if (endTurn ()) {
 			currentState = BattleStates.ENEMY_TURN;
 		} else if (playerAttack ()) {
 			//hardcodeado, hay que considerar debilidades o boosts
-			int dmg = 1;
+			int dmg = calculateDamage();
 			enemy.removeHP (dmg);
 			if (enemy.getHP () <= 0) {
+                Game.GetInstance().playerHP.text = "HP: "+ player.getHP();
 				currentState = BattleStates.VICTORY;
 			} else {
 				currentState = BattleStates.ENEMY_TURN;
 			}
 		} else if (leftEvent ()) {
+            currentAbility = AbilityStates.AGUA;
 			SoundManager.instance.PlaySingle(agua);
 			//algo que ver con habilidades
 		} else if (rightEvent ()) {
-			SoundManager.instance.PlaySingle(fuego);
+            currentAbility = AbilityStates.FUEGO;
+            SoundManager.instance.PlaySingle(fuego);
 			//algo que ver con habilidades
 		} else if (aheadEvent ()) {
-			SoundManager.instance.PlaySingle(trueno);
+            currentAbility = AbilityStates.TIERRA;
+            SoundManager.instance.PlaySingle(trueno);
 			//algo que ver con habilidades
 		}
 	}
