@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Game : MonoBehaviour
@@ -8,6 +9,7 @@ public class Game : MonoBehaviour
 	public Player player;
 	public MonsterEntity enemy;
 	public RoomMaterial roomMaterial;
+    public Text playerHP;
 	private Room room;
 
 	public static Game GetInstance(){
@@ -30,6 +32,8 @@ public class Game : MonoBehaviour
 	private void initPlayer(){
 		Room room = Room.GetInstance ();
 		player.setPosition (room.getStartPosition());
+        player.setHP(100);
+        playerHP.text = "HP: " + player.getHP();
 		player.transform.position = room.getWorldPosition ( player.getPosition());
 	}
 

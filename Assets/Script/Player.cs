@@ -238,6 +238,11 @@ public class Player : MonoBehaviour
 		this.hp -= dmg;
 	}
 
+    public void setHP(int hp)
+    {
+        this.hp = hp;
+    }
+
 	public int getHP(){
 		return this.hp;
 	}

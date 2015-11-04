@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Battle : MonoBehaviour {
 	
@@ -11,7 +12,11 @@ public class Battle : MonoBehaviour {
 	public AudioClip fuego;
 	public AudioClip trueno;
 
-	public enum BattleStates{
+    public Text winText;
+    public Text hpText;
+    public Text enemyHpText;
+
+    public enum BattleStates{
 		START,
 		PLAYER_TURN,
 		ENEMY_TURN,
@@ -23,17 +28,24 @@ public class Battle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		player = Game.GetInstance ().player;
+        
+
+        player = Game.GetInstance ().player;
 		enemy = Game.GetInstance ().enemy;
 		currentState = BattleStates.START;
 
 		loader = SceneLoader.GetInstance();
-	}
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
-		switch (currentState) {
+        //Debug.Log(player.getHP());
+        //Debug.Log(enemy.getHP());
+        hpText.text = "HP: " + player.getHP().ToString();
+        enemyHpText.text = "HP: " + enemy.getHP().ToString();
+        switch (currentState) {
 		case(BattleStates.START):
 			currentState = BattleStates.PLAYER_TURN;
 			break;
