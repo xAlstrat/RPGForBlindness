@@ -39,12 +39,12 @@ public class RoomFloorController : MonoBehaviour {
 			switch (direction_selector)
 			{
 			case 0:
-				//Izquierda
+				//Derecha
 				direction = 1;
 				direction_r_string = "Derecha";
 				break;
 			default:
-				//Derecha
+				//Izquierda
 				direction = -1;
 				direction_r_string = "Izquierda";
 				break;
@@ -89,13 +89,13 @@ public class RoomFloorController : MonoBehaviour {
 				switch (side_selector)
 				{
 				case 0:
-					//Izquierda
-					side_t_string = "la Izquierda 5 espacios";
+					//Derecha
+					side_t_string = "la Derecha 5 espacios";
 					transform.position = new Vector3(old_t_x + 5, old_t_y, old_t_z);
 					break;
 				default:
-					// Derecha
-					side_t_string = "la Derecha 7 espacios";
+					// Izquierda
+					side_t_string = "la Izquierda 7 espacios";
 					transform.position = new Vector3(old_t_x - 7, old_t_y, old_t_z);
 					break;
 				}
@@ -106,13 +106,13 @@ public class RoomFloorController : MonoBehaviour {
 				switch (side_selector)
 				{
 				case 0:
-					// Arriba
-					side_t_string = "Arriba 3 espacios";
+					// Abajo
+					side_t_string = "Abajo 3 espacios";
 					transform.position = new Vector3(old_t_x, old_t_y, old_t_z - 3);
 					break;
 				default:
-					// Abajo
-					side_t_string = "Abajo 3 espacios";
+					// Arriba
+					side_t_string = "Arriba 3 espacios";
 					transform.position = new Vector3(old_t_x, old_t_y, old_t_z + 3);
 					break;
 				}
