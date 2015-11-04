@@ -41,12 +41,12 @@ public class RoomFloorController : MonoBehaviour {
 			case 0:
 				//Izquierda
 				direction = 1;
-				direction_r_string = "Izquierda";
+				direction_r_string = "Derecha";
 				break;
 			default:
 				//Derecha
 				direction = -1;
-				direction_r_string = "Derecha";
+				direction_r_string = "Izquierda";
 				break;
 			}
 			// Grados
