@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class Battle : MonoBehaviour {
@@ -7,13 +7,11 @@ public class Battle : MonoBehaviour {
 	private BattleStates currentState;
     private AbilityStates currentAbility;
 	private AbilityStates[] abilities;
+
 	private MonsterEntity enemy;
 	private Player player;
 	private SoundMap soundMap;
 	private SceneLoader loader;
-	/*public AudioClip agua;
-	public AudioClip fuego;
-	public AudioClip trueno;*/
 
     public Text winText;
     public Text hpText;
@@ -93,22 +91,16 @@ public class Battle : MonoBehaviour {
 
     public int calculateDamage(){
 
-        int damage = 0;
-        switch (currentAbility)
-        {
-            case (AbilityStates.AGUA):
-                damage = 3;
-                break;
-            case (AbilityStates.TIERRA):
-                damage = 4;
-                break;
-            case (AbilityStates.FUEGO):
-                damage = 5;
-                break;
+        int baseDamage, finalDamage;
+		double multiplier;
 
-        }
+		baseDamage = player.getBaseDamage(currentAbility);
 
-        return damage;
+		multiplier = enemy.getMultiplier(currentAbility);
+
+		finalDamage = (int)System.Math.Floor(baseDamage * multiplier);
+
+        return finalDamage;
     }
 
 
@@ -152,6 +144,8 @@ public class Battle : MonoBehaviour {
 
 	public void playerTurn(){
 
+		//Debug.Log(currentAbility + " base damage: " + player.getBaseDamage(currentAbility));
+
 		if (endTurn ()) {
 			currentState = BattleStates.ENEMY_TURN;
 		}
@@ -167,6 +161,7 @@ public class Battle : MonoBehaviour {
 			} else {
 				currentState = BattleStates.ENEMY_TURN;
 			}
+
 		}
 		else if (leftEvent ()) {
 			rotateCube(Rotation.LEFT);

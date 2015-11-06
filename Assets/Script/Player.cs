@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Player.
@@ -10,11 +10,16 @@ public class Player : MonoBehaviour
 {
 
 	private int hp;
+	private int boostsToLevelUp;
+
 	private AbilityStates[] currentAbilityStates;
 	public AbilityStates[] CurrentAbilityStates{
 		get{return currentAbilityStates;}
 		set{currentAbilityStates = value;}
 	}
+
+	private Dictionary<AbilityStates, int> abilitiesBaseDamage;
+	private Dictionary<AbilityStates, int> boosts;
 
 	/// <summary>
 	/// The movement restriction of the player.
@@ -91,10 +96,8 @@ public class Player : MonoBehaviour
 
 		source = GetComponent<AudioSource>();
 
-		hp = 20;
-
-		//orden: inicial 0, izq 1, atras 2, der 3, arriba 4, abajo 5
-		//siempre empieza con habilidad agua
+		//faces order: front (initial): 0, left: 1, back: 2, right 3, up 4, down 5
+		//always starts with water ability unlocked
 		currentAbilityStates = new AbilityStates[]{
 			AbilityStates.AGUA,
 			AbilityStates.TIERRA,
@@ -103,6 +106,23 @@ public class Player : MonoBehaviour
 			AbilityStates.NATURALEZA,
 			AbilityStates.ARCANO
 		};
+
+		boostsToLevelUp = 3;
+
+		//base damage for each ability starts at 1
+		abilitiesBaseDamage = new Dictionary<AbilityStates, int>();
+
+		//boosts for each ability starts at 0
+		//every 3 boosts for some ability, the base damage for said ability increases by 1
+		boosts = new Dictionary<AbilityStates, int>();
+
+		foreach(AbilityStates AS in System.Enum.GetValues(typeof(AbilityStates))){
+			abilitiesBaseDamage.Add(AS, 1);
+			boosts.Add(AS, 0);
+		}
+
+
+
 	}
 
 	void FixedUpdate ()
@@ -266,6 +286,24 @@ public class Player : MonoBehaviour
 
 	public int getHP(){
 		return this.hp;
+	}
+
+	public int getBaseDamage(AbilityStates ability){
+		return abilitiesBaseDamage[ability];
+	}
+
+	public void setBaseDamage(AbilityStates ability, int dmg){
+		abilitiesBaseDamage[ability] = dmg;
+	}
+
+	public int getBoost(AbilityStates ability){
+		return boosts[ability];
+	}
+
+	public void addBoost(AbilityStates ability, int amount = 1){
+		boosts[ability] += amount;
+		abilitiesBaseDamage[ability] += boosts[ability] / boostsToLevelUp;
+		boosts[ability] = boosts[ability] % boostsToLevelUp;
 	}
 }
 
