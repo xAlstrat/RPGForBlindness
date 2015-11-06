@@ -10,6 +10,12 @@ public class Player : MonoBehaviour
 {
 
 	private int hp;
+	private AbilityStates[] currentAbilityStates;
+	public AbilityStates[] CurrentAbilityStates{
+		get{return currentAbilityStates;}
+		set{currentAbilityStates = value;}
+	}
+
 	/// <summary>
 	/// The movement restriction of the player.
 	/// </summary>
@@ -86,6 +92,17 @@ public class Player : MonoBehaviour
 		source = GetComponent<AudioSource>();
 
 		hp = 20;
+
+		//orden: inicial 0, izq 1, atras 2, der 3, arriba 4, abajo 5
+		//siempre empieza con habilidad agua
+		currentAbilityStates = new AbilityStates[]{
+			AbilityStates.AGUA,
+			AbilityStates.TIERRA,
+			AbilityStates.FUEGO,
+			AbilityStates.VIENTO,
+			AbilityStates.NATURALEZA,
+			AbilityStates.ARCANO
+		};
 	}
 
 	void FixedUpdate ()

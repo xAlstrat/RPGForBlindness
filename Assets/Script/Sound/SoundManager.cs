@@ -9,7 +9,7 @@ using System.Collections;
 		public float lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
 		public float highPitchRange = 1.05f;            //The highest a sound effect will be randomly pitched.
 		
-		
+
 		void Awake ()
 		{
 			//Check if there is already an instance of SoundManager
@@ -20,7 +20,7 @@ using System.Collections;
 			else if (instance != this)
 				//Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
 				Destroy (gameObject);
-			
+
 			//Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
 			DontDestroyOnLoad (gameObject);
 		}
@@ -34,6 +34,11 @@ using System.Collections;
 			
 			//Play the clip.
 			efxSource.Play ();
+		}
+
+		//Used to play single sound clips based on the string name of the clip.
+		public void PlaySingle(string clipName){
+			PlaySingle((AudioClip)Resources.Load("Sounds/" + clipName));
 		}
 		
 		
