@@ -21,10 +21,10 @@ public class SoundMap {
 
 		audioMapAttack.Add(AbilityStates.AGUA, "water_attack");
 		audioMapAttack.Add (AbilityStates.FUEGO, "fire_attack");
-		audioMapSelection.Add (AbilityStates.TIERRA, "trueno");
+		audioMapAttack.Add (AbilityStates.TIERRA, "trueno");
 		audioMapAttack.Add(AbilityStates.VIENTO, "wind_attack");
-		audioMapSelection.Add (AbilityStates.NATURALEZA,"paso1");
-		audioMapSelection.Add (AbilityStates.ARCANO, "paso2");
+		audioMapAttack.Add (AbilityStates.NATURALEZA,"paso1");
+		audioMapAttack.Add (AbilityStates.ARCANO, "paso2");
 	}
 
 	public string getSelectionClip(AbilityStates ability){
