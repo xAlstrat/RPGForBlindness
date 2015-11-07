@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using XInputDotNetPure;
 
 public class Battle : MonoBehaviour {
 	
@@ -18,8 +19,11 @@ public class Battle : MonoBehaviour {
     public Text enemyHpText;
     public Text abilityText;
 
+    PlayerIndex playerIndex = 0;
+    GamePadState state;
+    GamePadState prevState;
 
-	public enum BattleStates{
+    public enum BattleStates{
 		START,
 		PLAYER_TURN,
 		ENEMY_TURN,
@@ -39,7 +43,9 @@ public class Battle : MonoBehaviour {
 
         player = Game.GetInstance ().player;
 		enemy = Game.GetInstance ().enemy;
-		currentState = BattleStates.START;
+
+
+        currentState = BattleStates.START;
 		abilities = player.CurrentAbilityStates;
 		currentAbility = abilities[0];
 		soundMap = new SoundMap();
@@ -47,6 +53,9 @@ public class Battle : MonoBehaviour {
     }
 	
 	void Update(){
+
+        prevState = state;
+        state = GamePad.GetState(playerIndex);
 
         hpText.text = "HP: " + player.getHP().ToString();
         enemyHpText.text = "HP: " + enemy.getHP().ToString();
@@ -204,27 +213,27 @@ public class Battle : MonoBehaviour {
 	}
 	
 	protected bool leftEvent(){
-		return Input.GetKeyUp (KeyCode.LeftArrow);
+		return Input.GetKeyUp (KeyCode.LeftArrow) || (prevState.DPad.Left == ButtonState.Released && state.DPad.Left == ButtonState.Pressed);
 	}
 	
 	protected bool rightEvent(){
-		return Input.GetKeyUp (KeyCode.RightArrow);
+		return Input.GetKeyUp (KeyCode.RightArrow) || (prevState.DPad.Right == ButtonState.Released && state.DPad.Right == ButtonState.Pressed);
 	}
 	
 	protected bool aheadEvent(){
-		return Input.GetKeyUp (KeyCode.UpArrow);
+		return Input.GetKeyUp (KeyCode.UpArrow) || (prevState.DPad.Up == ButtonState.Released && state.DPad.Up == ButtonState.Pressed);
 	}
 
 	protected bool backEvent(){
-		return Input.GetKeyUp (KeyCode.DownArrow);
+		return Input.GetKeyUp (KeyCode.DownArrow) || (prevState.DPad.Down == ButtonState.Released && state.DPad.Down == ButtonState.Pressed);
 	}
 	
 	protected bool playerAttack(){
-		return Input.GetKeyUp (KeyCode.J);
+		return Input.GetKeyUp (KeyCode.J) || (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed);
 	}
 	
 	protected bool endTurn(){
-		return Input.GetKeyUp (KeyCode.K);
+		return Input.GetKeyUp (KeyCode.K) || (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed);
 	}
 }
 	
