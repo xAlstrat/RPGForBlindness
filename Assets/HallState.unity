@@ -907,6 +907,7 @@ GameObject:
   - 4: {fileID: 1319343230}
   - 114: {fileID: 1319343228}
   - 114: {fileID: 1319343231}
+  - 114: {fileID: 1319343229}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -929,6 +930,18 @@ MonoBehaviour:
   enemy: {fileID: 0}
   roomMaterial: {fileID: 1705262880}
   playerHP: {fileID: 1381945039}
+--- !u!114 &1319343229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1319343227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c820e796dddd04491e4783f071eec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 796217108}
 --- !u!4 &1319343230
 Transform:
   m_ObjectHideFlags: 0
