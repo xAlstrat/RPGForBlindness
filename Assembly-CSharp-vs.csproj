@@ -74,6 +74,12 @@
      <Compile Include="Assets\Script\Room\Entity\GeometricEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\MonsterEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\RoomEntity.cs" />
+     <Compile Include="Assets\Script\Room\Entity\Signal\ConditionalSignalEntity.cs" />
+     <Compile Include="Assets\Script\Room\Entity\Signal\DownConditionalSignalEntity.cs" />
+     <Compile Include="Assets\Script\Room\Entity\Signal\LeftConditionalSignalEntity.cs" />
+     <Compile Include="Assets\Script\Room\Entity\Signal\RightConditionalSignalEntity.cs" />
+     <Compile Include="Assets\Script\Room\Entity\Signal\SignalEntity.cs" />
+     <Compile Include="Assets\Script\Room\Entity\Signal\UpConditionalSignalEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\TrapEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\TreasureEntity.cs" />
      <Compile Include="Assets\Script\Room\Material\RoomMaterial.cs" />

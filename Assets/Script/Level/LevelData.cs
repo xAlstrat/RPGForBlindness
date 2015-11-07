@@ -31,7 +31,8 @@ public class LevelData
 	}
 
 	public bool walkableCell(int i, int j){
-		return hallData[j][i].Equals(' ');
+		string signals = "lrud-";
+		return hallData[j][i].Equals(' ') || signals.Contains(hallData[j][i].ToString());
 	}
 
 	public void addOrientation(int i, int j, Orientation o){
@@ -56,6 +57,16 @@ public class LevelData
 			return Entity.DOOR;
 		case 'M':
 			return Entity.MONSTER;
+		case '-':
+			return Entity.SIGNAL_MULTI;
+		case 'u':
+			return Entity.SIGNAL_UP;
+		case 'd':
+			return Entity.SIGNAL_DOWN;
+		case 'l':
+			return Entity.SIGNAL_LEFT;
+		case 'r':
+			return Entity.SIGNAL_RIGHT;
 		default:
 			return Entity.WALL;
 		}
@@ -68,17 +79,17 @@ public class LevelData
 			levelData.hallData = new string[]{
 				"       #D##",
 				" ##### # ##",
-				" #####    D",
+				" #####  - D",
 				" ##########",
 				" ## M  ####",
 				" ## ## ##X#",
 				" ##T## ## #",
-				" #####    #",
+				" #####-   #",
 				" ##### ####",
-				"       ####",
+				" l - l ####",
 				"### #######",
 				"### #######",
-				"### #######"
+				"###s#######"
 			};
 			levelData.startPosition = new Vector2(3, 12);
 			/*Orientations*/
@@ -98,11 +109,11 @@ public class LevelData
 			levelData.hallData = new string[]{
 				"   T###X###########",
 				" ###### ###    ####",
-				"M   ###     ##    #",
+				"M   ###-    ##-   #",
 				"### ### ###### ## #",
-				"#        ##### ## #",
+				"#  -   - ##### ## #",
 				"# ### ## #     ## #",
-				"#   # ##   ###### #",
+				"#-  # ##   ###### #",
 				"# ###  T#########D#"
 			};
 			levelData.startPosition = new Vector2(1, 7);

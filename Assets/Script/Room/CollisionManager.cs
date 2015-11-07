@@ -8,8 +8,10 @@ public class CollisionManager
 		RoomEntity entity = Room.GetInstance ().getEntityAt (pos);
 		if (entity == null)
 			return;
-		Room.GetInstance().removeEntity(pos);
-		GameObject.Destroy(entity.gameObject, 4f);
+		if (entity.destroyable ()) {
+			Room.GetInstance().removeEntity(pos);
+			GameObject.Destroy(entity.gameObject, 4f);
+		}
 		entity.handleCollision ();
 	}
 

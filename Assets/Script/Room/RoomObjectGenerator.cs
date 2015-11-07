@@ -24,6 +24,16 @@ public class RoomObjectGenerator
 			return instantiateGeometricRoom(i, j);
 		case Entity.DOOR:
 			return instantiateDoor(i, j);
+		case Entity.SIGNAL_DOWN:
+			return instantiateDownSignal(i, j);
+		case Entity.SIGNAL_UP:
+			return instantiateUpSignal(i, j);
+		case Entity.SIGNAL_LEFT:
+			return instantiateLeftSignal(i, j);
+		case Entity.SIGNAL_RIGHT:
+			return instantiateRightSignal(i, j);
+		case Entity.SIGNAL_MULTI:
+			return instantiateMultiSignal(i, j);
 		default:
 			return null;
 		}
@@ -79,6 +89,39 @@ public class RoomObjectGenerator
 		go.GetComponent<MeshRenderer>().material = Resources.Load("BlueMat") as Material;
 		updateObjectTransform (go, i, j);
 		return go.AddComponent<GeometricEntity> () as GeometricEntity;
+	}
+
+	private RoomEntity instantiateDownSignal(int i, int j){
+		GameObject go = new GameObject("DownSignal");
+		go.transform.parent = parent;
+		return go.AddComponent<DownConditionalSignalEntity> ();
+	}
+
+	private RoomEntity instantiateUpSignal(int i, int j){
+		GameObject go = new GameObject("UpSignal");
+		go.transform.parent = parent;
+		return go.AddComponent<UpConditionalSignalEntity> ();
+	}
+
+	private RoomEntity instantiateLeftSignal(int i, int j){
+		GameObject go = new GameObject("LeftSignal");
+		go.transform.parent = parent;
+		return go.AddComponent<LeftConditionalSignalEntity> ();
+	}
+
+	private RoomEntity instantiateRightSignal(int i, int j){
+		GameObject go = new GameObject("RightSignal");
+		go.transform.parent = parent;
+		return go.AddComponent<RightConditionalSignalEntity> ();
+	}
+
+
+	private RoomEntity instantiateMultiSignal(int i, int j){
+		GameObject go = new GameObject("MultiSignal");
+		go.transform.parent = parent;
+		SignalEntity signal = go.AddComponent<SignalEntity> ();
+		signal.source = "pew";
+		return signal;
 	}
 
 	private void updateObjectTransform(GameObject go, int i, int j){

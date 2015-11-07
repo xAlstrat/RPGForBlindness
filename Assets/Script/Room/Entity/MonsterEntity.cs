@@ -47,5 +47,9 @@ public class MonsterEntity : RoomEntity
 	public double getMultiplier(AbilityStates ability){
 		return stats[ability];
 	}
+
+	public override bool destroyable(){
+		return true;
+	}
 }
 

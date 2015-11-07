@@ -208,11 +208,12 @@ public class Player : MonoBehaviour
 			return;
 
 		Vector2 dest = position + direction;
+		CollisionManager.collide(dest);
 		if (!canMove(dest)) {
 			movementRestriction.playCrashSound(dest);
-			CollisionManager.collide(dest);
 			return;
 		}
+
 
 		position += direction;
 		startPosition = transform.position;
@@ -310,6 +311,19 @@ public class Player : MonoBehaviour
 
 	private void makeTurningSound(){
 		SoundManager.instance.PlaySingle("turning");
+	}
+
+	public Orientation getOrientation(){
+		switch (currentDir) {
+		case 0:
+			return Orientation.NORTH;
+		case 1:
+			return Orientation.EAST;
+		case 2:
+			return Orientation.SOUTH;
+		default:
+			return Orientation.WEST;
+		}
 	}
 }
 
