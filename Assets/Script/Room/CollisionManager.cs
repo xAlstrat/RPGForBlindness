@@ -9,7 +9,7 @@ public class CollisionManager
 		if (entity == null)
 			return;
 		Room.GetInstance().removeEntity(pos);
-		GameObject.Destroy(entity.gameObject, 1f);
+		GameObject.Destroy(entity.gameObject, 4f);
 		entity.handleCollision ();
 	}
 

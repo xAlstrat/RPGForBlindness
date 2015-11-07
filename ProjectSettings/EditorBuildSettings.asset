@@ -19,3 +19,5 @@ EditorBuildSettings:
     path: Assets/HallStateIncomplete.unity
   - enabled: 1
     path: Assets/Load.unity
+  - enabled: 1
+    path: Assets/LevelCompleted.unity

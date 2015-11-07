@@ -8,9 +8,6 @@ public class PlayerMovementRestriction : MonoBehaviour
 
 	private bool toggle = true;
 	public AudioClip choque;
-	public AudioClip treasure;
-	public AudioClip door;
-	public AudioClip geometric;
 
 	private float lastPress = 1f;
 	private float delay = 1f;

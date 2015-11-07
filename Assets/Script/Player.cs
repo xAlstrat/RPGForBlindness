@@ -235,6 +235,7 @@ public class Player : MonoBehaviour
 		if (state != PlayerState.STOPPED) {
 			return;
 		}
+		makeTurningSound ();
 		currentDir = (currentDir + 1) % 4;
 		rotate (90f);
 	}
@@ -246,6 +247,7 @@ public class Player : MonoBehaviour
 		if (state != PlayerState.STOPPED) {
 			return;
 		}
+		makeTurningSound ();
 		currentDir--;
 		currentDir = currentDir >= 0 ? currentDir : 3;
 		rotate (-90f);
@@ -304,6 +306,10 @@ public class Player : MonoBehaviour
 		boosts[ability] += amount;
 		abilitiesBaseDamage[ability] += boosts[ability] / boostsToLevelUp;
 		boosts[ability] = boosts[ability] % boostsToLevelUp;
+	}
+
+	private void makeTurningSound(){
+		SoundManager.instance.PlaySingle("turning");
 	}
 }
 
