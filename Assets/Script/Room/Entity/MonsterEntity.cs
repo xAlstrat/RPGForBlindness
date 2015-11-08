@@ -9,11 +9,10 @@ public class MonsterEntity : SignalEntity
 	private double[] multipliers = new double[]{0.5, 1, 2};
 
 	protected void Awake(){
-		source  = "crashMonster";
+		source  = "Monster";
 	}
 
 	public override void handleCollision(){
-		base.handleCollision ();
 		SceneLoader loader = SceneLoader.GetInstance();
 		Game.GetInstance ().enemy = this;
 		initializeStats();

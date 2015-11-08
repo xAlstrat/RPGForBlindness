@@ -91,6 +91,8 @@ public class LevelData
 			return Entity.SIGNAL_LEFT;
 		case 'r':
 			return Entity.SIGNAL_RIGHT;
+		case 'W':
+			return Entity.GEOMETRIC;
 		default:
 			return Entity.WALL;
 		}
@@ -148,7 +150,7 @@ public class LevelData
 				"############ ##",
 				"# M-     T## ##",
 				"#u# ######## ##",
-				"# #   ###    ##",
+				"# #   ###   W##",
 				"# ###M###u#####",
 				"#- r -    #####",
 				"# #############",
@@ -162,6 +164,8 @@ public class LevelData
 			//Monsters
 			levelData.addOrientation(5, 6, Orientation.SOUTH);
 			levelData.addOrientation(2, 3, Orientation.WEST);
+			//Warps
+			levelData.addOrientation(12, 5, Orientation.WEST);
 			break;
 		default:
 			break;

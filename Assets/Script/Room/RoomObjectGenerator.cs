@@ -87,10 +87,10 @@ public class RoomObjectGenerator
 	}
 
 	private RoomEntity instantiateGeometricRoom(int i, int j){
-		GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 		go.GetComponent<MeshRenderer>().material = Resources.Load("BlueMat") as Material;
 		updateObjectTransform (go, i, j);
-		return go.AddComponent<GeometricEntity> () as GeometricEntity;
+		return go.AddComponent<WarpEntity> () as WarpEntity;
 	}
 
 	private RoomEntity instantiateDownSignal(int i, int j){

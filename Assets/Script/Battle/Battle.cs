@@ -50,6 +50,7 @@ public class Battle : MonoBehaviour {
 		currentAbility = abilities[0];
 		soundMap = new SoundMap();
 		loader = SceneLoader.GetInstance();
+		SoundManager.instance.PlaySingle("Monster");
     }
 	
 	void Update(){
