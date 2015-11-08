@@ -72,7 +72,9 @@ public class RoomObjectGenerator
 		go.transform.position = Room.GetInstance ().getWorldPosition (new Vector3(i, 0f, j));
 		//go.AddComponent<AudioSource> ();
 		//go.GetComponent<AudioSource> ().clip = Resources.Load ("crashMonster") as AudioClip;
-		return go.AddComponent<MonsterEntity> () as MonsterEntity;
+        MonsterEntity m = go.AddComponent<MonsterEntity>() as MonsterEntity;
+        m.setPosition(i, j);
+        return m;
 	}
 
 	private RoomEntity instantiateTrap(int i, int j){

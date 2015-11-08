@@ -43,7 +43,7 @@ public class Battle : MonoBehaviour {
 
         player = Game.GetInstance ().player;
 		enemy = Game.GetInstance ().enemy;
-
+        GamePad.SetVibration(playerIndex, 0.0f, 0.0f); //hardcode
 
         currentState = BattleStates.START;
 		abilities = player.CurrentAbilityStates;
@@ -79,9 +79,10 @@ public class Battle : MonoBehaviour {
 				break;
 
 			case(BattleStates.VICTORY):
-
-				Game.GetInstance ().enemy = null;
-	            winText.text = "¡Ganaste!";
+                Room.GetInstance().removeMonster(enemy.getPosition());
+                Game.GetInstance ().enemy = null;
+                
+                winText.text = "¡Ganaste!";
 				player.CurrentAbilityStates = abilities;
 	            currentState = BattleStates.END;
 				loader.load(loader.persistentScenes[0]);

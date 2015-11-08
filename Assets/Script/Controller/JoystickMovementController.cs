@@ -49,9 +49,11 @@ public class JoystickMovementController : PlayerMovementController
         }
 
         Vector2 pos = Game.GetInstance().player.getPosition();
-        if (pos.x == 6.0)
+        float distance = Room.GetInstance().getMinDistanceMonster(pos);
+        if (distance<3.0f)
         {
-            GamePad.SetVibration(playerIndex, 0.5f, 0.5f);
+            float coef = 0.1f + ((3.0f - distance) * 0.2f / 3.0f);
+            GamePad.SetVibration(playerIndex, coef, coef);
         }
         else
         {

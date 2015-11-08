@@ -9,9 +9,12 @@ public class LevelData
 	private string[] hallData;
 	private Vector2 startPosition;
 	private Dictionary<string, Orientation> orientations;
+    private ArrayList monsters;
 
 	public LevelData(){
 		orientations = new Dictionary<string, Orientation> ();
+        monsters = new ArrayList();
+
 	}
 
 	public Vector2 getStartPosition(){
@@ -41,6 +44,28 @@ public class LevelData
 	public Orientation getOrientationAt(int i, int j){
 		return orientations [i + "," + j];
 	}
+
+    public void addMonster(int i, int j)
+    {
+        monsters.Add(new Vector2(i, j));
+    }
+
+    public void removeMonster(Vector2 pos)
+    {
+        foreach (Vector2 v in monsters)
+        {
+            if (v.Equals(pos))
+            {
+                monsters.Remove(v);
+                break;
+            }
+        }
+    }
+
+    public void removeMonster(int i, int j)
+    {
+        removeMonster(new Vector2(i, j)); 
+    }
 
 	public Entity getEntityAt(int i, int j){
 		switch (hallData[j][i]){
@@ -101,6 +126,7 @@ public class LevelData
 			levelData.addOrientation(10, 2, Orientation.WEST);
 			//East
 			levelData.addOrientation(4, 4, Orientation.EAST);
+            levelData.addMonster(4, 4);
 			//levelData.addOrientation(3, 11, Orientation.SOUTH);
 
 			break;
@@ -126,7 +152,8 @@ public class LevelData
 			levelData.addOrientation(7, 7, Orientation.WEST);
 			//East
 			levelData.addOrientation(0, 2, Orientation.EAST);
-			break;
+            levelData.addMonster(0,2);
+            break;
 		default:
 			break;
 		}
@@ -139,5 +166,20 @@ public class LevelData
         sb[i] = ' ';
         hallData[j]= sb.ToString();
     }
+    
+    public float getMinDistanceMonster(Vector2 pos)
+    {
+        float minDistance = 10000000.0f;
+        foreach(Vector2 v in monsters)
+        {
+            float aux = Vector2.Distance(v, pos);
+            if (aux<minDistance)
+            {
+                minDistance = aux;
+            }
+        }
+
+        return minDistance;
+    } 
 }
 

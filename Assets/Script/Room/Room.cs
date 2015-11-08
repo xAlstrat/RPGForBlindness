@@ -137,5 +137,15 @@ public class Room
         data.removeEntity((int)pos.x, (int)pos.y);
     }
 
+    public void removeMonster(Vector2 pos)
+    {
+        data.removeMonster(pos);
+    }
+
+    public float getMinDistanceMonster(Vector2 pos)
+    {
+        return data.getMinDistanceMonster(pos);
+    }
+
 }
 

@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Player.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Room\Entity\TreasureEntity.cs">
     <Files>
-      <File FileName="Assets\Script\Player.cs" Line="211" Column="34" />
+      <File FileName="Assets\Script\Room\Entity\MonsterEntity.cs" Line="61" Column="3" />
+      <File FileName="Assets\Script\Room\Entity\DoorEntity.cs" Line="22" Column="1" />
+      <File FileName="Assets\Script\Room\Entity\TrapEntity.cs" Line="16" Column="1" />
+      <File FileName="Assets\Script\Room\Entity\TreasureEntity.cs" Line="20" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
