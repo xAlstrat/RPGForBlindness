@@ -10,12 +10,8 @@ using XInputDotNetPure;
 /// </summary>
 public abstract class PlayerMovementController : PlayerController
 {
-
-    PlayerIndex playerIndex = 0;
-    GamePadState state;
-    GamePadState prevState;
-
-    public void Update ()
+    
+    public override void Update ()
 	{
         getMovement();
 	}
