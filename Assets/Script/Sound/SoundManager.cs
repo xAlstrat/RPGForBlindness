@@ -22,7 +22,7 @@ using System.Collections;
 				Destroy (gameObject);
 
 			//Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
-			DontDestroyOnLoad (gameObject);
+			//DontDestroyOnLoad (gameObject);
 		}
 		
 		
@@ -39,6 +39,22 @@ using System.Collections;
 		//Used to play single sound clips based on the string name of the clip.
 		public void PlaySingle(string clipName){
 			PlaySingle((AudioClip)Resources.Load("Sounds/" + clipName));
+		}
+
+		//Used to play single sound clips.
+		public void PlayMusic(AudioClip clip)
+		{
+			//Set the clip of our efxSource audio source to the clip passed in as a parameter.
+			musicSource.clip = clip;
+				
+				//Play the clip.
+			musicSource.Play ();
+		}
+
+		//Used to play single sound clips.
+		public void PlayMusic(string clipName)
+		{
+			PlayMusic((AudioClip)Resources.Load("Music/" + clipName));
 		}
 		
 		

@@ -88,10 +88,13 @@ public class SceneLoader : MonoBehaviour
 
 	private void hideAndShow(string scene){
 		foreach (Vector2 v in showObjectInScene) {
+			persistentGameobjects[(int)v.x].SetActive(false);
+		}
+		foreach (Vector2 v in showObjectInScene) {
 			if(persistentScenes[(int)v.y].Equals(scene))
-				persistentGameobjects[(int)v.x].SetActive(true);
+				persistentGameobjects[(int)v.x].SetActive(persistentGameobjects[(int)v.x].active || true);
 			else
-				persistentGameobjects[(int)v.x].SetActive(false);
+				persistentGameobjects[(int)v.x].SetActive(persistentGameobjects[(int)v.x].active || false);
 		}
 	}
 }

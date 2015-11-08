@@ -86,6 +86,7 @@ public class Battle : MonoBehaviour {
 				player.CurrentAbilityStates = abilities;
 	            currentState = BattleStates.END;
 				loader.load(loader.persistentScenes[0]);
+				SoundManager.instance.PlayMusic("Hidden Agenda");
 				break;
 
 			case(BattleStates.DEFEAT):

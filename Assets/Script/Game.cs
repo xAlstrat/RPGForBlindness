@@ -21,6 +21,7 @@ public class Game : MonoBehaviour
 		if (instance == null) {
 			instance = this;
 		}
+		SoundManager.instance.PlayMusic("Hidden Agenda");
 		initRoom ();
 		initPlayer ();
 	}

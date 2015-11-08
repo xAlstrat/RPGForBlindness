@@ -17,6 +17,7 @@ public class MonsterEntity : SignalEntity
 		SceneLoader loader = SceneLoader.GetInstance();
 		Game.GetInstance ().enemy = this;
 		initializeStats();
+		SoundManager.instance.PlayMusic("Mistake the Getaway");
 		loader.load("BattleState");
 	}
 
