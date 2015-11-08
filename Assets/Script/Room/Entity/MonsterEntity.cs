@@ -1,14 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class MonsterEntity : RoomEntity
+public class MonsterEntity : SignalEntity
 {
 
 	private int hp = 15;
 	private Dictionary<AbilityStates, double> stats;
 	private double[] multipliers = new double[]{0.5, 1, 2};
 
+	protected void Awake(){
+		source  = "crashMonster";
+	}
+
 	public override void handleCollision(){
+		base.handleCollision ();
 		SceneLoader loader = SceneLoader.GetInstance();
 		Game.GetInstance ().enemy = this;
 		initializeStats();

@@ -1,10 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class TreasureEntity : RoomEntity
+public class TreasureEntity : SignalEntity
 {
+	protected void Awake(){
+		source  = "crashTreasure";
+	}
 
 	public override void handleCollision(){
+		base.handleCollision ();
 		Debug.Log("treasure collision");
 	}
 

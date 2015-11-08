@@ -31,8 +31,7 @@ public class LevelData
 	}
 
 	public bool walkableCell(int i, int j){
-		string signals = "lrud-";
-		return hallData[j][i].Equals(' ') || signals.Contains(hallData[j][i].ToString());
+		return !hallData [j] [i].Equals ('#');
 	}
 
 	public void addOrientation(int i, int j, Orientation o){

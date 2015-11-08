@@ -43,8 +43,8 @@ public class RoomObjectGenerator
 		GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		go.GetComponent<MeshRenderer>().material = Resources.Load("YellowMat") as Material;
 		updateObjectTransform (go, i, j);
-		go.AddComponent<AudioSource> ();
-		go.GetComponent<AudioSource> ().clip = Resources.Load ("crashTreasure") as AudioClip;
+		//go.AddComponent<AudioSource> ();
+		//go.GetComponent<AudioSource> ().clip = Resources.Load ("crashTreasure") as AudioClip;
 		return go.AddComponent<TreasureEntity> () as TreasureEntity;
 
 	}
@@ -58,9 +58,9 @@ public class RoomObjectGenerator
 		Orientation o = data.getOrientationAt (i, j);
 		go.transform.Rotate (o.getRotation());
 		go.transform.position = Room.GetInstance ().getWorldPosition (new Vector3(i, 0.15f, j));
-		AudioSource source = go.AddComponent<AudioSource> ();
-		source.playOnAwake = false;
-		source.clip = Resources.Load ("crashDoor") as AudioClip;
+		//AudioSource source = go.AddComponent<AudioSource> ();
+		//source.playOnAwake = false;
+		//source.clip = Resources.Load ("crashDoor") as AudioClip;
 		return go.AddComponent<DoorEntity> () as DoorEntity;
 	}
 
@@ -70,8 +70,8 @@ public class RoomObjectGenerator
 		Orientation o = data.getOrientationAt (i, j);
 		go.transform.Rotate (o.getRotation());
 		go.transform.position = Room.GetInstance ().getWorldPosition (new Vector3(i, 0f, j));
-		go.AddComponent<AudioSource> ();
-		go.GetComponent<AudioSource> ().clip = Resources.Load ("crashMonster") as AudioClip;
+		//go.AddComponent<AudioSource> ();
+		//go.GetComponent<AudioSource> ().clip = Resources.Load ("crashMonster") as AudioClip;
 		return go.AddComponent<MonsterEntity> () as MonsterEntity;
 	}
 
@@ -79,8 +79,8 @@ public class RoomObjectGenerator
 		GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		go.GetComponent<MeshRenderer>().material = Resources.Load("BlackMat") as Material;
 		updateObjectTransform (go, i, j);
-		go.AddComponent<AudioSource> ();
-		go.GetComponent<AudioSource> ().clip = Resources.Load ("crashTrap") as AudioClip;
+		//go.AddComponent<AudioSource> ();
+		//go.GetComponent<AudioSource> ().clip = Resources.Load ("crashTrap") as AudioClip;
 		return go.AddComponent<TrapEntity> () as TrapEntity;
 	}
 
