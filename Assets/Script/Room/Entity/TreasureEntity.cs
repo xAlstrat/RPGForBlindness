@@ -4,7 +4,7 @@ using System.Collections;
 public class TreasureEntity : SignalEntity
 {
 	protected void Awake(){
-		source  = "crashTreasure";
+		source  = "item_pickup";
 	}
 
 	public override void handleCollision(){

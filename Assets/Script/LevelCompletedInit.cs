@@ -6,6 +6,7 @@ public class LevelCompletedInit : MonoBehaviour {
 
 	private void nextLevel(){
 		Application.LoadLevel("HallState");
+		Game.GetInstance().player.enableMovement();
 	}
 
 	// Use this for initialization

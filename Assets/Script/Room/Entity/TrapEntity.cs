@@ -4,12 +4,17 @@ using System.Collections;
 public class TrapEntity : SignalEntity
 {
 	protected void Awake(){
-		source  = "crashTrap";
+		source  = "player_falling_trap";
+	}
+
+	public void nextScene(){
+		SceneLoader.GetInstance ().cleanLoad ("HallState");
 	}
 
 	public override void handleCollision(){
 		base.handleCollision ();
-		SceneLoader.GetInstance ().cleanLoad ("HallState");
+		Game.GetInstance().player.disableMovement();
+		Invoke ("nextScene", 5);
 	}
 }
 

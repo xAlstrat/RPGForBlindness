@@ -15,6 +15,7 @@ public class DoorEntity : SignalEntity
 
 	public override void handleCollision(){
 		base.handleCollision ();
+		Game.GetInstance().player.disableMovement();
 		Invoke ("nextScene", 3);
 	}
 }

@@ -21,6 +21,8 @@ using System.Collections;
 				//Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
 				Destroy (gameObject);
 
+			efxSource.playOnAwake = false;
+
 			//Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
 			//DontDestroyOnLoad (gameObject);
 		}
@@ -39,6 +41,10 @@ using System.Collections;
 		//Used to play single sound clips based on the string name of the clip.
 		public void PlaySingle(string clipName){
 			PlaySingle((AudioClip)Resources.Load("Sounds/" + clipName));
+		}
+
+		public bool isEfxPlaying(){
+			return efxSource.isPlaying;
 		}
 
 		//Used to play single sound clips.

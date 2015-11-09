@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using XInputDotNetPure;
 
 public class Battle : MonoBehaviour {
+
+	private bool wasDeathSfxPlayed;
 	
 	private BattleStates currentState;
     private AbilityStates currentAbility;
@@ -32,14 +34,9 @@ public class Battle : MonoBehaviour {
 		END
 	}
 
-    public enum Rotation{
-		LEFT,
-		RIGHT,
-		UP,
-		DOWN
-	}
-
     void Start(){
+
+		wasDeathSfxPlayed = false;
 
         player = Game.GetInstance ().player;
 		enemy = Game.GetInstance ().enemy;
@@ -79,21 +76,30 @@ public class Battle : MonoBehaviour {
 				break;
 
 			case(BattleStates.VICTORY):
+
                 Room.GetInstance().removeMonster(enemy.getPosition());
                 Game.GetInstance ().enemy = null;
                 
                 winText.text = "¡Ganaste!";
 				player.CurrentAbilityStates = abilities;
-	            currentState = BattleStates.END;
-				loader.load(loader.persistentScenes[0]);
-				SoundManager.instance.PlayMusic("Hidden Agenda");
+
+				if(!wasDeathSfxPlayed){
+					SoundManager.instance.PlaySingle("monster_death");
+					wasDeathSfxPlayed = true;
+				}
+				
+				if(!SoundManager.instance.isEfxPlaying() && wasDeathSfxPlayed){
+					currentState = BattleStates.END;
+					loader.load(loader.persistentScenes[0]);
+					SoundManager.instance.PlayMusic("Hidden Agenda");
+				}
 				break;
 
 			case(BattleStates.DEFEAT):
 
 	            winText.text = "Has perdido";
 	            currentState = BattleStates.END;
-				loader.load("Welcome");
+				loader.cleanLoad("HallState");
 				break;
 		}
 		

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 
 	private int hp;
 	private int boostsToLevelUp;
+	private bool ableToMove;
 
 	private AbilityStates[] currentAbilityStates;
 	public AbilityStates[] CurrentAbilityStates{
@@ -109,6 +110,8 @@ public class Player : MonoBehaviour
 
 		boostsToLevelUp = 3;
 
+		ableToMove = true;
+
 		//base damage for each ability starts at 1
 		abilitiesBaseDamage = new Dictionary<AbilityStates, int>();
 
@@ -204,7 +207,7 @@ public class Player : MonoBehaviour
 	public AudioClip paso1, paso2;
 
 	public void move(){
-		if (state != PlayerState.STOPPED)
+		if (state != PlayerState.STOPPED || !ableToMove)
 			return;
 
 		Vector2 dest = position + direction;
@@ -233,7 +236,7 @@ public class Player : MonoBehaviour
 	/// Turns to the right smoothly.
 	/// </summary>
 	public void turnRight(){
-		if (state != PlayerState.STOPPED) {
+		if (state != PlayerState.STOPPED || !ableToMove) {
 			return;
 		}
 		makeTurningSound ();
@@ -245,7 +248,7 @@ public class Player : MonoBehaviour
 	/// Turns to the left smoothly.
 	/// </summary>
 	public void turnLeft(){
-		if (state != PlayerState.STOPPED) {
+		if (state != PlayerState.STOPPED || !ableToMove) {
 			return;
 		}
 		makeTurningSound ();
@@ -289,6 +292,18 @@ public class Player : MonoBehaviour
 
 	public int getHP(){
 		return this.hp;
+	}
+
+	public void toggleMovementBlock(){
+		ableToMove = !ableToMove;
+	}
+
+	public void enableMovement(){
+		ableToMove = true;
+	}
+
+	public void disableMovement(){
+		ableToMove = false;
 	}
 
 	public int getBaseDamage(AbilityStates ability){
