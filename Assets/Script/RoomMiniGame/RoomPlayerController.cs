@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public class RoomPlayerController : MonoBehaviour {
 
@@ -38,6 +39,11 @@ public class RoomPlayerController : MonoBehaviour {
 				SceneLoader.GetInstance().load("HallStateIncomplete");
 			}
 		}
+        if(other.gameObject.CompareTag("GeomWall"))
+        {
+            GamePad.SetVibration((PlayerIndex)0, 0.2f, 0.2f);
+            GamePad.SetVibration((PlayerIndex)0, 0.0f, 0.0f);
+        }
 	}
 
 	void StartGame ()
