@@ -34,6 +34,8 @@ public class RoomObjectGenerator
 			return instantiateRightSignal(i, j);
 		case Entity.SIGNAL_MULTI:
 			return instantiateMultiSignal(i, j);
+		case Entity.HELP:
+			return instantiateHelp(i, j);
 		default:
 			return null;
 		}
@@ -123,6 +125,14 @@ public class RoomObjectGenerator
 		go.transform.parent = parent;
 		SignalEntity signal = go.AddComponent<SignalEntity> ();
 		signal.source = "pew";
+		return signal;
+	}
+
+	private RoomEntity instantiateHelp(int i, int j){
+		GameObject go = new GameObject("Help");
+		go.transform.parent = parent;
+		SignalEntity signal = go.AddComponent<SignalEntity> ();
+		signal.source = data.getSound(i,j);
 		return signal;
 	}
 
