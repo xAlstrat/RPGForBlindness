@@ -32,8 +32,10 @@ public class RoomPlayerController : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag ("Endblock"))
 		{
+			Debug.Log("trigered");
 			if (started) {
 				other.gameObject.SetActive (false);
+				SceneLoader.GetInstance().load("HallStateIncomplete");
 			}
 		}
 	}

@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GeomElementsController.cs" />
      <Compile Include="Assets\Script\ApplicationData.cs" />
      <Compile Include="Assets\Script\Battle\AbilityStates.cs" />
      <Compile Include="Assets\Script\Battle\Battle.cs" />

@@ -9,7 +9,7 @@ public class WarpEntity : SignalEntity
 	}
 	
 	private void nextScene(){
-		SceneLoader.GetInstance ().cleanLoad ("GeometricState");
+		SceneLoader.GetInstance ().load("GeometricState");
 	}
 	
 	public override void handleCollision(){
