@@ -6,6 +6,18 @@ using XInputDotNetPure;
 public class Battle : MonoBehaviour {
 
 	private bool wasDeathSfxPlayed;
+	private bool wasActionSfxPlayed;
+	private bool wasVictoryMusicPlayed;
+	private bool extraPlayerSoundsNeeded;
+	private bool wasEnemySfxPlayed;
+
+	private string atkSuffix;
+	private string enemyAtkSfx;
+	private string enemyAtkSpeech;
+
+	private TurnPhase currentPhase;
+	private TurnPhase enemyPhase;
+	private Rotation currentRotation;
 	
 	private BattleStates currentState;
     private AbilityStates currentAbility;
@@ -35,9 +47,29 @@ public class Battle : MonoBehaviour {
 		END
 	}
 
+	enum TurnPhase{
+		BEGINNING,
+		SELECTION,
+		CONFIRMATION,
+		CALCULATIONS,
+		VISIBLE_ACTIONS,
+		ENDING
+	}
+
+
     void Start(){
 
 		wasDeathSfxPlayed = false;
+		wasActionSfxPlayed = false;
+		wasVictoryMusicPlayed = false;
+		extraPlayerSoundsNeeded = false;
+
+		atkSuffix = "";
+		enemyAtkSfx = "";
+		enemyAtkSpeech = "";
+
+		currentPhase = TurnPhase.BEGINNING;
+		enemyPhase = TurnPhase.BEGINNING;
 
         player = Game.GetInstance ().player;
 		enemy = Game.GetInstance ().enemy;
@@ -70,23 +102,21 @@ public class Battle : MonoBehaviour {
         switch (currentState) {
 
 			case(BattleStates.START):
-
+				wasDeathSfxPlayed = false;
+				wasVictoryMusicPlayed = false;
 				currentState = BattleStates.PLAYER_TURN;
 				break;
 
 			case(BattleStates.PLAYER_TURN):
-
 				playerTurn();
 				break;
 
 			case(BattleStates.ENEMY_TURN):
-
 				enemyTurn();
 				break;
 
 			case(BattleStates.VICTORY):
-
-                Room.GetInstance().removeMonster(enemy.getPosition());
+			    Room.GetInstance().removeMonster(enemy.getPosition());
                 Game.GetInstance ().enemy = null;
                 
                 winText.text = "¡Ganaste!";
@@ -97,7 +127,13 @@ public class Battle : MonoBehaviour {
 					wasDeathSfxPlayed = true;
 				}
 				
-				if(!SoundManager.instance.isEfxPlaying() && wasDeathSfxPlayed){
+				if(!wasVictoryMusicPlayed && !SoundManager.instance.isEfxPlaying()){
+					SoundManager.instance.StopMusic();
+					SoundManager.instance.PlaySingle("battle_victory_music");
+					wasVictoryMusicPlayed = true;
+				}
+				
+				if(!SoundManager.instance.isEfxPlaying() && wasVictoryMusicPlayed){
 					currentState = BattleStates.END;
 					loader.load(loader.persistentScenes[0]);
 					SoundManager.instance.PlayMusic("Hidden Agenda");
@@ -105,7 +141,6 @@ public class Battle : MonoBehaviour {
 				break;
 
 			case(BattleStates.DEFEAT):
-
 	            winText.text = "Has perdido";
 	            currentState = BattleStates.END;
 				loader.cleanLoad("HallState");
@@ -167,103 +202,208 @@ public class Battle : MonoBehaviour {
 		}
 	}
 
+	private void selection(){
+		if(endTurn())
+			currentPhase = TurnPhase.ENDING;
+		else if(playerAttack())
+			currentPhase = TurnPhase.CONFIRMATION;
+	}
+
+	private void rotate(){
+		if(leftEvent() || rightEvent() || aheadEvent() || backEvent()){
+			rotateCube(currentRotation);
+			currentAbility = abilities[0];
+			string clip = soundMap.getSelectionClip(currentAbility);
+			SoundManager.instance.PlaySingle(clip);
+		}
+	}
+
+	private void feedBack(){
+		string audioClip = "";
+
+		if (askMyHP()){
+			audioClip = "playerhp"+ System.Math.Ceiling((double)player.getHP()*10 / player.getMaxHP()) * 10;
+		}
+		else if (askEnemyHP()){
+			audioClip = "enemyhp" + System.Math.Ceiling(10 * enemy.getHP() / enemyMaxHp) * 10;
+		}
+		else if(askCurrentAbility()){
+			audioClip = "current_ability_" + currentAbility.ToString().ToLower();
+		}
+
+		if(!audioClip.Equals(""))
+			SoundManager.instance.PlaySingle(audioClip);
+	}
 
 	public void playerTurn(){
 
-		//Debug.Log(currentAbility + " base damage: " + player.getBaseDamage(currentAbility));
+		switch(currentPhase){
+			case(TurnPhase.BEGINNING):
+				wasActionSfxPlayed = false;
+				currentPhase = TurnPhase.SELECTION;
+				break;
+			case(TurnPhase.SELECTION):
+				rotate();
+				feedBack();
+				selection();
+				break;
+			case(TurnPhase.CONFIRMATION):
+				currentPhase = TurnPhase.CALCULATIONS;
+				break;
+			case(TurnPhase.CALCULATIONS):
+				int dmg = calculateDamage();
+				enemy.removeHP (dmg);
 
-		if (endTurn ()) {
-			currentState = BattleStates.ENEMY_TURN;
-		}
-		else if (playerAttack ()) {
+				if(dmg <= 0){
+					extraPlayerSoundsNeeded = true;
+					atkSuffix = "immune";
+				}
+				else if(enemy.getMultiplier(currentAbility) == 1){
+					extraPlayerSoundsNeeded = true;
+					atkSuffix = "regular";
+				}
+				else if(enemy.getMultiplier(currentAbility) == 0.5 && dmg > 0){
+					extraPlayerSoundsNeeded = true;
+					atkSuffix = "ineffective";
+				}
+				else if(enemy.getMultiplier(currentAbility) == 2){
+					extraPlayerSoundsNeeded = true;
+					atkSuffix = "very_effective";
+				}
 
-			int dmg = calculateDamage();
-			enemy.removeHP (dmg);
-			string clip = soundMap.getAttackClip(currentAbility);
-			SoundManager.instance.PlaySingle(clip);
-			if (enemy.getHP () <= 0) {
-                Game.GetInstance().playerHP.text = "HP: "+ player.getHP();
-				currentState = BattleStates.VICTORY;
-			} else {
-				currentState = BattleStates.ENEMY_TURN;
-			}
+				if(enemy.getHP() <= 0)
+					extraPlayerSoundsNeeded = false;
 
+				currentPhase = TurnPhase.VISIBLE_ACTIONS;
+				break;
+			case(TurnPhase.VISIBLE_ACTIONS):
+				string clip = soundMap.getAttackClip(currentAbility);
+
+				if(!wasActionSfxPlayed){
+					SoundManager.instance.PlaySingle(clip);
+					wasActionSfxPlayed = true;
+				}
+
+				if(extraPlayerSoundsNeeded){
+					if(!SoundManager.instance.isEfxPlaying()){
+						SoundManager.instance.PlaySingle("attack_" + atkSuffix);
+						extraPlayerSoundsNeeded = false;
+					}
+					//por si se quieren saltar el feedback del ataque
+					else if(Input.GetKeyUp (KeyCode.H)){
+						extraPlayerSoundsNeeded = false;
+						SoundManager.instance.StopSingle();
+						currentPhase = TurnPhase.ENDING;
+					}
+				}
+				else
+					currentPhase = TurnPhase.ENDING;
+
+				break;
+			case(TurnPhase.ENDING):
+				if (enemy.getHP () <= 0) {
+					Game.GetInstance().playerHP.text = "HP: "+ player.getHP();
+					currentState = BattleStates.VICTORY;
+				} else {
+					currentState = BattleStates.ENEMY_TURN;
+				}
+				currentPhase = TurnPhase.BEGINNING;
+				break;
 		}
-		else if (leftEvent ()) {
-			rotateCube(Rotation.LEFT);
-			currentAbility = abilities[0];
-			string clip = soundMap.getSelectionClip(currentAbility);
-			SoundManager.instance.PlaySingle(clip);
-		}
-		else if (rightEvent ()) {
-			rotateCube(Rotation.RIGHT);
-            currentAbility = abilities[0];
-			string clip = soundMap.getSelectionClip(currentAbility);
-			SoundManager.instance.PlaySingle(clip);
-		}
-		else if (aheadEvent ()) {
-			rotateCube(Rotation.UP);
-			currentAbility = abilities[0];
-			string clip = soundMap.getSelectionClip(currentAbility);
-			SoundManager.instance.PlaySingle(clip);
-		}
-		else if (backEvent()){
-			rotateCube(Rotation.DOWN);
-			currentAbility = abilities[0];
-			string clip = soundMap.getSelectionClip(currentAbility);
-			SoundManager.instance.PlaySingle(clip);
-		}
-        else if (myHP())
-        {
-            string clip = "playerhp"+ System.Math.Ceiling((double)player.getHP()*10 / player.getMaxHP()) * 10;
-            SoundManager.instance.PlaySingle(clip);
-        }
-        else if (enemyHP())
-        {
-            string clip = "enemyhp" + System.Math.Ceiling(10 * enemy.getHP() / enemyMaxHp) * 10;
-            SoundManager.instance.PlaySingle(clip);
-        }
 	}
 
 
 	public void enemyTurn(){
-		//hacer mejor comportamiento enemigo
-		int dmg = Random.Range (0, 5);
-		player.removeHP (dmg);
+	//hacer mejor comportamiento enemigo
 
-		if (player.getHP () > 0) {
-			currentState = BattleStates.PLAYER_TURN;
-		}
-		else {
-			currentState = BattleStates.DEFEAT;
+		switch(enemyPhase){
+			case(TurnPhase.BEGINNING):
+				wasEnemySfxPlayed = false;
+				enemyPhase = TurnPhase.SELECTION;
+				break;
+			case(TurnPhase.SELECTION):
+				enemyPhase = TurnPhase.CONFIRMATION;
+				break;
+			case(TurnPhase.CONFIRMATION):
+				enemyPhase = TurnPhase.CALCULATIONS;
+				break;
+			case(TurnPhase.CALCULATIONS):
+				int dmg = Random.Range (0, 11);
+				player.removeHP (dmg);
+
+				if(dmg == 0){
+					enemyAtkSpeech = "enemy_attack_miss_speech";
+					enemyAtkSfx = "enemy_attack_miss_sfx";
+				}
+
+				if(0 < dmg && dmg <= 7){
+					enemyAtkSpeech = "enemy_attack_light_hit_speech";
+					enemyAtkSfx = "enemy_attack_light_hit_sfx";
+				}
+
+				if(7 < dmg && dmg <= 10){
+					enemyAtkSpeech = "enemy_attack_heavy_hit_speech";
+					enemyAtkSfx = "enemy_attack_heavy_hit_sfx";
+				}
+
+				enemyPhase = TurnPhase.VISIBLE_ACTIONS;
+				break;
+			case(TurnPhase.VISIBLE_ACTIONS):
+				if(!SoundManager.instance.isEfxPlaying() && !extraPlayerSoundsNeeded && !wasEnemySfxPlayed){
+					SoundManager.instance.PlaySingle(enemyAtkSfx);
+					wasEnemySfxPlayed = true;
+				}
+				else if(!SoundManager.instance.isEfxPlaying() && wasEnemySfxPlayed){
+					SoundManager.instance.PlaySingle(enemyAtkSpeech);
+					enemyPhase = TurnPhase.ENDING;
+				}
+				else if(Input.GetKeyUp (KeyCode.H)){
+					SoundManager.instance.StopSingle();
+					enemyPhase = TurnPhase.ENDING;
+				}
+				break;
+			case(TurnPhase.ENDING):
+				if (player.getHP () > 0)
+				currentState = BattleStates.PLAYER_TURN;
+				else
+				currentState = BattleStates.DEFEAT;
+
+				enemyPhase = TurnPhase.BEGINNING;
+				break;
 		}
 	}
 	
 	protected bool leftEvent(){
+		currentRotation = Rotation.LEFT;
 		return Input.GetKeyUp (KeyCode.LeftArrow) || (prevState.DPad.Left == ButtonState.Released && state.DPad.Left == ButtonState.Pressed);
 	}
 	
 	protected bool rightEvent(){
+		currentRotation = Rotation.RIGHT;
 		return Input.GetKeyUp (KeyCode.RightArrow) || (prevState.DPad.Right == ButtonState.Released && state.DPad.Right == ButtonState.Pressed);
 	}
 	
 	protected bool aheadEvent(){
+		currentRotation = Rotation.UP;
 		return Input.GetKeyUp (KeyCode.UpArrow) || (prevState.DPad.Up == ButtonState.Released && state.DPad.Up == ButtonState.Pressed);
 	}
 
 	protected bool backEvent(){
+		currentRotation = Rotation.DOWN;
 		return Input.GetKeyUp (KeyCode.DownArrow) || (prevState.DPad.Down == ButtonState.Released && state.DPad.Down == ButtonState.Pressed);
 	}
 
-    protected bool myHP()
-    {
+    protected bool askMyHP(){
         return Input.GetKeyUp(KeyCode.U) || (prevState.Triggers.Left >0);
     }
 
-    protected bool enemyHP()
-    {
+    protected bool askEnemyHP(){
         return Input.GetKeyUp(KeyCode.I) || (prevState.Triggers.Right > 0);
     }
+
+	protected bool askCurrentAbility(){
+		return Input.GetKeyUp (KeyCode.O);
+	}
 
     protected bool playerAttack(){
 		return Input.GetKeyUp (KeyCode.J) || (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed);
@@ -273,4 +413,3 @@ public class Battle : MonoBehaviour {
 		return Input.GetKeyUp (KeyCode.K) || (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed);
 	}
 }
-	

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class MonsterEntity : SignalEntity
 {
 
-	private int hp = 15;
+	private int hp = 10;
 	private Dictionary<AbilityStates, double> stats;
 	private double[] multipliers = new double[]{0.5, 1, 2};
 

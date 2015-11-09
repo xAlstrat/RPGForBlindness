@@ -43,6 +43,10 @@ using System.Collections;
 			PlaySingle((AudioClip)Resources.Load("Sounds/" + clipName));
 		}
 
+		public void StopSingle(){
+			efxSource.Stop();
+		}
+
 		public bool isEfxPlaying(){
 			return efxSource.isPlaying;
 		}
@@ -61,6 +65,10 @@ using System.Collections;
 		public void PlayMusic(string clipName)
 		{
 			PlayMusic((AudioClip)Resources.Load("Music/" + clipName));
+		}
+
+		public void StopMusic(){
+			musicSource.Stop();
 		}
 		
 		
