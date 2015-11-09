@@ -1,20 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using XInputDotNetPure;
+
 public class RoomFloorController : MonoBehaviour {
 	private bool started;
-	// Use this for initialization
-	void Start () {
+    PlayerIndex playerIndex = 0;
+    GamePadState state;
+    GamePadState prevState;
+
+    // Use this for initialization
+    void Start () {
 		started = false;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		// Empieza el juego si no ha iniciado
-		if (started == false && Input.GetKeyDown (KeyCode.Space) == true) {
-			StartGame ();
-		}
-	}
+        // Empieza el juego si no ha iniciado
+        prevState = state;
+        state = GamePad.GetState(playerIndex);
+        if (started == false && (Input.GetKeyDown(KeyCode.Space) == true || (prevState.Buttons.Start == ButtonState.Released && state.Buttons.Start == ButtonState.Pressed)))
+        {
+            StartGame();
+        }
+    }
 
 	void StartGame ()
 	{

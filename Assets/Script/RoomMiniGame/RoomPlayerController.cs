@@ -8,16 +8,22 @@ public class RoomPlayerController : MonoBehaviour {
 	private bool started;
 	
 	private Rigidbody rb;
-	
-	void Start ()
+
+    PlayerIndex playerIndex = 0;
+    GamePadState state;
+    GamePadState prevState;
+
+    void Start ()
 	{
 		rb = GetComponent<Rigidbody>();
 		started = false;
 	}
 
 	void FixedUpdate () {
-		// Empieza el juego si no ha iniciado
-		if (started == false && Input.GetKeyDown (KeyCode.Space) == true) {
+        // Empieza el juego si no ha iniciado
+        prevState = state;
+        state = GamePad.GetState(playerIndex);
+        if (started == false && (Input.GetKeyDown (KeyCode.Space) == true || (prevState.Buttons.Start == ButtonState.Pressed || state.Buttons.Start == ButtonState.Pressed))) {
 			StartGame ();
 		}
 		// Movimiento
@@ -29,7 +35,31 @@ public class RoomPlayerController : MonoBehaviour {
 		rb.AddForce (movement * speed);
 	}
 
-	void OnTriggerEnter(Collider other) 
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("GeomWall"))
+        {
+            GamePad.SetVibration((PlayerIndex)0, 0.1f, 0.1f);
+        }
+    }
+
+    void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("GeomWall"))
+        {
+            GamePad.SetVibration((PlayerIndex)0, 0.1f, 0.1f);
+        }
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("GeomWall"))
+        {
+            GamePad.SetVibration((PlayerIndex)0, 0.0f, 0.0f);
+        }
+    }
+
+    void OnTriggerEnter(Collider other) 
 	{
 		if (other.gameObject.CompareTag ("Endblock"))
 		{
@@ -39,11 +69,7 @@ public class RoomPlayerController : MonoBehaviour {
 				SceneLoader.GetInstance().load("HallStateIncomplete");
 			}
 		}
-        if(other.gameObject.CompareTag("GeomWall"))
-        {
-            GamePad.SetVibration((PlayerIndex)0, 0.2f, 0.2f);
-            GamePad.SetVibration((PlayerIndex)0, 0.0f, 0.0f);
-        }
+        
 	}
 
 	void StartGame ()
