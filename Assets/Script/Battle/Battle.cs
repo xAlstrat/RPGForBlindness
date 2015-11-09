@@ -12,6 +12,7 @@ public class Battle : MonoBehaviour {
 	private AbilityStates[] abilities;
 
 	private MonsterEntity enemy;
+    public double enemyMaxHp;
 	private Player player;
 	private SoundMap soundMap;
 	private SceneLoader loader;
@@ -40,6 +41,7 @@ public class Battle : MonoBehaviour {
 
         player = Game.GetInstance ().player;
 		enemy = Game.GetInstance ().enemy;
+        enemyMaxHp = enemy.getHP();
         GamePad.SetVibration(playerIndex, 0.0f, 0.0f); //hardcode
 
         currentState = BattleStates.START;
@@ -205,6 +207,16 @@ public class Battle : MonoBehaviour {
 			string clip = soundMap.getSelectionClip(currentAbility);
 			SoundManager.instance.PlaySingle(clip);
 		}
+        else if (myHP())
+        {
+            string clip = "playerhp"+ System.Math.Ceiling((double)player.getHP()*10 / player.getMaxHP()) * 10;
+            SoundManager.instance.PlaySingle(clip);
+        }
+        else if (enemyHP())
+        {
+            string clip = "enemyhp" + System.Math.Ceiling(10 * enemy.getHP() / enemyMaxHp) * 10;
+            SoundManager.instance.PlaySingle(clip);
+        }
 	}
 
 
@@ -236,8 +248,18 @@ public class Battle : MonoBehaviour {
 	protected bool backEvent(){
 		return Input.GetKeyUp (KeyCode.DownArrow) || (prevState.DPad.Down == ButtonState.Released && state.DPad.Down == ButtonState.Pressed);
 	}
-	
-	protected bool playerAttack(){
+
+    protected bool myHP()
+    {
+        return Input.GetKeyUp(KeyCode.U) || (prevState.Triggers.Left >0);
+    }
+
+    protected bool enemyHP()
+    {
+        return Input.GetKeyUp(KeyCode.I) || (prevState.Triggers.Right > 0);
+    }
+
+    protected bool playerAttack(){
 		return Input.GetKeyUp (KeyCode.J) || (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed);
 	}
 	

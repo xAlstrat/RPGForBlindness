@@ -142,6 +142,7 @@ public class LevelData
 			levelData.addOrientation(1, 1, Orientation.EAST);
 			//Monsters
 			levelData.addOrientation(5, 6, Orientation.SOUTH);
+            levelData.addMonster(5, 6);
 			break;
 		case 3:
 			levelData.hallData = new string[]{
@@ -163,9 +164,12 @@ public class LevelData
 			levelData.addOrientation(9, 3, Orientation.WEST);
 			//Monsters
 			levelData.addOrientation(5, 6, Orientation.SOUTH);
-			levelData.addOrientation(2, 3, Orientation.WEST);
-			//Warps
-			levelData.addOrientation(12, 5, Orientation.WEST);
+            levelData.addMonster(5, 6);
+            levelData.addOrientation(2, 3, Orientation.WEST);
+            levelData.addMonster(2, 3);
+
+            //Warps
+            levelData.addOrientation(12, 5, Orientation.WEST);
 			break;
 		default:
 			break;

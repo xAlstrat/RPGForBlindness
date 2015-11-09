@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 public class Player : MonoBehaviour
 {
-
+    private int maxHp;
 	private int hp;
 	private int boostsToLevelUp;
 	private bool ableToMove;
@@ -294,7 +294,17 @@ public class Player : MonoBehaviour
 		return this.hp;
 	}
 
-	public void toggleMovementBlock(){
+    public void setMaxHP(int maxHp)
+    {
+        this.maxHp = maxHp;
+    }
+
+    public int getMaxHP()
+    {
+        return this.maxHp;
+    }
+
+    public void toggleMovementBlock(){
 		ableToMove = !ableToMove;
 	}
 

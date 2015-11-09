@@ -51,11 +51,17 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -71,6 +77,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GeomElementsController.cs" />
     <Compile Include="Assets\Script\ApplicationData.cs" />
     <Compile Include="Assets\Script\Battle\AbilityStates.cs" />
     <Compile Include="Assets\Script\Battle\Battle.cs" />
@@ -113,6 +120,7 @@
     <Compile Include="Assets\Script\Room\Entity\Signal\UpConditionalSignalEntity.cs" />
     <Compile Include="Assets\Script\Room\Entity\TrapEntity.cs" />
     <Compile Include="Assets\Script\Room\Entity\TreasureEntity.cs" />
+    <Compile Include="Assets\Script\Room\Entity\WarpEntity.cs" />
     <Compile Include="Assets\Script\Room\Material\RoomMaterial.cs" />
     <Compile Include="Assets\Script\Room\Orientation.cs" />
     <Compile Include="Assets\Script\Room\PlayerMovementRestriction.cs" />

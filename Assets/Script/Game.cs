@@ -34,6 +34,7 @@ public class Game : MonoBehaviour
 		Room room = Room.GetInstance ();
 		player.setPosition (room.getStartPosition());
         player.setHP(100);
+        player.setMaxHP(100);
         playerHP.text = "HP: " + player.getHP();
 		player.transform.position = room.getWorldPosition ( player.getPosition());
 	}
