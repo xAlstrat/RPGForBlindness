@@ -91,6 +91,8 @@ public class LevelData
 			return Entity.SIGNAL_LEFT;
 		case 'r':
 			return Entity.SIGNAL_RIGHT;
+		case 'W':
+			return Entity.GEOMETRIC;
 		default:
 			return Entity.WALL;
 		}
@@ -101,59 +103,70 @@ public class LevelData
 		switch (n) {
 		case 1:
 			levelData.hallData = new string[]{
-				"       #D##",
-				" ##### # ##",
-				" #####  - D",
-				" ##########",
-				" ## M  ####",
-				" ## ## ##X#",
-				" ##T## ## #",
-				" #####-   #",
-				" ##### ####",
-				" l - l ####",
-				"### #######",
-				"### #######",
-				"###s#######"
+				"############D##",
+				"#      r     ##",
+				"# #############",
+				"# #############",
+				"#u#############",
+				"#-T############",
+				"# #############",
+				"# #############",
+				"# #############",
 			};
-			levelData.startPosition = new Vector2(3, 12);
+			levelData.startPosition = new Vector2(1, 8);
 			/*Orientations*/
-			//South
-			levelData.addOrientation(8, 0, Orientation.SOUTH);
-			levelData.addOrientation(9, 5, Orientation.SOUTH);
-			//North
-			levelData.addOrientation(3, 6, Orientation.NORTH);
-			//West
-			levelData.addOrientation(10, 2, Orientation.WEST);
-			//East
-			levelData.addOrientation(4, 4, Orientation.EAST);
-            levelData.addMonster(4, 4);
-			//levelData.addOrientation(3, 11, Orientation.SOUTH);
-
+			//Doors
+			levelData.addOrientation(12, 0, Orientation.SOUTH);
+			//Treasures
+			levelData.addOrientation(2, 5, Orientation.WEST);
 			break;
 		case 2:
 			levelData.hallData = new string[]{
-				"   T###X###########",
-				" ###### ###    ####",
-				"M   ###-    ##-   #",
-				"### ### ###### ## #",
-				"#  -   - ##### ## #",
-				"# ### ## #     ## #",
-				"#-  # ##   ###### #",
-				"# ###  T#########D#"
+				"############D##",
+				"#X -         ##",
+				"### ###########",
+				"### ###########",
+				"###u###########",
+				"##T-  #########",
+				"# ###M#########",
+				"#-    #########",
+				"# #############",
 			};
-			levelData.startPosition = new Vector2(1, 7);
+			levelData.startPosition = new Vector2(1, 8);
 			/*Orientations*/
-			//South
-			levelData.addOrientation(7, 0, Orientation.SOUTH);
-			//North
-			levelData.addOrientation(17, 7, Orientation.NORTH);
-			//West
-			levelData.addOrientation(3, 0, Orientation.WEST);
-			levelData.addOrientation(7, 7, Orientation.WEST);
-			//East
-			levelData.addOrientation(0, 2, Orientation.EAST);
-            levelData.addMonster(0,2);
-            break;
+			//Doors
+			levelData.addOrientation(12, 0, Orientation.SOUTH);
+			//Treasures
+			levelData.addOrientation(2, 5, Orientation.EAST);
+			//Traps
+			levelData.addOrientation(1, 1, Orientation.EAST);
+			//Monsters
+			levelData.addOrientation(5, 6, Orientation.SOUTH);
+			break;
+		case 3:
+			levelData.hallData = new string[]{
+				"############D##",
+				"############ ##",
+				"############ ##",
+				"# M-     T## ##",
+				"#u# ######## ##",
+				"# #   ###   W##",
+				"# ###M###u#####",
+				"#- r -    #####",
+				"# #############",
+			};
+			levelData.startPosition = new Vector2(1, 8);
+			/*Orientations*/
+			//Doors
+			levelData.addOrientation(12, 0, Orientation.SOUTH);
+			//Treasures
+			levelData.addOrientation(9, 3, Orientation.WEST);
+			//Monsters
+			levelData.addOrientation(5, 6, Orientation.SOUTH);
+			levelData.addOrientation(2, 3, Orientation.WEST);
+			//Warps
+			levelData.addOrientation(12, 5, Orientation.WEST);
+			break;
 		default:
 			break;
 		}

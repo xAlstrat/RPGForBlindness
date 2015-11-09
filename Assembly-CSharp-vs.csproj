@@ -88,6 +88,7 @@
      <Compile Include="Assets\Script\Room\Entity\Signal\UpConditionalSignalEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\TrapEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\TreasureEntity.cs" />
+     <Compile Include="Assets\Script\Room\Entity\WarpEntity.cs" />
      <Compile Include="Assets\Script\Room\Material\RoomMaterial.cs" />
      <Compile Include="Assets\Script\Room\Orientation.cs" />
      <Compile Include="Assets\Script\Room\PlayerMovementRestriction.cs" />
