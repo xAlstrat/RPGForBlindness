@@ -14,6 +14,7 @@ public enum Entity
 	SIGNAL_RIGHT,
 	SIGNAL_UP,
 	SIGNAL_DOWN,
-	SIGNAL_MULTI
+	SIGNAL_MULTI,
+	HELP
 };
 
