@@ -67,7 +67,7 @@ public class RoomFloorController : MonoBehaviour {
 			}
 			// Rotar
 			transform.Rotate (0.0f, angle * direction, 0.0f);
-			Debug.LogError("El cuarto ha rotado hacia la " + direction_r_string + " " + angle.ToString() + " grados");
+			Debug.Log("El cuarto ha rotado hacia la " + direction_r_string + " " + angle.ToString() + " grados");
 			break;
 		case 1:
 			// Trasladar
@@ -118,7 +118,7 @@ public class RoomFloorController : MonoBehaviour {
 				}
 				break;
 			}
-			Debug.LogError("El cuarto se ha trasladado " + axis_t_string + " " + side_t_string);
+			Debug.Log("El cuarto se ha trasladado " + axis_t_string + " " + side_t_string);
 			break;
 		default:
 			// Reflejar
@@ -133,13 +133,21 @@ public class RoomFloorController : MonoBehaviour {
 			case 0:
 				// Vertical
 				transform.Rotate (0.0f, 180.0f, 0.0f);
+				foreach (GameObject wallobj in GameObject.FindGameObjectsWithTag("GeomWall")) {
+					GeomElementsController other = (GeomElementsController) wallobj.GetComponent(typeof(GeomElementsController));
+					other.VerticalReflect();
+				}
 				GameObject.FindGameObjectWithTag("Endblock").transform.position = new Vector3( - old_x + 6, old_y, old_z);
-				Debug.LogError("El cuarto ha sido reflejado segun el eje Y desde el centro del cuarto");
+				Debug.Log("El cuarto ha sido reflejado segun el eje Y desde el centro del cuarto");
 				break;
 			default:
 				// Horizontal
 				GameObject.FindGameObjectWithTag("Endblock").transform.position = new Vector3(old_x, old_y, - old_z);
-				Debug.LogError("El cuarto ha sido reflejado segun el eje X desde el centro del cuarto");
+				foreach (GameObject wallobj in GameObject.FindGameObjectsWithTag("GeomWall")) {
+					GeomElementsController other = (GeomElementsController) wallobj.GetComponent(typeof(GeomElementsController));
+					other.HorizontalReflect();
+				}
+				Debug.Log("El cuarto ha sido reflejado segun el eje X desde el centro del cuarto");
 				break;
 			}
 			break;

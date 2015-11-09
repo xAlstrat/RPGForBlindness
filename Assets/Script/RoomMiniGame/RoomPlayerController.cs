@@ -40,8 +40,12 @@ public class RoomPlayerController : MonoBehaviour {
 
 	void StartGame ()
 	{
+		// Eliminar las fuerzas
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
 		// Devolvemos al jugador al punto inicial
 		transform.position = new Vector3 (0.0f, 0.5f, 0.0f);
+
 
 		// En otros objetos:
 			// Seteamos la posicion de la camara en (0,6.9,-12.4);
