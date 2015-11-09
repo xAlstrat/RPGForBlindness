@@ -115,13 +115,13 @@ public class LevelData
 		case 1:
 			levelData.hallData = new string[]{
 				"############D##",
-				"#      r     ##",
+				"#h     r   h ##",
 				"# #############",
 				"# #############",
 				"#u#############",
 				"#-T############",
-				"#h#############",
 				"# #############",
+				"#h#############",
 				"# #############",
 			};
 			levelData.startPosition = new Vector2(1, 8);
@@ -131,8 +131,10 @@ public class LevelData
 			//Treasures
 			levelData.addOrientation(2, 5, Orientation.WEST);
 			//helpsounds
-			levelData.addSound(1, 6, "water_attack");
-			break;
+			levelData.addSound(1, 7, "bienvenido");
+            levelData.addSound(1, 1, "ayuda_tesoro");
+            levelData.addSound(11, 1, "fin_nivel");
+            break;
 		case 2:
 			levelData.hallData = new string[]{
 				"############D##",
@@ -142,7 +144,7 @@ public class LevelData
 				"###u###########",
 				"##T-  #########",
 				"# ###M#########",
-				"#-    #########",
+				"#- h  #########",
 				"# #############",
 			};
 			levelData.startPosition = new Vector2(1, 8);
@@ -156,6 +158,7 @@ public class LevelData
 			//Monsters
 			levelData.addOrientation(5, 6, Orientation.SOUTH);
             levelData.addMonster(5, 6);
+            levelData.addSound(3, 7, "advertencia_monster");   
 			break;
 		case 3:
 			levelData.hallData = new string[]{

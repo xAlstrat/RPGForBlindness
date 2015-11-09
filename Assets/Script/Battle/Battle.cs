@@ -50,6 +50,12 @@ public class Battle : MonoBehaviour {
 		soundMap = new SoundMap();
 		loader = SceneLoader.GetInstance();
 		SoundManager.instance.PlaySingle("Monster");
+
+        if (ApplicationData.getLastLevel() == 2)
+        {
+            SoundManager.instance.PlaySingle("instrucciones_batalla");
+
+        }
     }
 	
 	void Update(){

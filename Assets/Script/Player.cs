@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using XInputDotNetPure;
 
 /// <summary>
 /// Player.
@@ -213,8 +214,12 @@ public class Player : MonoBehaviour
 		Vector2 dest = position + direction;
 		CollisionManager.collide(dest);
 		if (!canMove(dest)) {
-			movementRestriction.playCrashSound(dest);
-			return;
+
+            GamePad.SetVibration((PlayerIndex)0, 0.2f, 0.2f);
+            movementRestriction.playCrashSound(dest);
+
+            GamePad.SetVibration((PlayerIndex)0, 0.0f, 0.0f);
+            return;
 		}
 
 

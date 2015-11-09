@@ -24,15 +24,16 @@ public class PlayerMovementRestriction : MonoBehaviour
 	public void playCrashSound(Vector2 pos){
 		if (Time.time - lastPress > delay) {
 			lastPress = Time.time;
-			/*RoomEntity go = Room.GetInstance().isInside(pos)?Room.GetInstance ().getEntityAt (pos):null;
+            /*RoomEntity go = Room.GetInstance().isInside(pos)?Room.GetInstance ().getEntityAt (pos):null;
 			if (go == null) {
 				source.PlayOneShot(choque);
 			} else {
 				go.GetComponent<AudioSource> ().Play ();
             }*/
-			source.PlayOneShot(choque);
+            source.PlayOneShot(choque);
             
-		}
+
+        }
 	}
 
 
