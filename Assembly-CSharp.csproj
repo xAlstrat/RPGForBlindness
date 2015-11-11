@@ -45,7 +45,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GeomElementsController.cs" />
      <Compile Include="Assets\Script\ApplicationData.cs" />
      <Compile Include="Assets\Script\Battle\AbilityStates.cs" />
      <Compile Include="Assets\Script\Battle\Battle.cs" />
@@ -94,6 +93,7 @@
      <Compile Include="Assets\Script\Room\PlayerMovementRestriction.cs" />
      <Compile Include="Assets\Script\Room\Room.cs" />
      <Compile Include="Assets\Script\Room\RoomObjectGenerator.cs" />
+     <Compile Include="Assets\Script\RoomMiniGame\GeomElementsController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomCameraController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomExitController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomFloorController.cs" />

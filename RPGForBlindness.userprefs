@@ -1,15 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GeomElementsController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\RoomMiniGame\RoomFloorController.cs">
     <Files>
-      <File FileName="Assets\Script\RoomMiniGame\RoomFloorController.cs" Line="167" Column="1" />
-      <File FileName="Assets\Script\RoomMiniGame\RoomPlayerController.cs" Line="10" Column="23" />
-      <File FileName="Assets\Script\Room\Entity\DoorEntity.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Room\RoomObjectGenerator.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Room\Entity\MonsterEntity.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Room\Entity\Signal\SignalEntity.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Level\LevelData.cs" Line="1" Column="1" />
-      <File FileName="Assets\GeomElementsController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\RoomMiniGame\RoomFloorController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\RoomMiniGame\GeomElementsController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
