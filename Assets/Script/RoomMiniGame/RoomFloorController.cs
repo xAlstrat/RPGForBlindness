@@ -12,6 +12,7 @@ public class RoomFloorController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		started = false;
+		SoundManager.instance.PlayMusic("Hidden Agenda");
 	}
 	
 	// Update is called once per frame

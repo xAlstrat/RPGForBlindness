@@ -198,6 +198,7 @@ GameObject:
   - 33: {fileID: 217584591}
   - 65: {fileID: 217584590}
   - 23: {fileID: 217584589}
+  - 114: {fileID: 217584592}
   m_Layer: 0
   m_Name: RoomPillar (7)
   m_TagString: GeomWall
@@ -260,6 +261,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 217584587}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &217584592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 217584587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 0
 --- !u!1 &280897513
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +452,7 @@ GameObject:
   - 33: {fileID: 587457824}
   - 65: {fileID: 587457823}
   - 23: {fileID: 587457822}
+  - 114: {fileID: 587457826}
   m_Layer: 0
   m_Name: RoomPillar (2)
   m_TagString: GeomWall
@@ -501,6 +515,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 408498214}
   m_RootOrder: 5
+--- !u!114 &587457826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587457821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 0
 --- !u!1 &596003635
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +538,7 @@ GameObject:
   - 33: {fileID: 596003639}
   - 65: {fileID: 596003638}
   - 23: {fileID: 596003637}
+  - 114: {fileID: 596003640}
   m_Layer: 0
   m_Name: RoomPillar (4)
   m_TagString: GeomWall
@@ -574,6 +601,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 596003635}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &596003640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 596003635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 0
 --- !u!1 &678048031
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +624,7 @@ GameObject:
   - 33: {fileID: 678048035}
   - 65: {fileID: 678048034}
   - 23: {fileID: 678048033}
+  - 114: {fileID: 678048036}
   m_Layer: 0
   m_Name: RoomPillar (5)
   m_TagString: GeomWall
@@ -647,6 +687,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 678048031}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &678048036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 678048031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 1
 --- !u!1 &823625997
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +710,7 @@ GameObject:
   - 33: {fileID: 823626001}
   - 65: {fileID: 823626000}
   - 23: {fileID: 823625999}
+  - 114: {fileID: 823626002}
   m_Layer: 0
   m_Name: RoomPillar (8)
   m_TagString: GeomWall
@@ -720,6 +773,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 823625997}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &823626002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 823625997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 0
 --- !u!1 &866231716
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +895,7 @@ GameObject:
   - 33: {fileID: 1012493755}
   - 65: {fileID: 1012493754}
   - 23: {fileID: 1012493753}
+  - 114: {fileID: 1012493756}
   m_Layer: 0
   m_Name: RoomWall
   m_TagString: GeomWall
@@ -892,6 +958,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1012493751}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1012493756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012493751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 1
 --- !u!1 &1186050378
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +981,7 @@ GameObject:
   - 33: {fileID: 1186050382}
   - 65: {fileID: 1186050381}
   - 23: {fileID: 1186050380}
+  - 114: {fileID: 1186050383}
   m_Layer: 0
   m_Name: RoomPillar
   m_TagString: GeomWall
@@ -965,6 +1044,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1186050378}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1186050383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1186050378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 0
 --- !u!1 &1217628427
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +1067,7 @@ GameObject:
   - 33: {fileID: 1217628430}
   - 65: {fileID: 1217628429}
   - 23: {fileID: 1217628428}
+  - 114: {fileID: 1217628432}
   m_Layer: 0
   m_Name: RoomPillar (1)
   m_TagString: GeomWall
@@ -1038,6 +1130,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 408498214}
   m_RootOrder: 4
+--- !u!114 &1217628432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1217628427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 0
 --- !u!1 &1716159394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,6 +1213,7 @@ GameObject:
   - 33: {fileID: 1750616554}
   - 65: {fileID: 1750616553}
   - 23: {fileID: 1750616552}
+  - 114: {fileID: 1750616555}
   m_Layer: 0
   m_Name: RoomWall (1)
   m_TagString: GeomWall
@@ -1171,6 +1276,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1750616550}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1750616555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1750616550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 1
 --- !u!1 &1831320731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1299,7 @@ GameObject:
   - 33: {fileID: 1831320735}
   - 65: {fileID: 1831320734}
   - 23: {fileID: 1831320733}
+  - 114: {fileID: 1831320736}
   m_Layer: 0
   m_Name: RoomPillar (6)
   m_TagString: GeomWall
@@ -1244,6 +1362,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831320731}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1831320736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831320731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 0
 --- !u!1 &1857530094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,6 +1486,7 @@ GameObject:
   - 33: {fileID: 1902502990}
   - 65: {fileID: 1902502989}
   - 23: {fileID: 1902502988}
+  - 114: {fileID: 1902502992}
   m_Layer: 0
   m_Name: RoomPillar (3)
   m_TagString: GeomWall
@@ -1418,6 +1549,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 408498214}
   m_RootOrder: 6
+--- !u!114 &1902502992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1902502987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 1
 --- !u!1 &2009853627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,6 +1572,7 @@ GameObject:
   - 33: {fileID: 2009853631}
   - 65: {fileID: 2009853630}
   - 23: {fileID: 2009853629}
+  - 114: {fileID: 2009853632}
   m_Layer: 0
   m_Name: RoomWall (2)
   m_TagString: GeomWall
@@ -1491,3 +1635,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2009853627}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2009853632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2009853627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_locked: 1
