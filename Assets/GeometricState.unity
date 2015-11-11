@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 0
+  translation_locked: 0
 --- !u!1 &280897513
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 0
+  translation_locked: 0
 --- !u!1 &596003635
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 0
+  translation_locked: 0
 --- !u!1 &678048031
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 1
+  translation_locked: 0
 --- !u!1 &823625997
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 0
+  translation_locked: 0
 --- !u!1 &866231716
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +903,7 @@ GameObject:
   - 114: {fileID: 1012493756}
   m_Layer: 0
   m_Name: RoomWall
-  m_TagString: Untagged
+  m_TagString: GeomWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -970,6 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 1
+  translation_locked: 1
 --- !u!1 &1186050378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,6 +1062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 0
+  translation_locked: 0
 --- !u!1 &1217628427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,6 +1149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 0
+  translation_locked: 0
 --- !u!1 &1716159394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1224,7 @@ GameObject:
   - 114: {fileID: 1750616555}
   m_Layer: 0
   m_Name: RoomWall (1)
-  m_TagString: Untagged
+  m_TagString: GeomWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1287,7 +1295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c08d80f73e8377438196a7fdbc40bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation_locked: 0
+  rotation_locked: 1
+  translation_locked: 1
 --- !u!1 &1831320731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,6 +1383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 0
+  translation_locked: 0
 --- !u!1 &1857530094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 1
+  translation_locked: 0
 --- !u!1 &2009853627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,7 +1586,7 @@ GameObject:
   - 114: {fileID: 2009853632}
   m_Layer: 0
   m_Name: RoomWall (2)
-  m_TagString: Untagged
+  m_TagString: GeomWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1647,3 +1658,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation_locked: 1
+  translation_locked: 1
