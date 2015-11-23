@@ -22,10 +22,6 @@ public class WallMeshBuilder
 
 		renderer.material = Game.GetInstance ().roomMaterial.wallMaterial;
 
-		FalconSpringedBody falcon = wall.AddComponent <FalconSpringedBody>();
-		falcon.set_inamovible ();
-
-
 		return wall;
 	}
 

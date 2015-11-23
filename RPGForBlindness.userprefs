@@ -1,13 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\RoomMiniGame\RoomPlayerController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\RoomMiniGame\GeomElementsController.cs">
     <Files>
-      <File FileName="Assets\Script\RoomMiniGame\GeomElementsController.cs" Line="21" Column="3" />
-      <File FileName="Assets\Script\Hall\WallMeshBuilder.cs" Line="1" Column="1" />
-      <File FileName="Assets\novint\FalconSpringedBody.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\RoomMiniGame\RoomFloorController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\RoomMiniGame\RoomExitController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\RoomMiniGame\GeomElementsController.cs" Line="48" Column="1" />
       <File FileName="Assets\Script\RoomMiniGame\RoomPlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\RoomMiniGame\RoomFloorController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -6,7 +6,6 @@ public class RoomPlayerController : MonoBehaviour {
 
 	public float speed;
 	private bool started;
-	private Vector3 originalposition;
 	
 	private Rigidbody rb;
 
@@ -18,7 +17,6 @@ public class RoomPlayerController : MonoBehaviour {
 	{
 		rb = GetComponent<Rigidbody>();
 		started = false;
-		originalposition = transform.position;
 	}
 
 	void FixedUpdate () {
@@ -34,14 +32,7 @@ public class RoomPlayerController : MonoBehaviour {
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 		
-		// rb.AddForce (movement * speed);
-
-		// Movimiento por paso
-		transform.position += movement * speed * Time.deltaTime;
-
-		// Evitar que se siga moviendo
-		rb.velocity = Vector3.zero;
-		rb.angularVelocity = Vector3.zero;
+		rb.AddForce (movement * speed);
 	}
 
     void OnCollisionEnter(Collision other)
@@ -87,7 +78,7 @@ public class RoomPlayerController : MonoBehaviour {
 		rb.velocity = Vector3.zero;
 		rb.angularVelocity = Vector3.zero;
 		// Devolvemos al jugador al punto inicial
-		transform.position = originalposition;
+		transform.position = new Vector3 (0.0f, 0.5f, 0.0f);
 
 
 		// En otros objetos:
