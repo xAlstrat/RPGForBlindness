@@ -48,8 +48,10 @@
      <Compile Include="Assets\Script\ApplicationData.cs" />
      <Compile Include="Assets\Script\Battle\AbilityStates.cs" />
      <Compile Include="Assets\Script\Battle\Battle.cs" />
+     <Compile Include="Assets\Script\Battle\BattleStates.cs" />
      <Compile Include="Assets\Script\Battle\Rotation.cs" />
      <Compile Include="Assets\Script\Battle\SoundMap.cs" />
+     <Compile Include="Assets\Script\Battle\TurnPhase.cs" />
      <Compile Include="Assets\Script\Controller\BattleController.cs" />
      <Compile Include="Assets\Script\Controller\JoystickBattleController.cs" />
      <Compile Include="Assets\Script\Controller\JoystickMovementController.cs" />
