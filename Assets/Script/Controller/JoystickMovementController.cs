@@ -33,17 +33,31 @@ public class JoystickMovementController : PlayerMovementController
             player.move();
         }
         */
-
-        if (state.ThumbSticks.Left.X > 0)
+		if (state.Buttons.A == ButtonState.Pressed) {
+			if(player.state == PlayerState.NO_STAFF){
+				player.pickStaff();
+				return;
+			}
+			if(player.state != PlayerState.STOPPED)
+				return;
+			if(upEvent())
+				player.askAhead();
+			else if(rightEvent())
+				player.askRight();
+			else if(leftEvent())
+				player.askLeft();
+			return;
+		}
+        else if (rightEvent())
         {
             player.turnRight();
         }
-        else if (state.ThumbSticks.Left.X < 0)
+        else if (leftEvent())
         {
             player.turnLeft();
         }
 
-        if (state.ThumbSticks.Left.Y > 0)
+        if (upEvent())
         {
             player.move();
         }
@@ -61,4 +75,16 @@ public class JoystickMovementController : PlayerMovementController
         }
 
     }
+
+	private bool leftEvent(){
+		return state.ThumbSticks.Left.X < 0;
+	}
+	
+	private bool rightEvent(){
+		return state.ThumbSticks.Left.X > 0;
+	}
+	
+	private bool upEvent(){
+		return state.ThumbSticks.Left.Y > 0:
+	}
 }
