@@ -402,7 +402,7 @@ public class Battle : MonoBehaviour {
     }
 
 	protected bool askCurrentAbility(){
-		return Input.GetKeyUp (KeyCode.O);
+		return Input.GetKeyUp (KeyCode.O) || (prevState.Buttons.X == ButtonState.Released && state.Buttons.X == ButtonState.Pressed);
 	}
 
     protected bool playerAttack(){
