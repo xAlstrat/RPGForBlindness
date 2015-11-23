@@ -85,6 +85,6 @@ public class JoystickMovementController : PlayerMovementController
 	}
 	
 	private bool upEvent(){
-		return state.ThumbSticks.Left.Y > 0:
+		return state.ThumbSticks.Left.Y > 0;
 	}
 }
