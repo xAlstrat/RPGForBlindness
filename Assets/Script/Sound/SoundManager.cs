@@ -33,14 +33,26 @@ using System.Collections;
 		{
 			//Set the clip of our efxSource audio source to the clip passed in as a parameter.
 			efxSource.clip = clip;
-			
+			efxSource.panStereo = 0.0f;
+			//Play the clip.
+			efxSource.Play ();
+		}
+
+		public void playDirectionalSingle(AudioClip clip, float pan)
+		{
+			efxSource.clip = clip;
+			efxSource.panStereo = pan;
 			//Play the clip.
 			efxSource.Play ();
 		}
 
 		//Used to play single sound clips based on the string name of the clip.
 		public void PlaySingle(string clipName){
-			PlaySingle((AudioClip)Resources.Load("Sounds/" + clipName));
+			PlaySingle((AudioClip)Resources.Load("Sounds/" + clipName));			
+		}
+
+		public void PlayDirectionalSingle(string clipName, float pan){			
+			playDirectionalSingle((AudioClip)Resources.Load("Sounds/" + clipName), pan);
 		}
 
 		public void StopSingle(){
