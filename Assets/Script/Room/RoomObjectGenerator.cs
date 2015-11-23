@@ -131,7 +131,8 @@ public class RoomObjectGenerator
 	private RoomEntity instantiateHelp(int i, int j){
 		GameObject go = new GameObject("Help");
 		go.transform.parent = parent;
-		SignalEntity signal = go.AddComponent<SignalEntity> ();
+		WaitEntity signal = go.AddComponent<WaitEntity> ();
+		signal.setDuration (data.getSoundDuration(i,j));
 		signal.source = data.getSound(i,j);
 		return signal;
 	}

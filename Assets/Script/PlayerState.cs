@@ -3,7 +3,7 @@ using System.Collections;
 
 public enum PlayerState
 {
-	STOPPED, MOVING, TURNING
+	STOPPED, MOVING, TURNING, NO_STAFF, WAITING
 
 };
 

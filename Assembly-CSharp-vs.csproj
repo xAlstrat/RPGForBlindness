@@ -46,12 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GeomElementsController.cs" />
      <Compile Include="Assets\Script\ApplicationData.cs" />
      <Compile Include="Assets\Script\Battle\AbilityStates.cs" />
      <Compile Include="Assets\Script\Battle\Battle.cs" />
+     <Compile Include="Assets\Script\Battle\BattleStates.cs" />
      <Compile Include="Assets\Script\Battle\Rotation.cs" />
      <Compile Include="Assets\Script\Battle\SoundMap.cs" />
+     <Compile Include="Assets\Script\Battle\TurnPhase.cs" />
      <Compile Include="Assets\Script\Controller\BattleController.cs" />
      <Compile Include="Assets\Script\Controller\JoystickBattleController.cs" />
      <Compile Include="Assets\Script\Controller\JoystickMovementController.cs" />
@@ -89,12 +90,14 @@
      <Compile Include="Assets\Script\Room\Entity\Signal\UpConditionalSignalEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\TrapEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\TreasureEntity.cs" />
+     <Compile Include="Assets\Script\Room\Entity\WaitEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\WarpEntity.cs" />
      <Compile Include="Assets\Script\Room\Material\RoomMaterial.cs" />
      <Compile Include="Assets\Script\Room\Orientation.cs" />
      <Compile Include="Assets\Script\Room\PlayerMovementRestriction.cs" />
      <Compile Include="Assets\Script\Room\Room.cs" />
      <Compile Include="Assets\Script\Room\RoomObjectGenerator.cs" />
+     <Compile Include="Assets\Script\RoomMiniGame\GeomElementsController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomCameraController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomExitController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomFloorController.cs" />

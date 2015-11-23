@@ -5,6 +5,7 @@ public abstract class RoomEntity : MonoBehaviour
 {
     private Vector2 pos;
     public abstract void handleCollision();
+	public abstract void ask();
     public virtual bool destroyable()
     {
         return false;
@@ -23,6 +24,8 @@ public abstract class RoomEntity : MonoBehaviour
     {
         return pos;
     }
+
+
 
 }
 

@@ -147,5 +147,12 @@ public class Room
         return data.getMinDistanceMonster(pos);
     }
 
+	public void ask(Vector2 pos){
+		if (!isInside (pos) || getEntityAt (pos) == null)
+			Debug.Log ("Muralla");
+		else
+			getEntityAt (pos).ask ();
+	}
+
 }
 

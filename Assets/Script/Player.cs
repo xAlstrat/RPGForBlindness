@@ -52,6 +52,18 @@ public class Player : MonoBehaviour
 	/// The current state of the player.
 	/// </summary>
 	public PlayerState state;
+
+
+	/// <summary>
+	/// The last state of the player before him started to wait.
+	/// </summary>
+	private PlayerState lastState;
+
+	/// <summary>
+	/// The time the player should wait in the wait state.
+	/// </summary>
+	private float waitTime = 0f;
+
 	public Vector2 direction{
 		get{return directions[currentDir];}
 	}
@@ -95,6 +107,7 @@ public class Player : MonoBehaviour
 		currentDir = 0;
 		startRotation = Quaternion.identity;
 		destRotation = Quaternion.identity;
+		state = PlayerState.NO_STAFF;
 
 		source = GetComponent<AudioSource>();
 
@@ -134,9 +147,13 @@ public class Player : MonoBehaviour
 		if (state == PlayerState.STOPPED)
 			return;
 		if (state == PlayerState.MOVING) {
-			updatePosition();
-		} else if(state == PlayerState.TURNING){
-			updateRotation();
+			updatePosition ();
+		} else if (state == PlayerState.TURNING) {
+			updateRotation ();
+		} else if (state == PlayerState.WAITING) {
+			waitTime -= Time.deltaTime;
+			if(waitTime <= 0)
+				state = lastState;
 		}
 
 	}
@@ -148,6 +165,7 @@ public class Player : MonoBehaviour
 		if (Vector3.Distance (transform.position, destPosition) <= 0.025f) {
 			transform.position = destPosition;
 			state = PlayerState.STOPPED;
+			CollisionManager.collide(position);
 			countdown = 0f;
 			return;
 		}
@@ -208,11 +226,14 @@ public class Player : MonoBehaviour
 	public AudioClip paso1, paso2;
 
 	public void move(){
+		if (state == PlayerState.NO_STAFF) {
+			noStaffAlert();
+		}
 		if (state != PlayerState.STOPPED || !ableToMove)
 			return;
 
 		Vector2 dest = position + direction;
-		CollisionManager.collide(dest);
+		//CollisionManager.collide(dest);
 		if (!canMove(dest)) {
 
             GamePad.SetVibration((PlayerIndex)0, 0.2f, 0.2f);
@@ -241,6 +262,9 @@ public class Player : MonoBehaviour
 	/// Turns to the right smoothly.
 	/// </summary>
 	public void turnRight(){
+		if (state == PlayerState.NO_STAFF) {
+			noStaffAlert();
+		}
 		if (state != PlayerState.STOPPED || !ableToMove) {
 			return;
 		}
@@ -253,6 +277,9 @@ public class Player : MonoBehaviour
 	/// Turns to the left smoothly.
 	/// </summary>
 	public void turnLeft(){
+		if (state == PlayerState.NO_STAFF) {
+			noStaffAlert();
+		}
 		if (state != PlayerState.STOPPED || !ableToMove) {
 			return;
 		}
@@ -343,6 +370,19 @@ public class Player : MonoBehaviour
 		SoundManager.instance.PlaySingle("turning");
 	}
 
+	private void noStaffAlert(){
+		wait (1);
+		SoundManager.instance.PlaySingle("incorrect");
+		Debug.Log("Debes sostener el baston antes de continuar");
+	}
+
+	public void pickStaff(){
+		state = PlayerState.STOPPED;
+		wait (1);
+		SoundManager.instance.PlaySingle("correct");
+		Debug.Log("Staff picked");
+	}
+
 	public Orientation getOrientation(){
 		switch (currentDir) {
 		case 0:
@@ -354,6 +394,35 @@ public class Player : MonoBehaviour
 		default:
 			return Orientation.WEST;
 		}
+	}
+
+	public void wait(float seconds){
+		waitTime = seconds;
+		if (state == PlayerState.WAITING)
+			return;
+		lastState = state;
+		state = PlayerState.WAITING;
+
+	}
+
+	public void askAhead(){
+		Vector2 dest = position + direction;
+		Room.GetInstance ().ask (dest);
+		wait (0.5f);
+	}
+
+	public void askRight(){
+		int rightDir = (currentDir + 1) % 4;
+		Vector2 dest = position + directions [rightDir];
+		Room.GetInstance ().ask (dest);
+		wait (0.5f);
+	}
+
+	public void askLeft(){
+		int leftDir = (currentDir-1) >= 0 ? (currentDir-1) : 3;
+		Vector2 dest = position + directions [leftDir];
+		Room.GetInstance ().ask (dest);
+		wait (0.5f);
 	}
 }
 

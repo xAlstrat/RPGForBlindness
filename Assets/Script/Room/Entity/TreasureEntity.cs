@@ -15,5 +15,10 @@ public class TreasureEntity : SignalEntity
 	public override bool destroyable(){
 		return true;
 	}
+
+	public override void ask ()
+	{
+		Debug.Log("Tesoro");
+	}
 }
 

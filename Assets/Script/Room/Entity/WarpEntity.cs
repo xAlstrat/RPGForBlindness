@@ -14,7 +14,13 @@ public class WarpEntity : SignalEntity
 	
 	public override void handleCollision(){
 		base.handleCollision ();
-		Invoke ("nextScene", 3);
+		Game.GetInstance ().player.wait (3);
+		Invoke ("nextScene", 4);
+	}
+
+	public override void ask ()
+	{
+		Debug.Log("Portal");
 	}
 }
 

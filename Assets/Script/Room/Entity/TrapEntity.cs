@@ -16,5 +16,10 @@ public class TrapEntity : SignalEntity
 		Game.GetInstance().player.disableMovement();
 		Invoke ("nextScene", 5);
 	}
+
+	public override void ask ()
+	{
+		Debug.Log("Trampa");
+	}
 }
 

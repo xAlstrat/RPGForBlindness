@@ -12,6 +12,10 @@ public class SignalEntity : RoomEntity
 	public override void handleCollision(){
 		SoundManager.instance.PlaySingle (source);
 	}
+
+	public override void ask ()
+	{
+	}
 	
 }
 

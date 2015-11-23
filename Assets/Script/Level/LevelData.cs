@@ -10,12 +10,14 @@ public class LevelData
 	private Vector2 startPosition;
 	private Dictionary<string, Orientation> orientations;
 	private Dictionary<string, string> sounds;
+	private Dictionary<string, float> soundsDuration;
     private ArrayList monsters;
 
 	public LevelData(){
 		orientations = new Dictionary<string, Orientation> ();
         monsters = new ArrayList();
 		sounds = new Dictionary<string, string> ();
+		soundsDuration = new Dictionary<string, float> ();
 	}
 
 	public Vector2 getStartPosition(){
@@ -42,12 +44,17 @@ public class LevelData
 		orientations.Add (i + "," + j, o);
 	}
 
-	public void addSound(int i, int j, string sound){
+	public void addSound(int i, int j, string sound, float duration){
 		sounds.Add (i + "," + j, sound);
+		soundsDuration.Add (i + "," + j, duration);
 	}
 
 	public string getSound(int i, int j){
 		return sounds [i + "," + j];
+	}
+
+	public float getSoundDuration(int i, int j){
+		return soundsDuration [i + "," + j];
 	}
 
 	public Orientation getOrientationAt(int i, int j){
@@ -131,9 +138,9 @@ public class LevelData
 			//Treasures
 			levelData.addOrientation(2, 5, Orientation.WEST);
 			//helpsounds
-			levelData.addSound(1, 7, "bienvenido");
-            levelData.addSound(1, 1, "ayuda_tesoro");
-            levelData.addSound(11, 1, "fin_nivel");
+			levelData.addSound(1, 7, "bienvenido", 1);
+            levelData.addSound(1, 1, "ayuda_tesoro", 1);
+            levelData.addSound(11, 1, "fin_nivel", 2);
             break;
 		case 2:
 			levelData.hallData = new string[]{
@@ -158,7 +165,7 @@ public class LevelData
 			//Monsters
 			levelData.addOrientation(5, 6, Orientation.SOUTH);
             levelData.addMonster(5, 6);
-            levelData.addSound(3, 7, "advertencia_monster");   
+            levelData.addSound(3, 7, "advertencia_monster", 8);   
 			break;
 		case 3:
 			levelData.hallData = new string[]{

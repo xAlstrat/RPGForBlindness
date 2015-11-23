@@ -11,5 +11,10 @@ public class GeometricEntity : RoomEntity
 	public override bool destroyable(){
 		return true;
 	}
+
+	public override void ask ()
+	{
+		Debug.Log("Cuarto geometrico");
+	}
 }
 

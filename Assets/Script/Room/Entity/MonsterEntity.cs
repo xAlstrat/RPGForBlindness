@@ -56,5 +56,10 @@ public class MonsterEntity : SignalEntity
 	public override bool destroyable(){
 		return true;
 	}
+
+	public override void ask ()
+	{
+		Debug.Log("Monster");
+	}
 }
 

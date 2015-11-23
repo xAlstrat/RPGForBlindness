@@ -13,18 +13,44 @@ public class KeyboardMovementController : PlayerMovementController
 {
     protected override void getMovement()
     {
-        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+		if (Input.GetKey (KeyCode.Space)) {
+			if(player.state == PlayerState.NO_STAFF){
+				player.pickStaff();
+				return;
+			}
+			if(player.state != PlayerState.STOPPED)
+				return;
+			if(upEvent())
+				player.askAhead();
+			else if(rightEvent())
+				player.askRight();
+			else if(leftEvent())
+				player.askLeft();
+		}
+        else if(leftEvent())
         {
             player.turnLeft();
         }
-        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        else if(rightEvent())
         {
             player.turnRight();
         }
-        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.UpArrow))
+		else if (upEvent())
         {
             player.move();
         }
     }
+
+	private bool leftEvent(){
+		return Input.GetKey(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.LeftArrow);
+	}
+
+	private bool rightEvent(){
+		return Input.GetKey (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.RightArrow);
+	}
+
+	private bool upEvent(){
+		return Input.GetKey (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.UpArrow);
+	}
 }
 

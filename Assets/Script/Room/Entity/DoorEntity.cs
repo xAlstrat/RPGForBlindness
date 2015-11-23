@@ -16,7 +16,13 @@ public class DoorEntity : SignalEntity
 	public override void handleCollision(){
 		base.handleCollision ();
 		Game.GetInstance().player.disableMovement();
+		Game.GetInstance ().player.wait (3);
 		Invoke ("nextScene", 3);
+	}
+
+	public override void ask ()
+	{
+		Debug.Log("Puerta");
 	}
 }
 
