@@ -15,6 +15,9 @@ public class GeomElementsController : MonoBehaviour {
 		// Se guarda la posicion inicial del centro del cuarto geometrico
 		center = GameObject.Find("RoomFloor").transform.position;
 
+		FalconSpringedBody falcon = this.gameObject.AddComponent <FalconSpringedBody>();
+		falcon.set_inamovible ();
+
 		originalposition = transform.position;
 	}
 
