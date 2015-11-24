@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using XInputDotNetPure;
+using System;
 
 public class Battle : MonoBehaviour {
 
@@ -19,9 +20,11 @@ public class Battle : MonoBehaviour {
 	private TurnPhase enemyPhase;
 	private Rotation currentRotation;
 	
-	private BattleStates currentState;
-    private AbilityStates currentAbility;
-	private AbilityStates[] abilities;
+	private BattleState currentState;
+    private AbilityState currentAbility;
+	private AbilityState[] abilities;
+
+	private EnemyReturn ret;
 
 	private MonsterEntity enemy;
     public double enemyMaxHp;
@@ -37,25 +40,6 @@ public class Battle : MonoBehaviour {
     PlayerIndex playerIndex = 0;
     GamePadState state;
     GamePadState prevState;
-
-    public enum BattleStates{
-		START,
-		PLAYER_TURN,
-		ENEMY_TURN,
-		VICTORY,
-		DEFEAT,
-		END
-	}
-
-	enum TurnPhase{
-		BEGINNING,
-		SELECTION,
-		CONFIRMATION,
-		CALCULATIONS,
-		VISIBLE_ACTIONS,
-		ENDING
-	}
-
 
     void Start(){
 
@@ -76,9 +60,11 @@ public class Battle : MonoBehaviour {
         enemyMaxHp = enemy.getHP();
         GamePad.SetVibration(playerIndex, 0.0f, 0.0f); //hardcode
 
-        currentState = BattleStates.START;
+        currentState = BattleState.START;
 		abilities = player.CurrentAbilityStates;
 		currentAbility = abilities[0];
+		ret = new EnemyReturn(EnemyAction.BASIC_ATTACK, new object[]{0, "miss"});
+
 		soundMap = new SoundMap();
 		loader = SceneLoader.GetInstance();
 		SoundManager.instance.PlaySingle("Monster");
@@ -101,21 +87,21 @@ public class Battle : MonoBehaviour {
 
         switch (currentState) {
 
-			case(BattleStates.START):
+			case(BattleState.START):
 				wasDeathSfxPlayed = false;
 				wasVictoryMusicPlayed = false;
-				currentState = BattleStates.PLAYER_TURN;
+				currentState = BattleState.PLAYER_TURN;
 				break;
 
-			case(BattleStates.PLAYER_TURN):
+			case(BattleState.PLAYER_TURN):
 				playerTurn();
 				break;
 
-			case(BattleStates.ENEMY_TURN):
+			case(BattleState.ENEMY_TURN):
 				enemyTurn();
 				break;
 
-			case(BattleStates.VICTORY):
+			case(BattleState.VICTORY):
 			    Room.GetInstance().removeMonster(enemy.getPosition());
                 Game.GetInstance ().enemy = null;
                 
@@ -134,15 +120,15 @@ public class Battle : MonoBehaviour {
 				}
 				
 				if(!SoundManager.instance.isEfxPlaying() && wasVictoryMusicPlayed){
-					currentState = BattleStates.END;
+					currentState = BattleState.END;
 					loader.load(loader.persistentScenes[0]);
 					SoundManager.instance.PlayMusic("Hidden Agenda");
 				}
 				break;
 
-			case(BattleStates.DEFEAT):
+			case(BattleState.DEFEAT):
 	            winText.text = "Has perdido";
-	            currentState = BattleStates.END;
+	            currentState = BattleState.END;
 				loader.cleanLoad("HallState");
 				break;
 		}
@@ -166,9 +152,9 @@ public class Battle : MonoBehaviour {
 
 
 	public void rotateCube(Rotation direction){
-		//orden: inicial 0, izq 1, atras 2, der 3, arriba 4, abajo 5
+		//orden: adelante 0, izq 1, atras 2, der 3, arriba 4, abajo 5
 
-		AbilityStates aux = abilities[0];;
+		AbilityState aux = abilities[0];
 
 		switch(direction){
 
@@ -200,6 +186,9 @@ public class Battle : MonoBehaviour {
 				abilities[5] = aux;
 				break;
 		}
+
+		currentAbility = abilities[0];
+		//selectFace();
 	}
 
 	private void selection(){
@@ -209,10 +198,32 @@ public class Battle : MonoBehaviour {
 			currentPhase = TurnPhase.CONFIRMATION;
 	}
 
+
+	/*FUNCION QUE SE DEBERIA USAR PARA QUE SE SELECCIONE LA CARA A USAR CON EL FALCON
+	 * EN LUGAR DE ROTAR EL CUBO
+	 * HAY QUE REEMPLAZAR POR LOS EVENTOS QUE CORRESPONDAN Y CAMBIAR LAS FUNCIONES EN
+	 * playerTurn() --> SELECTION
+	/*private void selectFace(){
+		if(evento del falcon ARRIBA o flecha arriba)
+			currentAbility = abilities[4];
+		if(evento del falcon ABAJO o flecha abajo)
+			currentAbility = abilities[5];
+		if(evento del falcon IZQUIERDA o flecha izquierda)
+			currentAbility = abilities[1];
+		if(evento del falcon DERECHA o flecha derecha)
+			currentAbility = abilities[3];
+		if(evento del falcon ADELANTE o boton XBOX adelante)
+			currentAbility = abilities[0];
+		if(evento del falcon ATRAS o boton XBOX atras)
+			currentAbility = abilities[2];
+			
+		string clip = soundMap.getSelectionClip(currentAbility);
+		SoundManager.instance.PlaySingle(clip);
+	}*/
+
 	private void rotate(){
 		if(leftEvent() || rightEvent() || aheadEvent() || backEvent()){
 			rotateCube(currentRotation);
-			currentAbility = abilities[0];
 			string clip = soundMap.getSelectionClip(currentAbility);
 			SoundManager.instance.PlaySingle(clip);
 		}
@@ -243,7 +254,9 @@ public class Battle : MonoBehaviour {
 				currentPhase = TurnPhase.SELECTION;
 				break;
 			case(TurnPhase.SELECTION):
+				//cambiar rotate por selectFace
 				rotate();
+				//selectFace();
 				feedBack();
 				selection();
 				break;
@@ -303,9 +316,9 @@ public class Battle : MonoBehaviour {
 			case(TurnPhase.ENDING):
 				if (enemy.getHP () <= 0) {
 					Game.GetInstance().playerHP.text = "HP: "+ player.getHP();
-					currentState = BattleStates.VICTORY;
+					currentState = BattleState.VICTORY;
 				} else {
-					currentState = BattleStates.ENEMY_TURN;
+					currentState = BattleState.ENEMY_TURN;
 				}
 				currentPhase = TurnPhase.BEGINNING;
 				break;
@@ -314,7 +327,6 @@ public class Battle : MonoBehaviour {
 
 
 	public void enemyTurn(){
-	//hacer mejor comportamiento enemigo
 
 		switch(enemyPhase){
 			case(TurnPhase.BEGINNING):
@@ -322,14 +334,42 @@ public class Battle : MonoBehaviour {
 				enemyPhase = TurnPhase.SELECTION;
 				break;
 			case(TurnPhase.SELECTION):
+				ret = enemy.decide(new System.Object[]{currentAbility});
 				enemyPhase = TurnPhase.CONFIRMATION;
 				break;
 			case(TurnPhase.CONFIRMATION):
 				enemyPhase = TurnPhase.CALCULATIONS;
 				break;
 			case(TurnPhase.CALCULATIONS):
-				int dmg = Random.Range (0, 11);
+			//esta feo pero funciona por mientras D:
+				switch(ret.action){
+					case(EnemyAction.BASIC_ATTACK):
+						Debug.Log("basic attack");
+						player.removeHP((int)ret.values[0]);
+						enemyAtkSfx = "enemy_attack_" + (string)ret.values[1] + "_sfx";
+						enemyAtkSpeech = "enemy_attack_" + (string)ret.values[1] + "_speech";
+						break;
+					case(EnemyAction.CONFUSE_PLAYER):
+						Debug.Log("confuse player");
+						rotateCube((Rotation)ret.values[0]);
+						enemyAtkSfx = "";
+						enemyAtkSpeech = "enemy_rotate_" + ret.values[0].ToString().ToLower();
+						break;
+					case(EnemyAction.POWER_UP):
+						Debug.Log("power up");
+						enemyAtkSfx = "";
+						enemyAtkSpeech = "enemy_power_up";
+						break;
+					case(EnemyAction.RAISE_DEFENSE):
+						Debug.Log("raise defense");
+						enemyAtkSfx = "";
+						enemyAtkSpeech = "enemy_raise_defense";
+						break;
+				}
+				/*int dmg = UnityEngine.Random.Range(0, 11);
 				player.removeHP (dmg);
+
+				//ACA VAN LAS WEAS DE ATAQUE
 
 				if(dmg == 0){
 					enemyAtkSpeech = "enemy_attack_miss_speech";
@@ -344,7 +384,7 @@ public class Battle : MonoBehaviour {
 				if(7 < dmg && dmg <= 10){
 					enemyAtkSpeech = "enemy_attack_heavy_hit_speech";
 					enemyAtkSfx = "enemy_attack_heavy_hit_sfx";
-				}
+				}*/
 
 				enemyPhase = TurnPhase.VISIBLE_ACTIONS;
 				break;
@@ -364,9 +404,9 @@ public class Battle : MonoBehaviour {
 				break;
 			case(TurnPhase.ENDING):
 				if (player.getHP () > 0)
-				currentState = BattleStates.PLAYER_TURN;
+				currentState = BattleState.PLAYER_TURN;
 				else
-				currentState = BattleStates.DEFEAT;
+				currentState = BattleState.DEFEAT;
 
 				enemyPhase = TurnPhase.BEGINNING;
 				break;
@@ -402,7 +442,7 @@ public class Battle : MonoBehaviour {
     }
 
 	protected bool askCurrentAbility(){
-		return Input.GetKeyUp (KeyCode.O) || (prevState.Buttons.X == ButtonState.Released && state.Buttons.X == ButtonState.Pressed);
+		return Input.GetKeyUp (KeyCode.O);
 	}
 
     protected bool playerAttack(){

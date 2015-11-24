@@ -14,14 +14,14 @@ public class Player : MonoBehaviour
 	private int boostsToLevelUp;
 	private bool ableToMove;
 
-	private AbilityStates[] currentAbilityStates;
-	public AbilityStates[] CurrentAbilityStates{
-		get{return currentAbilityStates;}
-		set{currentAbilityStates = value;}
+	private AbilityState[] currentAbilityState;
+	public AbilityState[] CurrentAbilityStates{
+		get{return currentAbilityState;}
+		set{currentAbilityState = value;}
 	}
 
-	private Dictionary<AbilityStates, int> abilitiesBaseDamage;
-	private Dictionary<AbilityStates, int> boosts;
+	private Dictionary<AbilityState, int> abilitiesBaseDamage;
+	private Dictionary<AbilityState, int> boosts;
 
 	/// <summary>
 	/// The movement restriction of the player.
@@ -113,13 +113,13 @@ public class Player : MonoBehaviour
 
 		//faces order: front (initial): 0, left: 1, back: 2, right 3, up 4, down 5
 		//always starts with water ability unlocked
-		currentAbilityStates = new AbilityStates[]{
-			AbilityStates.AGUA,
-			AbilityStates.TIERRA,
-			AbilityStates.FUEGO,
-			AbilityStates.VIENTO,
-			AbilityStates.NATURALEZA,
-			AbilityStates.ARCANO
+		currentAbilityState = new AbilityState[]{
+			AbilityState.AGUA,
+			AbilityState.TIERRA,
+			AbilityState.FUEGO,
+			AbilityState.VIENTO,
+			AbilityState.NATURALEZA,
+			AbilityState.ARCANO
 		};
 
 		boostsToLevelUp = 3;
@@ -127,19 +127,16 @@ public class Player : MonoBehaviour
 		ableToMove = true;
 
 		//base damage for each ability starts at 1
-		abilitiesBaseDamage = new Dictionary<AbilityStates, int>();
+		abilitiesBaseDamage = new Dictionary<AbilityState, int>();
 
 		//boosts for each ability starts at 0
 		//every 3 boosts for some ability, the base damage for said ability increases by 1
-		boosts = new Dictionary<AbilityStates, int>();
+		boosts = new Dictionary<AbilityState, int>();
 
-		foreach(AbilityStates AS in System.Enum.GetValues(typeof(AbilityStates))){
+		foreach(AbilityState AS in System.Enum.GetValues(typeof(AbilityState))){
 			abilitiesBaseDamage.Add(AS, 1);
 			boosts.Add(AS, 0);
 		}
-
-
-
 	}
 
 	void FixedUpdate ()
@@ -348,19 +345,19 @@ public class Player : MonoBehaviour
 		ableToMove = false;
 	}
 
-	public int getBaseDamage(AbilityStates ability){
+	public int getBaseDamage(AbilityState ability){
 		return abilitiesBaseDamage[ability];
 	}
 
-	public void setBaseDamage(AbilityStates ability, int dmg){
+	public void setBaseDamage(AbilityState ability, int dmg){
 		abilitiesBaseDamage[ability] = dmg;
 	}
 
-	public int getBoost(AbilityStates ability){
+	public int getBoost(AbilityState ability){
 		return boosts[ability];
 	}
 
-	public void addBoost(AbilityStates ability, int amount = 1){
+	public void addBoost(AbilityState ability, int amount = 1){
 		boosts[ability] += amount;
 		abilitiesBaseDamage[ability] += boosts[ability] / boostsToLevelUp;
 		boosts[ability] = boosts[ability] % boostsToLevelUp;
@@ -371,11 +368,11 @@ public class Player : MonoBehaviour
 	}
 
 	private void makeTurningLeftSound(){
-		SoundManager.instance.PlayDirectionalSingle("turning", -1.0f)
+		SoundManager.instance.PlayDirectionalSingle("turning", -1.0f);
 	}
 	
 	private void makeTurningRightSound(){
-		SoundManager.instance.PlayDirectionalSingle("turning", 1.0f)
+		SoundManager.instance.PlayDirectionalSingle("turning", 1.0f);
 	}
 
 	private void noStaffAlert(){

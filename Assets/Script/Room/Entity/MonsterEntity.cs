@@ -1,12 +1,19 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public class MonsterEntity : SignalEntity
 {
 
 	private int hp = 10;
-	private Dictionary<AbilityStates, double> stats;
+	private int minDamage = 0;
+	private int maxDamage = 11;
+	private double damageMultiplier = 1.0;
+	private double attackThreshold = 0.7;
+	private double chanceToHit = 0.8;
+	private Dictionary<AbilityState, double> stats;
 	private double[] multipliers = new double[]{0.5, 1, 2};
+	private Dictionary<EnemyAction, Func<System.Object[], System.Object[]>> attackPool;
 
 	protected void Awake(){
 		source  = "Monster";
@@ -16,24 +23,105 @@ public class MonsterEntity : SignalEntity
 		SceneLoader loader = SceneLoader.GetInstance();
 		Game.GetInstance ().enemy = this;
 		initializeStats();
+		initializeAttacks();
 		SoundManager.instance.PlayMusic("Mistake the Getaway");
 		loader.load("BattleState");
 	}
 
 	private void initializeStats(){
-		stats = new Dictionary<AbilityStates, double>();
-		//Debug.Log("stats");
+		stats = new Dictionary<AbilityState, double>();
+		int i = 0;
 
-		foreach(AbilityStates AS in System.Enum.GetValues(typeof(AbilityStates))){
-			int rand = Random.Range(0, 3);
-			stats.Add (AS, multipliers[rand]);
-
-			//Debug.Log(AS.ToString() + ": " + multipliers[rand]);
+		foreach(AbilityState AS in System.Enum.GetValues(typeof(AbilityState))){
+			//int rand = UnityEngine.Random.Range(0, 3);
+			//stats.Add(AS, multipliers[rand]);
+			stats.Add (AS, Constants.baseStats[i]);
+			i++;
 		}
 	}
 
-    public void setHP(int hp)
-    {
+	/*FUNCIONES QUE DEFINEN ATAQUES*/
+	private System.Object[] basicAttack(System.Object[] args){
+		string sfx = "";
+		int baseDamage = UnityEngine.Random.Range(minDamage, maxDamage);
+		int finalDamage = (int)Math.Ceiling(baseDamage * damageMultiplier);
+		double damageRatio = ((double)finalDamage / (maxDamage - 1));
+
+		double hitRoll = new System.Random().NextDouble();
+
+		if(hitRoll <= chanceToHit){
+
+			if(damageRatio == 0)
+				sfx = "miss";
+
+			if(0 < damageRatio && damageRatio <= attackThreshold)
+				sfx = "light_hit";
+
+			if(attackThreshold < damageRatio)
+				sfx = "heavy_hit";
+		}
+		else{
+			finalDamage = 0;
+			sfx = "miss";
+		}
+
+		return new System.Object[]{finalDamage, sfx};
+	}
+
+	private System.Object[] confusePlayer(System.Object[] args){
+		Array values = Enum.GetValues(typeof(Rotation));
+		System.Random random = new System.Random();
+		Rotation rotation = (Rotation)values.GetValue(random.Next(values.Length));
+
+		return new System.Object[]{rotation};
+	}
+
+	private System.Object[] powerUp(System.Object[] args){
+		this.damageMultiplier += 0.5;
+
+		return new System.Object[]{};
+	}
+
+	private System.Object[] raiseDefense(System.Object[] args){
+		AbilityState abilityToBuff = (AbilityState)args[0];
+		AbilityState abilityToDebuff = abilityToBuff;
+
+		while(abilityToDebuff.Equals(abilityToBuff)){
+			Array values = Enum.GetValues(typeof(AbilityState));
+			System.Random random = new System.Random();
+			abilityToDebuff = (AbilityState)values.GetValue(random.Next(values.Length));
+		}
+
+		stats[abilityToBuff] = multipliers[0];
+		stats[abilityToDebuff] = multipliers[2];
+
+		return new System.Object[]{};
+	}
+	/*FUNCIONES QUE DEFINEN ATAQUES*/
+
+	/*DICCIONARIO DE ATAQUES*/
+	private void initializeAttacks(){
+		attackPool = new Dictionary<EnemyAction, Func<System.Object[], System.Object[]>>();
+
+		attackPool.Add(EnemyAction.BASIC_ATTACK, basicAttack);
+		attackPool.Add(EnemyAction.CONFUSE_PLAYER, confusePlayer);
+		attackPool.Add(EnemyAction.POWER_UP, powerUp);
+		attackPool.Add(EnemyAction.RAISE_DEFENSE, raiseDefense);
+	}
+
+	/*FUNCION QUE DECIDE LA ACCION A SEGUIR
+	 * POR AHORA ES ALEATORIA*/
+	public EnemyReturn decide(System.Object[] args){
+		Array enum_values = Enum.GetValues(typeof(EnemyAction));
+		System.Random random = new System.Random();
+		EnemyAction action = (EnemyAction)enum_values.GetValue(random.Next(enum_values.Length));
+
+		System.Object[] values = attackPool[action](args);
+
+		return new EnemyReturn(action, values);
+	}
+
+    public void setHP(int hp){
         this.hp = hp;
     }
 
@@ -43,13 +131,12 @@ public class MonsterEntity : SignalEntity
 
 	public void removeHP(int dmg){
 		this.hp -= dmg;
-        if (this.hp < 0)
-        {
+        if (this.hp < 0){
             this.hp = 0;
         }
 	}
 
-	public double getMultiplier(AbilityStates ability){
+	public double getMultiplier(AbilityState ability){
 		return stats[ability];
 	}
 
@@ -57,8 +144,7 @@ public class MonsterEntity : SignalEntity
 		return true;
 	}
 
-	public override void ask ()
-	{
+	public override void ask(){
 		Debug.Log("Monster");
 	}
 }

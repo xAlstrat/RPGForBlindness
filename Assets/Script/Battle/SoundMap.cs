@@ -1,37 +1,37 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class SoundMap {
 
-	private Dictionary<AbilityStates, string> audioMapSelection;
-	private Dictionary<AbilityStates, string> audioMapAttack;
+	private Dictionary<AbilityState, string> audioMapSelection;
+	private Dictionary<AbilityState, string> audioMapAttack;
 
 	public SoundMap(){
 	
 		//faltan sonidos para tierra, naturaleza y arcano
-		audioMapSelection = new Dictionary<AbilityStates, string>();
-		audioMapAttack = new Dictionary<AbilityStates, string>();
+		audioMapSelection = new Dictionary<AbilityState, string>();
+		audioMapAttack = new Dictionary<AbilityState, string>();
 
-		audioMapSelection.Add (AbilityStates.AGUA, "water_select");
-		audioMapSelection.Add (AbilityStates.FUEGO, "fire_select");
-		audioMapSelection.Add (AbilityStates.TIERRA, "earth_select");
-		audioMapSelection.Add (AbilityStates.VIENTO, "wind_select");
-		audioMapSelection.Add (AbilityStates.NATURALEZA,"nature_select");
-		audioMapSelection.Add (AbilityStates.ARCANO, "arcane_select");
+		audioMapSelection.Add (AbilityState.AGUA, "water_select");
+		audioMapSelection.Add (AbilityState.FUEGO, "fire_select");
+		audioMapSelection.Add (AbilityState.TIERRA, "earth_select");
+		audioMapSelection.Add (AbilityState.VIENTO, "wind_select");
+		audioMapSelection.Add (AbilityState.NATURALEZA,"nature_select");
+		audioMapSelection.Add (AbilityState.ARCANO, "arcane_select");
 
-		audioMapAttack.Add (AbilityStates.AGUA, "water_attack");
-		audioMapAttack.Add (AbilityStates.FUEGO, "fire_attack");
-		audioMapAttack.Add (AbilityStates.TIERRA, "earth_attack");
-		audioMapAttack.Add (AbilityStates.VIENTO, "wind_attack");
-		audioMapAttack.Add (AbilityStates.NATURALEZA,"nature_attack");
-		audioMapAttack.Add (AbilityStates.ARCANO, "arcane_attack");
+		audioMapAttack.Add (AbilityState.AGUA, "water_attack");
+		audioMapAttack.Add (AbilityState.FUEGO, "fire_attack");
+		audioMapAttack.Add (AbilityState.TIERRA, "earth_attack");
+		audioMapAttack.Add (AbilityState.VIENTO, "wind_attack");
+		audioMapAttack.Add (AbilityState.NATURALEZA,"nature_attack");
+		audioMapAttack.Add (AbilityState.ARCANO, "arcane_attack");
 	}
 
-	public string getSelectionClip(AbilityStates ability){
+	public string getSelectionClip(AbilityState ability){
 		return audioMapSelection[ability];
 	}
 
-	public string getAttackClip(AbilityStates ability){
+	public string getAttackClip(AbilityState ability){
 		if(audioMapAttack.ContainsKey(ability))
 			return audioMapAttack[ability];
 		else
