@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Endblock
   - GeomWall
+  - RoomFloor
   layers:
   - Default
   - TransparentFX

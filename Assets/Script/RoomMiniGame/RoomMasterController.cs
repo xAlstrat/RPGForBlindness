@@ -11,6 +11,9 @@ public class RoomMasterController : MonoBehaviour {
 	// Para saber si ha iniciado o no el juego
 	private bool game_started;
 
+	// Para testear niveles
+	public int test_level;
+
 	// Use this for initialization
 	void Start () {
 		game_started = false;
@@ -59,7 +62,12 @@ public class RoomMasterController : MonoBehaviour {
 
 	// Funcion para obtener el nivel del cuarto geometrico, utilizado por las murallas para saber cuando aparecer
 	public int GetGameGeomLevel () {
-		return 1;
+		if (test_level != -1) {
+			return test_level;
+		}
+
+		// Default
+		return 0;
 	}
 
 }

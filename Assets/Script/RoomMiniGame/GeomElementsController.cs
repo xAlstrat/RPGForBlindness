@@ -10,6 +10,9 @@ public class GeomElementsController : MonoBehaviour {
 	// Restringe la traslacion, en reflexion
 	public bool translation_locked;
 
+	// Para saber desde que nivel aparece este elemento
+	public int appears_from_level;
+
 	// Controlador Maestro
 	private RoomMasterController master_room_controller;
 
@@ -21,6 +24,8 @@ public class GeomElementsController : MonoBehaviour {
 		originalposition = transform.position;
 
 		master_room_controller = GameObject.Find ("RoomFloor").GetComponent<RoomMasterController> ();
+
+		SetApparition (master_room_controller.GetGameGeomLevel ());
 	}
 
 	// Reflexion respecto al eje horizontal
@@ -47,6 +52,15 @@ public class GeomElementsController : MonoBehaviour {
 		}
 		if (translation_locked == false) {
 			transform.position = new Vector3 (newx, originalposition.y, originalposition.z);
+		}
+	}
+
+	// Aparece o desaparece el objeto, segun el nivel que se le entrega y el nivel que posee
+	public void SetApparition(int actual_level) {
+		if (actual_level >= appears_from_level) {
+			gameObject.SetActive (true);
+		} else {
+			gameObject.SetActive (false);
 		}
 	}
 }

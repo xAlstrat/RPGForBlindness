@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d00948246945b4389666a096c74310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
 --- !u!54 &81730628
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -274,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 0
   translation_locked: 0
+  appears_from_level: 3
 --- !u!1 &280897513
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,9 +287,10 @@ GameObject:
   - 64: {fileID: 280897515}
   - 23: {fileID: 280897514}
   - 114: {fileID: 280897518}
+  - 114: {fileID: 280897519}
   m_Layer: 0
   m_Name: RoomFloor
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,6 +361,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 248f4c43dcf6925468be51faa28136ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &280897519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 280897513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21118ed439c32fd499f1b3a5134799d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &408498213
@@ -529,6 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 0
   translation_locked: 0
+  appears_from_level: 3
 --- !u!1 &596003635
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 0
   translation_locked: 0
+  appears_from_level: 2
 --- !u!1 &678048031
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 1
   translation_locked: 0
+  appears_from_level: 2
 --- !u!1 &823625997
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 0
   translation_locked: 0
+  appears_from_level: 4
 --- !u!1 &866231716
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 1
   translation_locked: 1
+  appears_from_level: 0
 --- !u!1 &1186050378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 0
   translation_locked: 0
+  appears_from_level: 0
 --- !u!1 &1217628427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 0
   translation_locked: 0
+  appears_from_level: 1
 --- !u!1 &1716159394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,6 +1317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 1
   translation_locked: 1
+  appears_from_level: 0
 --- !u!1 &1831320731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,6 +1405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 0
   translation_locked: 0
+  appears_from_level: 4
 --- !u!1 &1857530094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +1594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 1
   translation_locked: 0
+  appears_from_level: 1
 --- !u!1 &2009853627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,3 +1682,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation_locked: 1
   translation_locked: 1
+  appears_from_level: 0
