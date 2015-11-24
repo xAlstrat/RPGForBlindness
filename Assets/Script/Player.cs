@@ -268,7 +268,7 @@ public class Player : MonoBehaviour
 		if (state != PlayerState.STOPPED || !ableToMove) {
 			return;
 		}
-		makeTurningSound ();
+		makeTurningRightSound ();
 		currentDir = (currentDir + 1) % 4;
 		rotate (90f);
 	}
@@ -283,7 +283,7 @@ public class Player : MonoBehaviour
 		if (state != PlayerState.STOPPED || !ableToMove) {
 			return;
 		}
-		makeTurningSound ();
+		makeTurningLeftSound ();
 		currentDir--;
 		currentDir = currentDir >= 0 ? currentDir : 3;
 		rotate (-90f);
@@ -365,9 +365,17 @@ public class Player : MonoBehaviour
 		abilitiesBaseDamage[ability] += boosts[ability] / boostsToLevelUp;
 		boosts[ability] = boosts[ability] % boostsToLevelUp;
 	}
-
+	
 	private void makeTurningSound(){
 		SoundManager.instance.PlaySingle("turning");
+	}
+
+	private void makeTurningLeftSound(){
+		SoundManager.instance.PlayDirectionalSingle("turning", -1.0f)
+	}
+	
+	private void makeTurningRightSound(){
+		SoundManager.instance.PlayDirectionalSingle("turning", 1.0f)
 	}
 
 	private void noStaffAlert(){
