@@ -1,28 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using XInputDotNetPure;
-
 public class RoomFloorController : MonoBehaviour {
 	private bool started;
-    PlayerIndex playerIndex = 0;
-    GamePadState state;
-    GamePadState prevState;
+	private RoomMasterController master_room_controller;
 
     // Use this for initialization
     void Start () {
 		started = false;
-		SoundManager.instance.PlayMusic("Hidden Agenda");
+		master_room_controller = gameObject.GetComponent<RoomMasterController> ();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         // Empieza el juego si no ha iniciado
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
-        if (started == false && (Input.GetKeyDown(KeyCode.Space) == true || (prevState.Buttons.Start == ButtonState.Released && state.Buttons.Start == ButtonState.Pressed)))
-        {
-            StartGame();
+		if ((started == false) && master_room_controller.GameStartButtonIsPressed () )
+		{
+			StartGame();
         }
     }
 

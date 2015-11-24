@@ -10,12 +10,17 @@ public class GeomElementsController : MonoBehaviour {
 	// Restringe la traslacion, en reflexion
 	public bool translation_locked;
 
+	// Controlador Maestro
+	private RoomMasterController master_room_controller;
+
 	// Use this for initialization
 	void Start () {
 		// Se guarda la posicion inicial del centro del cuarto geometrico
 		center = GameObject.Find("RoomFloor").transform.position;
 
 		originalposition = transform.position;
+
+		master_room_controller = GameObject.Find ("RoomFloor").GetComponent<RoomMasterController> ();
 	}
 
 	// Reflexion respecto al eje horizontal

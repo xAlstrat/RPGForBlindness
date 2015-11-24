@@ -9,12 +9,17 @@ public class RoomCameraController : MonoBehaviour {
 	
 	private Vector3 offset;
 	private Vector3 offset2;
+
+	// Controlador Maestro
+	private RoomMasterController master_room_controller;
 	
 	void Start ()
 	{
 		started = false;
 		offset = transform.position - player.transform.position;
 		offset2 = new Vector3 (0.0f, 6.9f, -12.4f);
+
+		master_room_controller = GameObject.Find ("RoomFloor").GetComponent<RoomMasterController> ();
 	}
 	
 	void LateUpdate ()

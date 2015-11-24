@@ -13,35 +13,37 @@ public class RoomPlayerController : MonoBehaviour {
 	PlayerIndex playerIndex = 0;
 	GamePadState state;
 	GamePadState prevState;
+
+	private RoomMasterController master_room_controller;
 	
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody>();
 		started = false;
 		originalposition = transform.position;
+		master_room_controller = GameObject.Find ("RoomFloor").GetComponent<RoomMasterController> ();
 	}
 	
 	void FixedUpdate () {
 		// Empieza el juego si no ha iniciado
-		prevState = state;
-		state = GamePad.GetState(playerIndex);
-		if (started == false && (Input.GetKeyDown (KeyCode.Space) == true || (prevState.Buttons.Start == ButtonState.Pressed || state.Buttons.Start == ButtonState.Pressed))) {
+		if ((started == false) && master_room_controller.GameStartButtonIsPressed ()) {
 			StartGame ();
+		} else {
+			// Movimiento
+			float moveHorizontal = Input.GetAxis ("Horizontal");
+			float moveVertical = Input.GetAxis ("Vertical");
+			
+			Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+			
+			// rb.AddForce (movement * speed);
+			
+			// Movimiento por paso
+			transform.position += movement * speed * Time.deltaTime;
+			
+			// Evitar que se siga moviendo
+			rb.velocity = Vector3.zero;
+			rb.angularVelocity = Vector3.zero;
 		}
-		// Movimiento
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
-		
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-		
-		// rb.AddForce (movement * speed);
-		
-		// Movimiento por paso
-		transform.position += movement * speed * Time.deltaTime;
-		
-		// Evitar que se siga moviendo
-		rb.velocity = Vector3.zero;
-		rb.angularVelocity = Vector3.zero;
 	}
 	
 	void OnCollisionEnter(Collision other)
