@@ -70,4 +70,17 @@ public class RoomMasterController : MonoBehaviour {
 		return 0;
 	}
 
+	public void PlayerMovement (GameObject obj, float speed) {
+		// Movimiento
+		float moveHorizontal = Input.GetAxis ("Horizontal");
+		float moveVertical = Input.GetAxis ("Vertical");
+		
+		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+		
+		// rb.AddForce (movement * speed);
+		
+		// Movimiento por paso
+		obj.transform.position += movement * speed * Time.deltaTime;
+	}
+
 }

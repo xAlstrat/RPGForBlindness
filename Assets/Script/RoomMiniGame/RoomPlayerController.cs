@@ -29,17 +29,7 @@ public class RoomPlayerController : MonoBehaviour {
 		if ((started == false) && master_room_controller.GameStartButtonIsPressed ()) {
 			StartGame ();
 		} else {
-			// Movimiento
-			float moveHorizontal = Input.GetAxis ("Horizontal");
-			float moveVertical = Input.GetAxis ("Vertical");
-			
-			Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-			
-			// rb.AddForce (movement * speed);
-			
-			// Movimiento por paso
-			transform.position += movement * speed * Time.deltaTime;
-			
+			master_room_controller.PlayerMovement(gameObject, speed);
 			// Evitar que se siga moviendo
 			rb.velocity = Vector3.zero;
 			rb.angularVelocity = Vector3.zero;
