@@ -14,31 +14,28 @@ public class KeyboardMovementController : PlayerMovementController
     protected override void getMovement()
     {
 		if (Input.GetKey (KeyCode.Space)) {
-			if(player.state == PlayerState.NO_STAFF){
-				player.pickStaff();
+			if (player.state == PlayerState.NO_STAFF) {
+				player.pickStaff ();
 				return;
 			}
-			if(player.state != PlayerState.STOPPED)
+			if (player.state != PlayerState.STOPPED)
 				return;
-			if(upEvent())
-				player.askAhead();
-			else if(rightEvent())
-				player.askRight();
-			else if(leftEvent())
-				player.askLeft();
+			if (upEvent ())
+				player.askAhead ();
+			else if (rightEvent ())
+				player.askRight ();
+			else if (leftEvent ())
+				player.askLeft ();
+		} else if (leftEvent ()) {
+			player.turnLeft ();
+		} else if (rightEvent ()) {
+			player.turnRight ();
+		} else if (upEvent ()) {
+			player.move ();
+		} else if (Input.GetKeyDown (KeyCode.Escape)) {
+			ApplicationData.setLastLevel (1 +ApplicationData.getLastLevel () % 3);
+			SceneLoader.GetInstance().cleanLoad("HallState");
 		}
-        else if(leftEvent())
-        {
-            player.turnLeft();
-        }
-        else if(rightEvent())
-        {
-            player.turnRight();
-        }
-		else if (upEvent())
-        {
-            player.move();
-        }
     }
 
 	private bool leftEvent(){

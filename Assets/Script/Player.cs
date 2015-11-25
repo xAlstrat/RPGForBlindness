@@ -411,23 +411,32 @@ public class Player : MonoBehaviour
 	}
 
 	public void askAhead(){
-		Vector2 dest = position + direction;
-		Room.GetInstance ().ask (dest);
+		Room.GetInstance ().ask (frontPosition());
 		wait (0.5f);
 	}
 
 	public void askRight(){
-		int rightDir = (currentDir + 1) % 4;
-		Vector2 dest = position + directions [rightDir];
+		Vector2 dest = rightPosition ();
 		Room.GetInstance ().ask (dest);
 		wait (0.5f);
 	}
 
 	public void askLeft(){
-		int leftDir = (currentDir-1) >= 0 ? (currentDir-1) : 3;
-		Vector2 dest = position + directions [leftDir];
+		Vector2 dest = leftPosition ();
 		Room.GetInstance ().ask (dest);
 		wait (0.5f);
+	}
+
+	public Vector2 rightPosition(){
+		int rightDir = (currentDir + 1) % 4;
+		return position + directions [rightDir];
+	}
+	public Vector2 leftPosition(){
+		int leftDir = (currentDir-1) >= 0 ? (currentDir-1) : 3;
+		return position + directions [leftDir];
+	}
+	public Vector2 frontPosition(){
+		return position + direction;
 	}
 }
 

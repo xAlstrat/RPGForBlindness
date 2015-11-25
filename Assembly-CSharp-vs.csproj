@@ -47,9 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\ApplicationData.cs" />
-     <Compile Include="Assets\Script\Battle\AbilityStates.cs" />
+     <Compile Include="Assets\Script\Battle\AbilityState.cs" />
      <Compile Include="Assets\Script\Battle\Battle.cs" />
-     <Compile Include="Assets\Script\Battle\BattleStates.cs" />
+     <Compile Include="Assets\Script\Battle\BattleState.cs" />
+     <Compile Include="Assets\Script\Battle\Constants.cs" />
+     <Compile Include="Assets\Script\Battle\EnemyAction.cs" />
+     <Compile Include="Assets\Script\Battle\EnemyReturn.cs" />
      <Compile Include="Assets\Script\Battle\Rotation.cs" />
      <Compile Include="Assets\Script\Battle\SoundMap.cs" />
      <Compile Include="Assets\Script\Battle\TurnPhase.cs" />
@@ -85,6 +88,7 @@
      <Compile Include="Assets\Script\Room\Entity\Signal\ConditionalSignalEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\Signal\DownConditionalSignalEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\Signal\LeftConditionalSignalEntity.cs" />
+     <Compile Include="Assets\Script\Room\Entity\Signal\MultiSignalEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\Signal\RightConditionalSignalEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\Signal\SignalEntity.cs" />
      <Compile Include="Assets\Script\Room\Entity\Signal\UpConditionalSignalEntity.cs" />
@@ -101,10 +105,12 @@
      <Compile Include="Assets\Script\RoomMiniGame\RoomCameraController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomExitController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomFloorController.cs" />
+     <Compile Include="Assets\Script\RoomMiniGame\RoomMasterController.cs" />
      <Compile Include="Assets\Script\RoomMiniGame\RoomPlayerController.cs" />
      <Compile Include="Assets\Script\Scale\RoomScale.cs" />
      <Compile Include="Assets\Script\Scene\SceneFadeInOut.cs" />
      <Compile Include="Assets\Script\Scene\SceneLoader.cs" />
+     <Compile Include="Assets\Script\Sound\Direction.cs" />
      <Compile Include="Assets\Script\Sound\SoundManager.cs" />
      <Compile Include="Assets\XInputDotNet\Examples\XInputTestCS.cs" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MobileBloom.shader" />

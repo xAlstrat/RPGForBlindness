@@ -99,7 +99,7 @@ public class LevelData
 			return Entity.MONSTER;
 		case '-':
 			return Entity.SIGNAL_MULTI;
-		case 'u':
+		case '%':
 			return Entity.SIGNAL_UP;
 		case 'd':
 			return Entity.SIGNAL_DOWN;

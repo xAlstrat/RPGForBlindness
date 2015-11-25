@@ -123,10 +123,10 @@ public class RoomObjectGenerator
 	private RoomEntity instantiateMultiSignal(int i, int j){
 		GameObject go = new GameObject("MultiSignal");
 		go.transform.parent = parent;
-		SignalEntity signal = go.AddComponent<SignalEntity> ();
-		signal.source = "pew";
-		return signal;
+		RoomEntity entity = go.AddComponent<MultiSignalEntity> ();
+		return entity;
 	}
+
 
 	private RoomEntity instantiateHelp(int i, int j){
 		GameObject go = new GameObject("Help");
