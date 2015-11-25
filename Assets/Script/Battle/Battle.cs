@@ -11,6 +11,7 @@ public class Battle : MonoBehaviour {
 	private bool wasVictoryMusicPlayed;
 	private bool extraPlayerSoundsNeeded;
 	private bool wasEnemySfxPlayed;
+	private bool wasWinMsgPlayed;
 
 	private string atkSuffix;
 	private string enemyAtkSfx;
@@ -47,6 +48,7 @@ public class Battle : MonoBehaviour {
 		wasActionSfxPlayed = false;
 		wasVictoryMusicPlayed = false;
 		extraPlayerSoundsNeeded = false;
+		wasWinMsgPlayed = false;
 
 		atkSuffix = "";
 		enemyAtkSfx = "";
@@ -118,10 +120,17 @@ public class Battle : MonoBehaviour {
 					SoundManager.instance.PlaySingle("battle_victory_music");
 					wasVictoryMusicPlayed = true;
 				}
+
+				if(!wasWinMsgPlayed && !SoundManager.instance.isEfxPlaying()){
+					SoundManager.instance.StopMusic();
+					SoundManager.instance.PlaySingle("msg-win-batalla");
+					wasWinMsgPlayed = true;
+				}
 				
-				if(!SoundManager.instance.isEfxPlaying() && wasVictoryMusicPlayed){
+				if(!SoundManager.instance.isEfxPlaying() && wasWinMsgPlayed){
 					currentState = BattleState.END;
 					loader.load(loader.persistentScenes[0]);
+					//SoundManager.instance.PlaySingle("cuarto-principal");
 					SoundManager.instance.PlayMusic("Hidden Agenda");
 				}
 				break;

@@ -376,10 +376,12 @@ public class Player : MonoBehaviour
 	}
 
 	private void noStaffAlert(){
-		wait (1);
-		SoundManager.instance.PlaySingle("incorrect");
-		Debug.Log("Debes sostener el baston antes de continuar");
+		wait (8);
+		SoundManager.instance.PlaySingle ("sostener-baston");
+		Invoke ("ayudaBaston", 4);
 	}
+
+	private void ayudaBaston (){SoundManager.instance.PlaySingle ("ayuda-baston");}
 
 	public void pickStaff(){
 		state = PlayerState.STOPPED;

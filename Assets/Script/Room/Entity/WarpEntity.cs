@@ -20,7 +20,7 @@ public class WarpEntity : SignalEntity
 
 	public override void ask ()
 	{
-		Debug.Log("Portal");
+		SoundManager.instance.PlaySingle ("energia-portal");
 	}
 }
 

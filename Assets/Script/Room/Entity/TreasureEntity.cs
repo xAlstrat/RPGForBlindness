@@ -9,7 +9,7 @@ public class TreasureEntity : SignalEntity
 
 	public override void handleCollision(){
 		base.handleCollision ();
-		Debug.Log("treasure collision");
+		Game.GetInstance ().player.wait (1.5f);
 	}
 
 	public override bool destroyable(){
@@ -18,7 +18,7 @@ public class TreasureEntity : SignalEntity
 
 	public override void ask ()
 	{
-		Debug.Log("Tesoro");
+		SoundManager.instance.PlaySingle ("tomar-tesoro");
 	}
 }
 

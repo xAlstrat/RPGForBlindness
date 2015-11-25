@@ -122,13 +122,13 @@ public class LevelData
 		case 1:
 			levelData.hallData = new string[]{
 				"############D##",
-				"#h     r   h ##",
+				"#h    hrh  h ##",
 				"# #############",
 				"# #############",
 				"#u#############",
-				"#-T############",
-				"# #############",
+				"#-h  T#########",
 				"#h#############",
+				"# #############",
 				"# #############",
 			};
 			levelData.startPosition = new Vector2(1, 8);
@@ -136,20 +136,23 @@ public class LevelData
 			//Doors
 			levelData.addOrientation(12, 0, Orientation.SOUTH);
 			//Treasures
-			levelData.addOrientation(2, 5, Orientation.WEST);
+			levelData.addOrientation(5, 5, Orientation.WEST);
 			//helpsounds
-			levelData.addSound(1, 7, "bienvenido", 1);
-            levelData.addSound(1, 1, "ayuda_tesoro", 1);
-            levelData.addSound(11, 1, "fin_nivel", 2);
+			levelData.addSound(2, 5, "tesoro-cerca", 6);
+			levelData.addSound(1, 6, "sonidos-lados", 10);
+            levelData.addSound(1, 1, "ayuda_tesoro", 4);
+            levelData.addSound(11, 1, "fin_nivel", 4);
+			levelData.addSound(6, 1, "sonido-positivo", 5);
+			levelData.addSound(8, 1, "sonido-negativo", 5);
             break;
 		case 2:
 			levelData.hallData = new string[]{
 				"############D##",
-				"#X -         ##",
+				"#Xh-   r     ##",
 				"### ###########",
 				"### ###########",
 				"###u###########",
-				"##T-  #########",
+				"##T-h #########",
 				"# ###M#########",
 				"#- h  #########",
 				"# #############",
@@ -166,13 +169,15 @@ public class LevelData
 			levelData.addOrientation(5, 6, Orientation.SOUTH);
             levelData.addMonster(5, 6);
             levelData.addSound(3, 7, "advertencia_monster", 8);   
+			levelData.addSound(2, 1, "advertencia-trampa", 4); 
+			levelData.addSound(4, 5, "tesoro-cerca", 4); 
 			break;
 		case 3:
 			levelData.hallData = new string[]{
 				"############D##",
 				"############ ##",
-				"############ ##",
-				"# M-     T## ##",
+				"############u##",
+				"#  -h    T## ##",
 				"#u# ######## ##",
 				"# #   ###   W##",
 				"# ###M###u#####",
@@ -193,6 +198,7 @@ public class LevelData
 
             //Warps
             levelData.addOrientation(12, 5, Orientation.WEST);
+			levelData.addSound(4, 3, "tesoro-cerca", 4); 
 			break;
 		default:
 			break;

@@ -22,7 +22,7 @@ public class DoorEntity : SignalEntity
 
 	public override void ask ()
 	{
-		Debug.Log("Puerta");
+		SoundManager.instance.PlaySingle ("ayuda-puerta");
 	}
 }
 

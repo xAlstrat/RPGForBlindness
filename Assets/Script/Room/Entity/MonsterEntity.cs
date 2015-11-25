@@ -145,7 +145,7 @@ public class MonsterEntity : SignalEntity
 	}
 
 	public override void ask(){
-		Debug.Log("Monster");
+		SoundManager.instance.PlaySingle ("un-enemigo");
 	}
 }
 

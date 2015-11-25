@@ -59,6 +59,9 @@ public class Room
 				entities[j][i] = generator.instantiateRoomObject(i, j);
 			}
 		}
+
+		Game.GetInstance ().player.wait (6);
+		SoundManager.instance.PlaySingle ("entrada-laberinto");
 	}
 
    
@@ -148,9 +151,9 @@ public class Room
     }
 
 	public void ask(Vector2 pos){
-		if (!isInside (pos) || getEntityAt (pos) == null)
-			Debug.Log ("Muralla");
-		else
+		if (!isInside (pos) || (isInside (pos) && !walkableCell(pos)))
+			SoundManager.instance.PlaySingle ("una-muralla");
+		else if (getEntityAt (pos) != null) 
 			getEntityAt (pos).ask ();
 	}
 
