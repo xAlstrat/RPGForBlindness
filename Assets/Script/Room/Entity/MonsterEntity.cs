@@ -52,7 +52,7 @@ public class MonsterEntity : SignalEntity
 		if(hitRoll <= chanceToHit){
 
 			if(damageRatio == 0)
-				sfx = "miss";
+				sfx = "no_damage";
 
 			if(0 < damageRatio && damageRatio <= attackThreshold)
 				sfx = "light_hit";
@@ -77,7 +77,7 @@ public class MonsterEntity : SignalEntity
 	}
 
 	private System.Object[] powerUp(System.Object[] args){
-		this.damageMultiplier += 0.5;
+		this.damageMultiplier += 0.25;
 
 		return new System.Object[]{};
 	}
@@ -86,14 +86,19 @@ public class MonsterEntity : SignalEntity
 		AbilityState abilityToBuff = (AbilityState)args[0];
 		AbilityState abilityToDebuff = abilityToBuff;
 
-		while(abilityToDebuff.Equals(abilityToBuff)){
+		while(abilityToDebuff.Equals(abilityToBuff) || stats[abilityToDebuff] != multipliers[0]){
 			Array values = Enum.GetValues(typeof(AbilityState));
 			System.Random random = new System.Random();
 			abilityToDebuff = (AbilityState)values.GetValue(random.Next(values.Length));
 		}
 
+		stats[abilityToDebuff] = stats[abilityToBuff];
 		stats[abilityToBuff] = multipliers[0];
-		stats[abilityToDebuff] = multipliers[2];
+
+		Debug.Log ("turno");
+		foreach(KeyValuePair<AbilityState, double> stat in stats){
+			Debug.Log(stat.Key.ToString() + ":" + stat.Value.ToString());
+		}
 
 		return new System.Object[]{};
 	}
@@ -112,9 +117,19 @@ public class MonsterEntity : SignalEntity
 	/*FUNCION QUE DECIDE LA ACCION A SEGUIR
 	 * POR AHORA ES ALEATORIA*/
 	public EnemyReturn decide(System.Object[] args){
-		Array enum_values = Enum.GetValues(typeof(EnemyAction));
-		System.Random random = new System.Random();
-		EnemyAction action = (EnemyAction)enum_values.GetValue(random.Next(enum_values.Length));
+
+		bool flag = true;
+		EnemyAction action = EnemyAction.BASIC_ATTACK;
+
+		while (flag) {
+			Array enum_values = Enum.GetValues (typeof(EnemyAction));
+			System.Random random = new System.Random ();
+			action = (EnemyAction)enum_values.GetValue (random.Next (enum_values.Length));
+
+			if(!action.Equals(EnemyAction.RAISE_DEFENSE) || stats[(AbilityState)args[0]] != multipliers[0]){
+				flag = false;
+			}
+		}
 
 		System.Object[] values = attackPool[action](args);
 
