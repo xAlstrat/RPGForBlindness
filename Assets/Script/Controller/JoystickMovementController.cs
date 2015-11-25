@@ -33,7 +33,7 @@ public class JoystickMovementController : PlayerMovementController
             player.move();
         }
         */
-		if (state.Buttons.A == ButtonState.Pressed) {
+		if (state.Buttons.A == ButtonState.Pressed || state.Buttons.B == ButtonState.Pressed) {
 			if(player.state == PlayerState.NO_STAFF){
 				player.pickStaff();
 				return;

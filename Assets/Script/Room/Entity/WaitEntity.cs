@@ -13,5 +13,10 @@ public class WaitEntity : SignalEntity
 	public void setDuration(float duration){
 		this.duration = duration;
 	}
+
+	public override bool destroyable ()
+	{
+		return true;
+	}
 }
 

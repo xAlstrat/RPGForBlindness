@@ -19,7 +19,7 @@ public class TrapEntity : SignalEntity
 
 	public override void ask ()
 	{
-		Debug.Log("Trampa");
+		SoundManager.instance.PlaySingle ("advertencia-trampa");
 	}
 }
 
