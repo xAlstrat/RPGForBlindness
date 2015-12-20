@@ -11,6 +11,7 @@ public class LevelData
 	private Dictionary<string, Orientation> orientations;
 	private Dictionary<string, string> sounds;
 	private Dictionary<string, float> soundsDuration;
+	private Vector2 door;
     private ArrayList monsters;
 
 	public LevelData(){
@@ -59,6 +60,11 @@ public class LevelData
 
 	public Orientation getOrientationAt(int i, int j){
 		return orientations [i + "," + j];
+	}
+
+	public void addDoor(int i, int j)
+	{
+		door = new Vector2 (i, j);
 	}
 
     public void addMonster(int i, int j)
@@ -135,6 +141,7 @@ public class LevelData
 			/*Orientations*/
 			//Doors
 			levelData.addOrientation(12, 0, Orientation.SOUTH);
+			levelData.addDoor(12, 0);
 			//Treasures
 			levelData.addOrientation(5, 5, Orientation.WEST);
 			//helpsounds
@@ -161,6 +168,7 @@ public class LevelData
 			/*Orientations*/
 			//Doors
 			levelData.addOrientation(12, 0, Orientation.SOUTH);
+			levelData.addDoor(12, 0);
 			//Treasures
 			levelData.addOrientation(2, 5, Orientation.EAST);
 			//Traps
@@ -188,6 +196,7 @@ public class LevelData
 			/*Orientations*/
 			//Doors
 			levelData.addOrientation(12, 0, Orientation.SOUTH);
+			levelData.addDoor(12, 0);
 			//Treasures
 			levelData.addOrientation(9, 3, Orientation.WEST);
 			//Monsters
@@ -227,5 +236,10 @@ public class LevelData
 
         return minDistance;
     } 
+
+	public float getDoorDistance(Vector2 pos)
+	{
+		return Vector2.Distance (door, pos);
+	}
 }
 

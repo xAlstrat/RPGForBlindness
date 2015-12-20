@@ -74,6 +74,23 @@ public class JoystickMovementController : PlayerMovementController
             GamePad.SetVibration(playerIndex, 0.0f, 0.0f);
         }
 
+		float doorDistance = Room.GetInstance().getDoorDistance(pos);
+
+		if (doorDistance<5.0f)
+		{
+			//Debug.Log("Estoy llegando");
+			float coef = (5.0f - doorDistance)/ 5.0f;
+			Debug.Log(coef);
+			Debug.Log(doorDistance);
+			GamePad.SetVibration(playerIndex, coef, coef);
+			if(!SoundManager.instance.isEfxPlaying())
+				SoundManager.instance.PlaySingleWithVolume("pew", coef);
+		}
+		else
+		{
+			GamePad.SetVibration(playerIndex, 0.0f, 0.0f);
+		}
+
     }
 
 	private bool leftEvent(){

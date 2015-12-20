@@ -207,28 +207,39 @@ public class Battle : MonoBehaviour {
 			currentPhase = TurnPhase.CONFIRMATION;
 	}
 
+	private void selectFace(){
+		bool wasButtonPressed = false;
 
-	/*FUNCION QUE SE DEBERIA USAR PARA QUE SE SELECCIONE LA CARA A USAR CON EL FALCON
-	 * EN LUGAR DE ROTAR EL CUBO
-	 * HAY QUE REEMPLAZAR POR LOS EVENTOS QUE CORRESPONDAN Y CAMBIAR LAS FUNCIONES EN
-	 * playerTurn() --> SELECTION
-	/*private void selectFace(){
-		if(evento del falcon ARRIBA o flecha arriba)
+		if(aheadEvent()){
 			currentAbility = abilities[4];
-		if(evento del falcon ABAJO o flecha abajo)
+			wasButtonPressed = true;
+		}
+		if(backEvent()){
 			currentAbility = abilities[5];
-		if(evento del falcon IZQUIERDA o flecha izquierda)
+			wasButtonPressed = true;
+		}
+		if(leftEvent()){
 			currentAbility = abilities[1];
-		if(evento del falcon DERECHA o flecha derecha)
+			wasButtonPressed = true;
+		}
+		if(rightEvent()){
 			currentAbility = abilities[3];
-		if(evento del falcon ADELANTE o boton XBOX adelante)
+			wasButtonPressed = true;
+		}
+		if(frontEvent()){
 			currentAbility = abilities[0];
-		if(evento del falcon ATRAS o boton XBOX atras)
+			wasButtonPressed = true;
+		}
+		if(behindEvent()){
 			currentAbility = abilities[2];
-			
-		string clip = soundMap.getSelectionClip(currentAbility);
-		SoundManager.instance.PlaySingle(clip);
-	}*/
+			wasButtonPressed = true;
+		}
+
+		if(wasButtonPressed){
+			string clip = soundMap.getSelectionClip(currentAbility);
+			SoundManager.instance.PlaySingle(clip);
+		}
+	}
 
 	private void rotate(){
 		if(leftEvent() || rightEvent() || aheadEvent() || backEvent()){
@@ -255,6 +266,13 @@ public class Battle : MonoBehaviour {
 			SoundManager.instance.PlaySingle(audioClip);
 	}
 
+	private void activateCheatCodes(){
+		if(instakill()){
+			enemy.setHP(0);
+			currentPhase = TurnPhase.ENDING;
+		}
+	}
+
 	public void playerTurn(){
 
 		switch(currentPhase){
@@ -263,11 +281,12 @@ public class Battle : MonoBehaviour {
 				currentPhase = TurnPhase.SELECTION;
 				break;
 			case(TurnPhase.SELECTION):
-				//cambiar rotate por selectFace
-				rotate();
-				//selectFace();
+				//CAMBIAR rotate() POR selectFace() PARA CAMBIAR DE ROTACION DEL CUBO A SELECCION FIJA
+				//rotate();
+				selectFace();
 				feedBack();
 				selection();
+				activateCheatCodes();
 				break;
 			case(TurnPhase.CONFIRMATION):
 				currentPhase = TurnPhase.CALCULATIONS;
@@ -440,6 +459,18 @@ public class Battle : MonoBehaviour {
 	protected bool backEvent(){
 		currentRotation = Rotation.DOWN;
 		return Input.GetKeyUp (KeyCode.DownArrow) || (prevState.DPad.Down == ButtonState.Released && state.DPad.Down == ButtonState.Pressed);
+	}
+
+	protected bool frontEvent(){
+		return Input.GetKeyUp (KeyCode.Keypad0);
+	}
+
+	protected bool behindEvent(){
+		return Input.GetKeyUp (KeyCode.Keypad1);
+	}
+
+	protected bool instakill(){
+		return Input.GetKeyUp(KeyCode.Q);
 	}
 
     protected bool askMyHP(){

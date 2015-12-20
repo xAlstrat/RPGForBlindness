@@ -150,6 +150,10 @@ public class Room
         return data.getMinDistanceMonster(pos);
     }
 
+	public float getDoorDistance(Vector2 pos){
+		return data.getDoorDistance(pos);
+	}
+
 	public void ask(Vector2 pos){
 		if (!isInside (pos) || (isInside (pos) && !walkableCell(pos)))
 			SoundManager.instance.PlaySingle ("una-muralla");
