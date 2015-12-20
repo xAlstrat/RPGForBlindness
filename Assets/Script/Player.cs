@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
 	private int boostsToLevelUp;
 	private bool ableToMove;
 
+	/// <summary>
+	/// The actual geometric room level
+	/// </summary>
+	private int geomLevel;
+
 	private AbilityState[] currentAbilityState;
 	public AbilityState[] CurrentAbilityStates{
 		get{return currentAbilityState;}
@@ -104,6 +109,7 @@ public class Player : MonoBehaviour
 			new Vector2(0, 1), //south
 			new Vector2(-1, 0) //west
 		};
+		geomLevel = 0;
 		currentDir = 0;
 		startRotation = Quaternion.identity;
 		destRotation = Quaternion.identity;
@@ -439,6 +445,18 @@ public class Player : MonoBehaviour
 	}
 	public Vector2 frontPosition(){
 		return position + direction;
+	}
+
+	public int getGeomLevel(){
+		return geomLevel;
+	}
+
+	public void setGeomLevel(int newLevel){
+		geomLevel = newLevel;
+	}
+
+	public void increaseOneGeomLevel(){
+		geomLevel = geomLevel + 1;
 	}
 }
 
