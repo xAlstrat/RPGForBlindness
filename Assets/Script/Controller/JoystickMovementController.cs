@@ -68,6 +68,8 @@ public class JoystickMovementController : PlayerMovementController
         {
             float coef = 0.1f + ((3.0f - distance) * 0.2f / 3.0f);
             GamePad.SetVibration(playerIndex, coef, coef);
+			if(!SoundManager.instance.isEfxPlaying())
+				SoundManager.instance.PlaySingleWithVolume("pew", coef);
         }
         else
         {
@@ -75,13 +77,22 @@ public class JoystickMovementController : PlayerMovementController
         }
 
 		float doorDistance = Room.GetInstance().getDoorDistance(pos);
-
-		if (doorDistance<5.0f)
+		if (doorDistance<3.0f)
 		{
-			//Debug.Log("Estoy llegando");
-			float coef = (5.0f - doorDistance)/ 5.0f;
-			Debug.Log(coef);
-			Debug.Log(doorDistance);
+			float coef = (3.0f - doorDistance)/ 3.0f;
+			GamePad.SetVibration(playerIndex, coef, coef);
+			if(!SoundManager.instance.isEfxPlaying())
+				SoundManager.instance.PlaySingleWithVolume("pew", coef);
+		}
+		else
+		{
+			GamePad.SetVibration(playerIndex, 0.0f, 0.0f);
+		}
+
+		float trapDistance = Room.GetInstance().getMinDistanceTrap(pos);
+		if (trapDistance<3.0f)
+		{
+			float coef = (3.0f - trapDistance)/ 3.0f;
 			GamePad.SetVibration(playerIndex, coef, coef);
 			if(!SoundManager.instance.isEfxPlaying())
 				SoundManager.instance.PlaySingleWithVolume("pew", coef);

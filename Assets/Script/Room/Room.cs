@@ -150,6 +150,11 @@ public class Room
         return data.getMinDistanceMonster(pos);
     }
 
+	public float getMinDistanceTrap(Vector2 pos)
+	{
+		return data.getMinDistanceTrap(pos);
+	}
+	
 	public float getDoorDistance(Vector2 pos){
 		return data.getDoorDistance(pos);
 	}

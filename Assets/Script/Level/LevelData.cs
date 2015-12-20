@@ -13,10 +13,12 @@ public class LevelData
 	private Dictionary<string, float> soundsDuration;
 	private Vector2 door;
     private ArrayList monsters;
+	private ArrayList traps;
 
 	public LevelData(){
 		orientations = new Dictionary<string, Orientation> ();
         monsters = new ArrayList();
+		traps = new ArrayList();
 		sounds = new Dictionary<string, string> ();
 		soundsDuration = new Dictionary<string, float> ();
 	}
@@ -72,10 +74,32 @@ public class LevelData
         monsters.Add(new Vector2(i, j));
     }
 
-    public void removeMonster(Vector2 pos)
-    {
-        foreach (Vector2 v in monsters)
-        {
+	public void addTrap(int i, int j)
+	{
+		traps.Add(new Vector2(i, j));
+	}
+
+	public void removeTrap(Vector2 pos)
+	{
+		foreach (Vector2 v in traps)
+		{
+			if (v.Equals(pos))
+			{
+				traps.Remove(v);
+				break;
+			}
+		}
+	}
+	
+	public void removeTrap(int i, int j)
+	{
+		removeTrap(new Vector2(i, j)); 
+	}
+	
+	public void removeMonster(Vector2 pos)
+	{
+		foreach (Vector2 v in monsters)
+		{
             if (v.Equals(pos))
             {
                 monsters.Remove(v);
@@ -173,6 +197,7 @@ public class LevelData
 			levelData.addOrientation(2, 5, Orientation.EAST);
 			//Traps
 			levelData.addOrientation(1, 1, Orientation.EAST);
+			levelData.addTrap(1,1);
 			//Monsters
 			levelData.addOrientation(5, 6, Orientation.SOUTH);
             levelData.addMonster(5, 6);
@@ -237,6 +262,21 @@ public class LevelData
         return minDistance;
     } 
 
+	public float getMinDistanceTrap(Vector2 pos)
+	{
+		float minDistance = 10000000.0f;
+		foreach(Vector2 v in traps)
+		{
+			float aux = Vector2.Distance(v, pos);
+			if (aux<minDistance)
+			{
+				minDistance = aux;
+			}
+		}
+		
+		return minDistance;
+	} 
+	
 	public float getDoorDistance(Vector2 pos)
 	{
 		return Vector2.Distance (door, pos);
