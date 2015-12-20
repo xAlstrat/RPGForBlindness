@@ -34,6 +34,29 @@ public class TreasureEntity : SignalEntity
 		};
 		int randomBoost = Random.Range(0,6); // A number between 0 and 5
 		Game.GetInstance ().player.addBoost (listAbilityPool[randomBoost], 4);
+
+		switch (listAbilityPool [randomBoost]) {
+		case AbilityState.AGUA:
+			SoundManager.instance.PlaySingle ("tesoro-agua");
+			break;
+		case AbilityState.TIERRA:
+			SoundManager.instance.PlaySingle ("tesoro-tierra");
+			break;
+		case AbilityState.FUEGO:
+			SoundManager.instance.PlaySingle ("tesoro-fuego");
+			break;
+		case AbilityState.VIENTO:
+			SoundManager.instance.PlaySingle ("tesoro-viento");
+			break;
+		case AbilityState.NATURALEZA:
+			SoundManager.instance.PlaySingle ("tesoro-naturaleza");
+			break;
+		case AbilityState.ARCANO:
+			SoundManager.instance.PlaySingle ("tesoro-arcano");
+			break;
+		default:
+			break;
+		}
 	}
 }
 
