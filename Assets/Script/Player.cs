@@ -231,6 +231,7 @@ public class Player : MonoBehaviour
 	public void move(){
 		if (state == PlayerState.NO_STAFF) {
 			noStaffAlert();
+			return;
 		}
 		if (state != PlayerState.STOPPED || !ableToMove)
 			return;
