@@ -50,8 +50,8 @@ public class MultiSignalEntity : RoomEntity
 		Invoke ("rightSound", delta);
 	}
 	
-	private void leftSound(){SoundManager.instance.PlayDirectionalSingle ("pew", -1f);}
-	private void rightSound(){SoundManager.instance.PlayDirectionalSingle ("pew", 1f);}
+	private void leftSound(){SoundManager.instance.PlayDirectionalSingle ("pew-left", -1f);}
+	private void rightSound(){SoundManager.instance.PlayDirectionalSingle ("pew-right", 1f);}
 	private void bothSound(){SoundManager.instance.PlayDirectionalSingle ("pew", 0f);}
 }
 
