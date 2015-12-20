@@ -10,6 +10,16 @@ public class TreasureEntity : SignalEntity
 	public override void handleCollision(){
 		base.handleCollision ();
 		Game.GetInstance ().player.wait (1.5f);
+		AbilityState[] listAbilityPool = new AbilityState[]{
+			AbilityState.AGUA,
+			AbilityState.TIERRA,
+			AbilityState.FUEGO,
+			AbilityState.VIENTO,
+			AbilityState.NATURALEZA,
+			AbilityState.ARCANO
+		};
+		int randomBoost = Random.Range(0,6); // A number between 0 and 5
+		Game.GetInstance ().player.addBoost (listAbilityPool[randomBoost], 4);
 	}
 
 	public override bool destroyable(){
