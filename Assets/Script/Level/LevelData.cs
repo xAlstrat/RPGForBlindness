@@ -152,12 +152,12 @@ public class LevelData
 		case 1:
 			levelData.hallData = new string[]{
 				"############D##",
-				"#h    hrh  h ##",
-				"# #############",
-				"# #############",
-				"#u#############",
-				"#-h  T#########",
-				"#h#############",
+				"# h-  hrh    ##",
+				"# # ###########",
+				"# #h###########",
+				"#u# ###########",
+				"# # ###########",
+				"#h#T###########",
 				"# #############",
 				"# #############",
 			};
@@ -167,12 +167,11 @@ public class LevelData
 			levelData.addOrientation(12, 0, Orientation.SOUTH);
 			levelData.addDoor(12, 0);
 			//Treasures
-			levelData.addOrientation(5, 5, Orientation.WEST);
+			levelData.addOrientation(3, 6, Orientation.WEST);
 			//helpsounds
-			levelData.addSound(2, 5, "tesoro-cerca", 6);
-			levelData.addSound(1, 6, "sonidos-lados", 10);
-            levelData.addSound(1, 1, "ayuda_tesoro", 4);
-            levelData.addSound(11, 1, "fin_nivel", 4);
+			levelData.addSound(1, 6, "ayuda_tesoro", 4);
+			levelData.addSound(3, 3, "tesoro-cerca", 6);
+			levelData.addSound(2, 1, "sonidos-lados", 10);
 			levelData.addSound(6, 1, "sonido-positivo", 5);
 			levelData.addSound(8, 1, "sonido-negativo", 5);
             break;
@@ -212,7 +211,7 @@ public class LevelData
 				"############u##",
 				"#  -h    T## ##",
 				"#u# ######## ##",
-				"# #   ###   W##",
+				"# # r ###    ##",
 				"# ###M###u#####",
 				"#- r -    #####",
 				"# #############",
@@ -227,12 +226,42 @@ public class LevelData
 			//Monsters
 			levelData.addOrientation(5, 6, Orientation.SOUTH);
             levelData.addMonster(5, 6);
-            levelData.addOrientation(2, 3, Orientation.WEST);
-            levelData.addMonster(2, 3);
 
             //Warps
-            levelData.addOrientation(12, 5, Orientation.WEST);
-			levelData.addSound(4, 3, "tesoro-cerca", 4); 
+			levelData.addSound(4, 3, "advertencia-trampa", 4); 
+			break;
+		case 4:
+			levelData.hallData = new string[]{
+				"#   r      D###",
+				"#u#############",
+				"#Wh ###  M  T##",
+				"### ### #####T#",
+				"### l  -   ## #",
+				"####### ##    #",
+				"###T### #######",
+				"###-   -  l   #",
+				"X h ######### #",
+			};
+			levelData.startPosition = new Vector2(13, 8);
+			/*Orientations*/
+			//Doors
+			levelData.addOrientation(11, 0, Orientation.WEST);
+			levelData.addDoor(11, 0);
+			//Treasures
+			levelData.addOrientation(12, 2, Orientation.WEST);
+			levelData.addOrientation(13, 3, Orientation.SOUTH);
+			levelData.addOrientation(3, 6, Orientation.SOUTH);
+			//Monsters
+			levelData.addOrientation(9, 2, Orientation.WEST);
+			levelData.addMonster(9, 2);
+
+			//Trap
+			levelData.addOrientation(0, 8, Orientation.EAST);
+
+			//Warps 
+			levelData.addOrientation(1, 2, Orientation.EAST);
+			levelData.addSound(2, 2, "energia-portal", 4);
+			levelData.addSound(2, 8, "advertencia-trampa", 4); 
 			break;
 		default:
 			break;

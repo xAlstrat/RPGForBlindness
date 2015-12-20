@@ -33,7 +33,7 @@ public class KeyboardMovementController : PlayerMovementController
 		} else if (upEvent ()) {
 			player.move ();
 		} else if (Input.GetKeyDown (KeyCode.Escape)) {
-			ApplicationData.setLastLevel (1 +ApplicationData.getLastLevel () % 3);
+			ApplicationData.setLastLevel (1 +ApplicationData.getLastLevel () % 4);
 			SceneLoader.GetInstance().cleanLoad("HallState");
 		}
     }
