@@ -10,6 +10,20 @@ public class TreasureEntity : SignalEntity
 	public override void handleCollision(){
 		base.handleCollision ();
 		Game.GetInstance ().player.wait (1.5f);
+		generateTreasureRandomLootBoost ();
+
+	}
+
+	public override bool destroyable(){
+		return true;
+	}
+
+	public override void ask ()
+	{
+		SoundManager.instance.PlaySingle ("tomar-tesoro");
+	}
+
+	public void generateTreasureRandomLootBoost() {
 		AbilityState[] listAbilityPool = new AbilityState[]{
 			AbilityState.AGUA,
 			AbilityState.TIERRA,
@@ -20,15 +34,6 @@ public class TreasureEntity : SignalEntity
 		};
 		int randomBoost = Random.Range(0,6); // A number between 0 and 5
 		Game.GetInstance ().player.addBoost (listAbilityPool[randomBoost], 4);
-	}
-
-	public override bool destroyable(){
-		return true;
-	}
-
-	public override void ask ()
-	{
-		SoundManager.instance.PlaySingle ("tomar-tesoro");
 	}
 }
 
