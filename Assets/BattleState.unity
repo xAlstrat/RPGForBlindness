@@ -414,7 +414,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 422843899}
   m_LocalRotation: {x: 0, y: .989014506, z: 0, w: .147818655}
-  m_LocalPosition: {x: .449999988, y: .0299999993, z: 0}
+  m_LocalPosition: {x: 1.74000001, y: .0299999993, z: -.449999988}
   m_LocalScale: {x: 1.47348797, y: 1.47348797, z: 1.47348797}
   m_Children:
   - {fileID: 1170194785}
@@ -801,7 +801,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400276, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2060,7 +2060,7 @@ Animator:
   m_GameObject: {fileID: 1170194784}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d8e6116652f17784087610025c66ec2e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 31a04b813d9dab04497fe2ff6a486f29, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0785582934138eb46bb77d82e8b10df2, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2935,7 +2935,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1762620803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b364326b51683d54ab9eb37c799223f3, type: 3}
   m_Name: 
@@ -3337,7 +3337,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 466964, guid: a1eeee6676ff1304ba32032377a2f122, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1eeee6676ff1304ba32032377a2f122, type: 2}

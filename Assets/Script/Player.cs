@@ -184,6 +184,7 @@ public class Player : MonoBehaviour
 			transform.rotation = destRotation;
 			state = PlayerState.STOPPED;
 			countdown = 0f;
+			wait(0.5f);
 			return;
 		}
 		countdown -= Time.deltaTime * speed;
