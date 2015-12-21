@@ -20,6 +20,7 @@ public class RoomMasterController : MonoBehaviour {
 		state = GamePad.GetState(playerIndex);
 		prevState = state;
 		SoundManager.instance.PlayMusic("Hidden Agenda");
+		SoundManager.instance.PlaySingle ("Georoomintro");
 	}
 	
 	// Update is called once per frame
@@ -65,9 +66,8 @@ public class RoomMasterController : MonoBehaviour {
 		if (test_level != -1) {
 			return test_level;
 		}
-
 		// Default
-		return 0;
+		return Game.GetInstance ().player.getGeomLevel ();
 	}
 
 	public void PlayerMovement (GameObject obj, float speed) {
