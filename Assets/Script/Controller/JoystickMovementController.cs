@@ -67,9 +67,10 @@ public class JoystickMovementController : PlayerMovementController
         if (distance<3.0f)
         {
             float coef = 0.1f + ((3.0f - distance) * 0.2f / 3.0f);
+			float coef2 = (3.0f - distance)/ 3.0f;
             GamePad.SetVibration(playerIndex, coef, coef);
 			if(!SoundManager.instance.isEfxPlaying())
-				SoundManager.instance.PlaySingleWithVolume("breathing", coef);
+				SoundManager.instance.PlaySingleWithVolume("breathing2", coef2);
         }
         else
         {

@@ -471,11 +471,11 @@ public class Battle : MonoBehaviour {
 	}
 
 	protected bool frontEvent(){
-		return Input.GetKeyUp (KeyCode.Keypad0);
+		return Input.GetKeyUp (KeyCode.RightControl);
 	}
 
 	protected bool behindEvent(){
-		return Input.GetKeyUp (KeyCode.Keypad1);
+		return Input.GetKeyUp (KeyCode.RightShift);
 	}
 
 	protected bool instakill(){
