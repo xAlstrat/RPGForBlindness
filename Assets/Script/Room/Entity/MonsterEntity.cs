@@ -11,8 +11,9 @@ public class MonsterEntity : SignalEntity
 	private double damageMultiplier = 1.0;
 	private double attackThreshold = 0.7;
 	private double chanceToHit = 0.8;
-	private Dictionary<AbilityState, double> stats;
 	private double[] multipliers = new double[]{0.5, 1, 2};
+	private System.Random random = new System.Random ();
+	private Dictionary<AbilityState, double> stats;
 	private Dictionary<EnemyAction, Func<System.Object[], System.Object[]>> attackPool;
 
 	protected void Awake(){
@@ -70,8 +71,10 @@ public class MonsterEntity : SignalEntity
 
 	private System.Object[] confusePlayer(System.Object[] args){
 		Array values = Enum.GetValues(typeof(Rotation));
-		System.Random random = new System.Random();
+		//System.Random random = new System.Random();
 		Rotation rotation = (Rotation)values.GetValue(random.Next(values.Length));
+
+		Debug.Log(rotation.ToString());
 
 		return new System.Object[]{rotation};
 	}
@@ -88,7 +91,7 @@ public class MonsterEntity : SignalEntity
 
 		while(abilityToDebuff.Equals(abilityToBuff) || stats[abilityToDebuff] != multipliers[0]){
 			Array values = Enum.GetValues(typeof(AbilityState));
-			System.Random random = new System.Random();
+			//System.Random random = new System.Random();
 			abilityToDebuff = (AbilityState)values.GetValue(random.Next(values.Length));
 		}
 
@@ -123,7 +126,7 @@ public class MonsterEntity : SignalEntity
 
 		while (flag) {
 			Array enum_values = Enum.GetValues (typeof(EnemyAction));
-			System.Random random = new System.Random ();
+			//System.Random random = new System.Random ();
 			action = (EnemyAction)enum_values.GetValue (random.Next (enum_values.Length));
 
 			if(!action.Equals(EnemyAction.RAISE_DEFENSE) || stats[(AbilityState)args[0]] != multipliers[0]){

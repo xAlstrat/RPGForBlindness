@@ -6,6 +6,8 @@ using System;
 
 public class Battle : MonoBehaviour {
 
+	private int lastSelectedFace;
+
 	private bool wasDeathSfxPlayed;
 	private bool wasActionSfxPlayed;
 	private bool wasVictoryMusicPlayed;
@@ -43,6 +45,8 @@ public class Battle : MonoBehaviour {
     GamePadState prevState;
 
     void Start(){
+
+		lastSelectedFace = 0;
 
 		wasDeathSfxPlayed = false;
 		wasActionSfxPlayed = false;
@@ -196,8 +200,7 @@ public class Battle : MonoBehaviour {
 				break;
 		}
 
-		currentAbility = abilities[0];
-		//selectFace();
+		currentAbility = abilities[lastSelectedFace];
 	}
 
 	private void selection(){
@@ -213,26 +216,32 @@ public class Battle : MonoBehaviour {
 		if(aheadEvent()){
 			currentAbility = abilities[4];
 			wasButtonPressed = true;
+			lastSelectedFace = 4;
 		}
 		if(backEvent()){
 			currentAbility = abilities[5];
 			wasButtonPressed = true;
+			lastSelectedFace = 5;
 		}
 		if(leftEvent()){
 			currentAbility = abilities[1];
 			wasButtonPressed = true;
+			lastSelectedFace = 1;
 		}
 		if(rightEvent()){
 			currentAbility = abilities[3];
 			wasButtonPressed = true;
+			lastSelectedFace = 3;
 		}
 		if(frontEvent()){
 			currentAbility = abilities[0];
 			wasButtonPressed = true;
+			lastSelectedFace = 0;
 		}
 		if(behindEvent()){
 			currentAbility = abilities[2];
 			wasButtonPressed = true;
+			lastSelectedFace = 2;
 		}
 
 		if(wasButtonPressed){
