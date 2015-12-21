@@ -209,8 +209,8 @@ public class LevelData
 				"############D##",
 				"############ ##",
 				"############u##",
-				"#  -h    T## ##",
-				"#u# ######## ##",
+				"#  -h    T##W##",
+				"#u# ########h##",
 				"# # r ###    ##",
 				"# ###M###u#####",
 				"#- r -    #####",
@@ -229,6 +229,8 @@ public class LevelData
 
             //Warps
 			levelData.addSound(4, 3, "tesoro-cerca", 4); 
+			levelData.addOrientation(12, 3, Orientation.SOUTH);
+			levelData.addSound(12, 4, "energia-portal", 4);
 			break;
 		case 4:
 			levelData.hallData = new string[]{
