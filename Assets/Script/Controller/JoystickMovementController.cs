@@ -69,7 +69,7 @@ public class JoystickMovementController : PlayerMovementController
             float coef = 0.1f + ((3.0f - distance) * 0.2f / 3.0f);
             GamePad.SetVibration(playerIndex, coef, coef);
 			if(!SoundManager.instance.isEfxPlaying())
-				SoundManager.instance.PlaySingleWithVolume("pew", coef);
+				SoundManager.instance.PlaySingleWithVolume("breathing", coef);
         }
         else
         {
@@ -82,7 +82,7 @@ public class JoystickMovementController : PlayerMovementController
 			float coef = (3.0f - doorDistance)/ 3.0f;
 			GamePad.SetVibration(playerIndex, coef, coef);
 			if(!SoundManager.instance.isEfxPlaying())
-				SoundManager.instance.PlaySingleWithVolume("pew", coef);
+				SoundManager.instance.PlaySingleWithVolume("shooting-star", coef);
 		}
 		else
 		{
@@ -95,7 +95,7 @@ public class JoystickMovementController : PlayerMovementController
 			float coef = (3.0f - trapDistance)/ 3.0f;
 			GamePad.SetVibration(playerIndex, coef, coef);
 			if(!SoundManager.instance.isEfxPlaying())
-				SoundManager.instance.PlaySingleWithVolume("pew", coef);
+				SoundManager.instance.PlaySingleWithVolume("death-ray", coef);
 		}
 		else
 		{
