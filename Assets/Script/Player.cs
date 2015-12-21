@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
 			new Vector2(0, 1), //south
 			new Vector2(-1, 0) //west
 		};
-		geomLevel = 0;
+		geomLevel = 2;
 		currentDir = 0;
 		startRotation = Quaternion.identity;
 		destRotation = Quaternion.identity;

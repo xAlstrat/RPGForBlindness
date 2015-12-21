@@ -46,11 +46,13 @@ public class RoomFloorController : MonoBehaviour {
 				//Derecha
 				direction = 1;
 				direction_r_string = "Derecha";
+				SoundManager.instance.PlaySingle ("GeomRoomTransforms-Rotder");
 				break;
 			default:
 				//Izquierda
 				direction = -1;
 				direction_r_string = "Izquierda";
+				SoundManager.instance.PlaySingle ("GeomRoomTransforms-Rotizq");
 				break;
 			}
 			// Grados
@@ -96,11 +98,13 @@ public class RoomFloorController : MonoBehaviour {
 					//Derecha
 					side_t_string = "la Derecha 5 espacios";
 					transform.position = new Vector3(old_t_x + 5, old_t_y, old_t_z);
+					SoundManager.instance.PlaySingle ("GeomRoomTransforms-este");
 					break;
 				default:
 					// Izquierda
 					side_t_string = "la Izquierda 7 espacios";
 					transform.position = new Vector3(old_t_x - 7, old_t_y, old_t_z);
+					SoundManager.instance.PlaySingle ("GeomRoomTransforms-oeste");
 					break;
 				}
 				break;
@@ -113,11 +117,13 @@ public class RoomFloorController : MonoBehaviour {
 					// Abajo
 					side_t_string = "Abajo 3 espacios";
 					transform.position = new Vector3(old_t_x, old_t_y, old_t_z - 3);
+					SoundManager.instance.PlaySingle ("GeomRoomTransforms-sur");
 					break;
 				default:
 					// Arriba
 					side_t_string = "Arriba 3 espacios";
 					transform.position = new Vector3(old_t_x, old_t_y, old_t_z + 3);
+					SoundManager.instance.PlaySingle ("GeomRoomTransforms-norte");
 					break;
 				}
 				break;
@@ -143,6 +149,7 @@ public class RoomFloorController : MonoBehaviour {
 				}
 				GameObject.FindGameObjectWithTag("Endblock").transform.position = new Vector3( - old_x + 6, old_y, old_z);
 				Debug.Log("El cuarto ha sido reflejado segun el eje Y desde el centro del cuarto");
+				SoundManager.instance.PlaySingle ("GeomRoomTransforms-y");
 				break;
 			default:
 				// Horizontal
@@ -152,6 +159,7 @@ public class RoomFloorController : MonoBehaviour {
 					other.HorizontalReflect();
 				}
 				Debug.Log("El cuarto ha sido reflejado segun el eje X desde el centro del cuarto");
+				SoundManager.instance.PlaySingle ("GeomRoomTransforms-x");
 				break;
 			}
 			break;

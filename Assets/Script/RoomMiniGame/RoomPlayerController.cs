@@ -67,6 +67,7 @@ public class RoomPlayerController : MonoBehaviour {
 			Debug.Log("trigered");
 			if (started) {
 				other.gameObject.SetActive (false);
+				Game.GetInstance ().player.increaseOneGeomLevel ();
 				SceneLoader.GetInstance().load("HallStateIncomplete");
 			}
 		}
