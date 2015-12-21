@@ -128,6 +128,8 @@ public class Player : MonoBehaviour
 			AbilityState.ARCANO
 		};
 
+
+
 		boostsToLevelUp = 3;
 
 		ableToMove = true;
@@ -140,8 +142,9 @@ public class Player : MonoBehaviour
 		boosts = new Dictionary<AbilityState, int>();
 
 		foreach(AbilityState AS in System.Enum.GetValues(typeof(AbilityState))){
-			abilitiesBaseDamage.Add(AS, 1);
 			boosts.Add(AS, 0);
+			abilitiesBaseDamage.Add(AS, 1);
+			addBoost(AS, ApplicationData.getBoost (AS));
 		}
 	}
 
@@ -367,8 +370,9 @@ public class Player : MonoBehaviour
 
 	public void addBoost(AbilityState ability, int amount = 1){
 		boosts[ability] += amount;
-		abilitiesBaseDamage[ability] += boosts[ability] / boostsToLevelUp;
-		boosts[ability] = boosts[ability] % boostsToLevelUp;
+		abilitiesBaseDamage[ability] = boosts[ability] / boostsToLevelUp + 1;
+		//abilitiesBaseDamage[ability] += boosts[ability] / boostsToLevelUp;
+		//boosts[ability] = boosts[ability] % boostsToLevelUp;
 	}
 	
 	private void makeTurningSound(){

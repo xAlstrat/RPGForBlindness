@@ -471,15 +471,15 @@ public class Battle : MonoBehaviour {
 	}
 
 	protected bool frontEvent(){
-		return Input.GetKeyUp (KeyCode.RightControl);
+		return Input.GetKeyUp (KeyCode.RightControl) || (prevState.Buttons.RightShoulder == ButtonState.Released && state.Buttons.RightShoulder == ButtonState.Pressed);
 	}
 
 	protected bool behindEvent(){
-		return Input.GetKeyUp (KeyCode.RightShift);
+		return Input.GetKeyUp (KeyCode.RightShift) || (prevState.Buttons.LeftShoulder== ButtonState.Released && state.Buttons.LeftShoulder == ButtonState.Pressed);
 	}
 
 	protected bool instakill(){
-		return Input.GetKeyUp(KeyCode.Q);
+		return Input.GetKeyUp(KeyCode.Q) || (prevState.Buttons.Y == ButtonState.Released && state.Buttons.Y == ButtonState.Pressed);
 	}
 
     protected bool askMyHP(){
@@ -491,7 +491,7 @@ public class Battle : MonoBehaviour {
     }
 
 	protected bool askCurrentAbility(){
-		return Input.GetKeyUp (KeyCode.O);
+		return Input.GetKeyUp (KeyCode.O) || (prevState.Buttons.X == ButtonState.Released && state.Buttons.X == ButtonState.Pressed);
 	}
 
     protected bool playerAttack(){

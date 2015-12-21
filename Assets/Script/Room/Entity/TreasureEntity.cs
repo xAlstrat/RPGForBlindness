@@ -34,6 +34,7 @@ public class TreasureEntity : SignalEntity
 		};
 		int randomBoost = Random.Range(0,6); // A number between 0 and 5
 		Game.GetInstance ().player.addBoost (listAbilityPool[randomBoost], 4);
+		ApplicationData.addBoost (4, listAbilityPool[randomBoost]);
 
 		switch (listAbilityPool [randomBoost]) {
 		case AbilityState.AGUA:
