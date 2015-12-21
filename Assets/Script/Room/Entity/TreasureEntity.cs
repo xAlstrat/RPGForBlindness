@@ -10,7 +10,7 @@ public class TreasureEntity : SignalEntity
 	public override void handleCollision(){
 		base.handleCollision ();
 		Game.GetInstance ().player.wait (1.5f);
-		generateTreasureRandomLootBoost ();
+		Invoke ("generateTreasureRandomLootBoost", 1);
 
 	}
 
