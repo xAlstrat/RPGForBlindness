@@ -61,7 +61,11 @@ public class Room
 		}
 
 		Game.GetInstance ().player.wait (6);
-		SoundManager.instance.PlaySingle ("entrada-laberinto");
+		if (ApplicationData.getLastLevel () == 1) {
+			SoundManager.instance.PlaySingle ("introduccion");
+		} else {
+			SoundManager.instance.PlaySingle ("entrada-laberinto");
+		}
 	}
 
    
