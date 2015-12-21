@@ -228,7 +228,7 @@ public class LevelData
             levelData.addMonster(5, 6);
 
             //Warps
-			levelData.addSound(4, 3, "advertencia-trampa", 4); 
+			levelData.addSound(4, 3, "tesoro-cerca", 4); 
 			break;
 		case 4:
 			levelData.hallData = new string[]{
